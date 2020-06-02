@@ -6,17 +6,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
-import android.webkit.ConsoleMessage;
+import android.view.ViewGroup;
 import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.ValueCallback;
-import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,17 +32,20 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ViewGroup contentFrame;
     private WebView webView;
     private String cookiesStr;
     private String cookiesStr2;
+    public static final String cookies_tag = "cookies";
     private String TAG = "login_web";
     public static final Map<String, String> webApiParams = new HashMap<>();
 
-    private static final String USER_AGENT = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1";
-    private OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new HttpLoggingInterceptor(message -> Log.d("NETWORK_LOG", message)).setLevel(HttpLoggingInterceptor.Level.BODY)).build();
+    //public static final String USER_AGENT = "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1";
+    public static final String USER_AGENT = "Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Mobile Safari/537.36";
+    public static final OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new HttpLoggingInterceptor(message -> Log.d("NETWORK_LOG", message)).setLevel(HttpLoggingInterceptor.Level.BODY)).build();
 
-    private String script = "(function(){document.getElementsByClassName(\"tiktok-toolbar-like\")[0].click()})();";
-    private String script2 = "(function() {\n" +
+    public static String scriptSetLike = "(function(){document.getElementsByClassName(\"tiktok-toolbar-like\")[0].click()})();";
+    public static String scriptSetListener = "(function() {\n" +
             "    var origOpen = XMLHttpRequest.prototype.open;\n" +
             "    XMLHttpRequest.prototype.open = function() {\n" +
             "        this.addEventListener('load', function() {\n" +
@@ -64,7 +64,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         if (Hawk.contains("cookies")) {
-            cookiesStr = Hawk.get("cookies", "");
+            LikesEarnFragment fragment = new LikesEarnFragment();
+
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.contentFrame, fragment, fragment.getClass().getName())
+                    .addToBackStack(fragment.getClass().getName())
+                    .commit();
+
+            /*cookiesStr = Hawk.get("cookies", "");
             cookiesStr2 = Hawk.get("cookies2", "");
             //Log.i("login_web", "cookies: " + cookiesStr);
             //like();
@@ -101,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
             Map<String, String> headers = new HashMap<>();
             headers.put("cookie", cookiesStr);
-            webView.loadUrl("https://www.tiktok.com/@klavacoca/video/6831459866024955141", headers);
+            webView.loadUrl("https://www.tiktok.com/@klavacoca/video/6831459866024955141", headers);*/
 
             /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 CookieManager cookieManager = CookieManager.getInstance();
@@ -181,12 +188,12 @@ public class MainActivity extends AppCompatActivity {
 
             if (!isLiked) {
                 isLiked = true;
-                new Handler().postDelayed(() -> evaluateJavascript(), 1000);
+                new Handler().postDelayed(() -> evaluateJsLike(), 1000);
             }
 
             if (!isEval) {
                 isEval = true;
-                new Handler().postDelayed(() -> evaluateJavascript2(), 0);
+                new Handler().postDelayed(() -> evaluateJsListener(), 0);
             }
         }
 
@@ -270,8 +277,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void evaluateJavascript() {
-        webView.evaluateJavascript(script, new ValueCallback<String>() {
+    private void evaluateJsLike() {
+        webView.evaluateJavascript(scriptSetLike, new ValueCallback<String>() {
             @Override
             public void onReceiveValue(String s) {
                 if (!TextUtils.isEmpty(s) && !"null".equals(s) && !"\"\"".equals(s)) {
@@ -281,8 +288,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void evaluateJavascript2() {
-        webView.evaluateJavascript(script2, s -> {
+    private void evaluateJsListener() {
+        webView.evaluateJavascript(scriptSetListener, s -> {
 
         });
     }
