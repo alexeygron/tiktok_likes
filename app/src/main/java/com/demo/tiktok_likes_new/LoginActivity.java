@@ -16,25 +16,22 @@ import com.orhanobut.hawk.Hawk;
 
 import java.util.HashMap;
 
-import static com.demo.tiktok_likes_new.MainActivity.USER_AGENT;
-import static com.demo.tiktok_likes_new.MainActivity.cookies_tag;
+import static com.demo.tiktok_likes_new.TestActivity.USER_AGENT;
+import static com.demo.tiktok_likes_new.TestActivity.cookies_tag;
 
-public class StartActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_test);
 
-        if (Hawk.contains(cookies_tag)) {
-            startLikesScreen();
-        } else {
-            webView = findViewById(R.id.webView);
-            webView.getSettings().setUserAgentString(USER_AGENT);
+        webView = findViewById(R.id.webView);
+        webView.getSettings().setUserAgentString(USER_AGENT);
 
-            webView.getSettings().setUserAgentString(MainActivity.USER_AGENT);
+        webView.getSettings().setUserAgentString(TestActivity.USER_AGENT);
             webView.getSettings().setJavaScriptEnabled(true);
             webView.getSettings().setDomStorageEnabled(true);
             webView.getSettings().setPluginState(WebSettings.PluginState.ON);
@@ -44,7 +41,7 @@ public class StartActivity extends AppCompatActivity {
 
             webView.setWebViewClient(webViewClient);
             webView.loadUrl("https://www.tiktok.com/login/phone-or-email/");
-        }
+
     }
 
     private WebViewClient webViewClient = new WebViewClient() {
@@ -75,8 +72,8 @@ public class StartActivity extends AppCompatActivity {
     private boolean isStart = false;
     private void startLikesScreen() {
         isStart = true;
-        UserPhotosFragment fragment = new UserPhotosFragment();
-        //LikesEarnFragment fragment = new LikesEarnFragment();
+        //UserPhotosFragment fragment = new UserPhotosFragment();
+        LikesEarnFragment fragment = new LikesEarnFragment();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.contentFrame, fragment, fragment.getClass().getName())
                 .addToBackStack(fragment.getClass().getName())

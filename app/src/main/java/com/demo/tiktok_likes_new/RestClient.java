@@ -9,7 +9,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 public class RestClient {
 
-
     public static final String TIKTOK_URL = "https://www.tiktok.com/";
 
     public final OkHttpClient client;

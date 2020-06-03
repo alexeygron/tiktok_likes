@@ -1,7 +1,7 @@
 package com.demo.tiktok_likes_new.network;
 
-import android.util.Log;
-
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.paging.PositionalDataSource;
 
 import com.demo.tiktok_likes_new.RestClient;
@@ -14,16 +14,17 @@ import okhttp3.Request;
 
 import static com.demo.tiktok_likes_new.RestClient.TIKTOK_URL;
 
-public class UserVideosRequest {
+public class UserVideosRequest extends BaseRequest {
 
-    public void loadUserVideos(PositionalDataSource.LoadInitialCallback<UserVideoResp.Item> callback) {
+    public LiveData<UserVideoResp> loadUserVideos(PositionalDataSource.LoadInitialCallback<UserVideoResp.Item> callback, PositionalDataSource.LoadRangeCallback<UserVideoResp.Item> callback2,  String maxCursor) {
+        MutableLiveData<UserVideoResp> liveData = new MutableLiveData<>();
 
         HttpUrl.Builder httpBuilder = HttpUrl
-                .parse(TIKTOK_URL + "api/item_list/?count=30&type=1&sourceType=8&appId=1233&region=EN&language=en")
+                .parse(TIKTOK_URL + "api/item_list/?count=50&type=1&sourceType=8&appId=1233&region=EN&language=en")
                 .newBuilder();
 
         httpBuilder.addQueryParameter("id", "6664457736279277574");
-        httpBuilder.addQueryParameter("maxCursor", "0");
+        httpBuilder.addQueryParameter("maxCursor", maxCursor);
         httpBuilder.addQueryParameter("minCursor", "0");
 
         Request request = new Request.Builder()
@@ -40,8 +41,9 @@ public class UserVideosRequest {
 
                     UserVideoResp userVideoResp = new UserVideoListParser().parse(resp);
 
-                    if (callback != null)
-                        callback.onResult(userVideoResp.getItems(), 0);
+
+                    if (callback != null) callback.onResult(userVideoResp.getItems(), 0);
+                    if (callback2 != null) callback2.onResult(userVideoResp.getItems());
                     //getActivity().runOnUiThread(() -> listPostsAgapter.setData(userVideoResp.getItems()));
 
                     //Log.i(TAG, "onResponse: " + userVideoResp.toString());
@@ -56,5 +58,6 @@ public class UserVideosRequest {
             }
         });
 
+        return liveData;
     }
 }

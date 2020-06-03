@@ -1,8 +1,8 @@
 package com.demo.tiktok_likes_new;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +30,12 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
 
 public class UserPhotosFragment extends Fragment {
 
-    private String TAG = "UserPhotosFragment";
+    private String TAG = UserPhotosFragment.class.getSimpleName();
 
-    private RecyclerView photosList;
-    private ListPostsAgapter listPostsAgapter;
+    private RecyclerView mPhotosList;
+    private ListPostsAgapter mListPostsAdapter;
+    private String cursor = "0";
+    private boolean hashMore;
 
     @Nullable
     @Override
@@ -44,12 +46,12 @@ public class UserPhotosFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        photosList = view.findViewById(R.id.photos_list);
+        mPhotosList = view.findViewById(R.id.photos_list);
 
         GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3);
-        photosList.setLayoutManager(layoutManager);
+        mPhotosList.setLayoutManager(layoutManager);
 
-        MyPositionalDataSource dataSource = new MyPositionalDataSource();
+        VideosDataSource dataSource = new VideosDataSource();
 
         PagedList.Config config = new PagedList.Config.Builder()
                 .setEnablePlaceholders(false)
@@ -62,7 +64,7 @@ public class UserPhotosFragment extends Fragment {
                 .build();
 
 
-        listPostsAgapter = new ListPostsAgapter(new DiffUtil.ItemCallback<UserVideoResp.Item>() {
+        mListPostsAdapter = new ListPostsAgapter(new DiffUtil.ItemCallback<UserVideoResp.Item>() {
 
 
             @Override
@@ -75,19 +77,18 @@ public class UserPhotosFragment extends Fragment {
                 return false;
             }
         });
-        listPostsAgapter.submitList(pagedList);
-        photosList.setAdapter(listPostsAgapter);
-
-        /*GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3);
-        photosList.setLayoutManager(layoutManager);
-        listPostsAgapter = new ListPostsAgapter();
-        //listPostsAgapter.setOnClickListener(clickListener);
-        photosList.setAdapter(listPostsAgapter);*/
-
+        mListPostsAdapter.submitList(pagedList);
+        mPhotosList.setAdapter(mListPostsAdapter);
     }
 
+    static UserPhotosFragment newInstance() {
+        UserPhotosFragment f = new UserPhotosFragment();
+        Bundle args = new Bundle();
+        f.setArguments(args);
+        return f;
+    }
 
-    public static class ListPostsAgapter extends PagedListAdapter<UserVideoResp.Item, ListPostsAgapter.ViewHolder> {
+    public class ListPostsAgapter extends PagedListAdapter<UserVideoResp.Item, ListPostsAgapter.ViewHolder> {
 
 
         protected ListPostsAgapter(DiffUtil.ItemCallback<UserVideoResp.Item> diffUtilCallback) {
@@ -103,118 +104,49 @@ public class UserPhotosFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            Context context = holder.ivPhoto.getContext();
+            Context context = holder.cover.getContext();
             UserVideoResp.Item item = getItem(position);
             if (item != null) {
-                holder.tvDiggCount.setText(String.valueOf(item.getLikesCount()));
+                holder.likeSize.setText(String.valueOf(item.getLikesCount()));
                 Glide.with(context)
                         .load(item.getPhoto())
                         .transition(withCrossFade())
-                        .into(holder.ivPhoto);
+                        .into(holder.cover);
             }
         }
 
-        /*private ClickListener clickListener;
-        public void setOnClickListener(ClickListener raceClickListener) {
-            this.clickListener = raceClickListener;
-        }*/
+        class ViewHolder extends RecyclerView.ViewHolder {
 
-       /* void setData(List<UserVideo> data) {
-            //this.data = data;
-            //notifyDataSetChanged();
-            for (UserVideo item : data) {
-                this.data.add(item);
-                notifyItemInserted(this.data.size() - 1);
-            }
-        }
-
-        public void clear() {
-            data.clear();
-            notifyDataSetChanged();
-        }*/
-
-
-
-        /*@NonNull
-        @Override
-        public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_list_item, parent, false);
-            return new ViewHolder(v);
-        }
-
-        @Override
-        public void onBindViewHolder(final ViewHolder holder, final int position) {
-            Context context = holder.ivPhoto.getContext();
-            UserVideo item = data.get(position);
-            holder.tvDiggCount.setText(String.valueOf(item.getStats().getDiggCount()));
-            Glide.with(context)
-                    .load(item.getVideo().getCover())
-                    .transition(withCrossFade())
-                    .into(holder.ivPhoto);
-        }
-
-        @Override
-        public int getItemCount() {
-            return data.size();
-        }*/
-
-       /* public interface ClickListener {
-            void onClick(AwemeListItem item);
-        }*/
-
-        class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-            ImageView ivPhoto;
-            TextView tvDiggCount;
-            ViewGroup container;
+            ImageView cover;
+            TextView likeSize;
 
             ViewHolder(View itemView) {
                 super(itemView);
-                ivPhoto = itemView.findViewById(R.id.iv_photo);
-                tvDiggCount = itemView.findViewById(R.id.tv_digg_count);
-                container = itemView.findViewById(R.id.container);
-                container.setOnClickListener(this);
+                cover = itemView.findViewById(R.id.iv_photo);
+                likeSize = itemView.findViewById(R.id.tv_digg_count);
+                itemView.setOnClickListener(v -> startOrderScreen());
             }
-
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.container:
-                        //onClick();
-                        break;
-                }
-            }
-
-            /*public void onClick() {
-                if (clickListener != null) {
-                    clickListener.onClick(data.get(getAdapterPosition()));
-                }
-            }*/
         }
 
     }
 
-    class MyPositionalDataSource extends PositionalDataSource<UserVideoResp.Item> {
+    private void startOrderScreen() {
+        startActivity(new Intent(getActivity(), OrderActivity.class));
+    }
 
-        // private final EmployeeStorage employeeStorage;
-
-        /*public MyPositionalDataSource(EmployeeStorage employeeStorage) {
-            this.employeeStorage = employeeStorage;
-        }*/
+    class VideosDataSource extends PositionalDataSource<UserVideoResp.Item> {
 
         @Override
         public void loadInitial(@NonNull LoadInitialParams params, @NonNull LoadInitialCallback<UserVideoResp.Item> callback) {
-            Log.d(TAG, "loadInitial, requestedStartPosition = " + params.requestedStartPosition + ", requestedLoadSize = " + params.requestedLoadSize);
-            new UserVideosRequest().loadUserVideos(callback);
-            /*List<UserVideo> result = employeeStorage.getData(params.requestedStartPosition, params.requestedLoadSize);
-            callback.onResult(result, 0);*/
+            //Log.d(TAG, "loadInitial, requestedStartPosition = " + params.requestedStartPosition + ", requestedLoadSize = " + params.requestedLoadSize);
+            new UserVideosRequest().loadUserVideos(callback, null, cursor);
         }
 
         @Override
         public void loadRange(@NonNull LoadRangeParams params, @NonNull LoadRangeCallback<UserVideoResp.Item> callback) {
-            Log.d(TAG, "loadRange, startPosition = " + params.startPosition + ", loadSize = " + params.loadSize);
-            /*List<UserVideo> result = employeeStorage.getData(params.startPosition, params.loadSize);
-            callback.onResult(result);*/
+            //Log.d(TAG, "loadRange, startPosition = " + params.startPosition + ", loadSize = " + params.loadSize);
+
+            //new UserVideosRequest().loadUserVideos(null, callback, cursor);
         }
     }
 }

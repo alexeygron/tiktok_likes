@@ -17,7 +17,6 @@ import android.webkit.ConsoleMessage;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -32,9 +31,9 @@ import java.util.Map;
 
 import im.delight.android.webview.AdvancedWebView;
 
-import static com.demo.tiktok_likes_new.MainActivity.cookies_tag;
-import static com.demo.tiktok_likes_new.MainActivity.scriptSetLike;
-import static com.demo.tiktok_likes_new.MainActivity.scriptSetListener;
+import static com.demo.tiktok_likes_new.TestActivity.cookies_tag;
+import static com.demo.tiktok_likes_new.TestActivity.scriptSetLike;
+import static com.demo.tiktok_likes_new.TestActivity.scriptSetListener;
 
 public class LikesEarnFragment extends Fragment {
 
@@ -81,7 +80,7 @@ public class LikesEarnFragment extends Fragment {
 
         webView = view.findViewById(R.id.webView);
         //webView = new AdvancedWebView(getActivity());
-        webView.getSettings().setUserAgentString(MainActivity.USER_AGENT);
+        webView.getSettings().setUserAgentString(TestActivity.USER_AGENT);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         //webView.getSettings().setPluginState(WebSettings.PluginState.ON);
@@ -154,7 +153,7 @@ public class LikesEarnFragment extends Fragment {
         }
 
 
-        /*@Override
+        @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             //Log.i("login_web", "shouldOverrideUrlLoading " );
 
@@ -162,7 +161,7 @@ public class LikesEarnFragment extends Fragment {
             headers.put("cookie", cookiesStr2);
             view.loadUrl(url, headers);
             return true;
-        }*/
+        }
 
         @Override
         public void onLoadResource(WebView view, String url) {
