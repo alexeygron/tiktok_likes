@@ -9,6 +9,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.demo.tiktok_likes_new.network.Constants.ANIMATE_PREVIEW;
+
 public class UserVideoListParser implements IParser<UserVideoResp> {
 
     @Override
@@ -32,7 +34,9 @@ public class UserVideoListParser implements IParser<UserVideoResp> {
                 item.setId(itemObj.getString("id"));
 
                 JSONObject videoObj = itemObj.getJSONObject("video");
-                item.setPhoto(videoObj.getString("cover"));
+
+                if (ANIMATE_PREVIEW) item.setPhoto(videoObj.getString("dynamicCover"));
+                else item.setPhoto(videoObj.getString("cover"));
 
                 JSONObject statObj = itemObj.getJSONObject("stats");
                 item.setLikesCount(statObj.getString("diggCount"));

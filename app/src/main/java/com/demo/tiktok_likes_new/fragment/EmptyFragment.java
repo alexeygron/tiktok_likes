@@ -1,4 +1,4 @@
-package com.demo.tiktok_likes_new;
+package com.demo.tiktok_likes_new.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.demo.tiktok_likes_new.R;
 import com.demo.tiktok_likes_new.network.UserVideosRequest;
 import com.demo.tiktok_likes_new.network.data.UserVideoResp;
 

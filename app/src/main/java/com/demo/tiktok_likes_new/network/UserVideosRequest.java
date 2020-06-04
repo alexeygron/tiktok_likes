@@ -4,26 +4,28 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.paging.PositionalDataSource;
 
-import com.demo.tiktok_likes_new.RestClient;
 import com.demo.tiktok_likes_new.network.data.UserVideoResp;
+import com.orhanobut.hawk.Hawk;
 
 import java.io.IOException;
 
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 
-import static com.demo.tiktok_likes_new.RestClient.TIKTOK_URL;
+import static com.demo.tiktok_likes_new.network.Constants.REQ_URL;
+import static com.demo.tiktok_likes_new.util.KeyPass.uiid;
 
-public class UserVideosRequest extends BaseRequest {
+public class UserVideosRequest {
 
-    public LiveData<UserVideoResp> loadUserVideos(PositionalDataSource.LoadInitialCallback<UserVideoResp.Item> callback, PositionalDataSource.LoadRangeCallback<UserVideoResp.Item> callback2,  String maxCursor) {
+    public LiveData<UserVideoResp> loadUserVideos(PositionalDataSource.LoadInitialCallback<UserVideoResp.Item> callback, PositionalDataSource.LoadRangeCallback<UserVideoResp.Item> callback2, String maxCursor) {
         MutableLiveData<UserVideoResp> liveData = new MutableLiveData<>();
 
         HttpUrl.Builder httpBuilder = HttpUrl
-                .parse(TIKTOK_URL + "api/item_list/?count=50&type=1&sourceType=8&appId=1233&region=EN&language=en")
+                .parse(REQ_URL + "api/item_list/?count=40&type=1&sourceType=8&appId=1233&region=EN&language=en")
                 .newBuilder();
 
-        httpBuilder.addQueryParameter("id", "6664457736279277574");
+        httpBuilder.addQueryParameter("id", Hawk.get(uiid, ""));
+        //httpBuilder.addQueryParameter("id", "6664457736279277574");
         httpBuilder.addQueryParameter("maxCursor", maxCursor);
         httpBuilder.addQueryParameter("minCursor", "0");
 
@@ -31,20 +33,21 @@ public class UserVideosRequest extends BaseRequest {
                 .url(httpBuilder.build())
                 .build();
 
-        RestClient.getInstance().client.newCall(request).enqueue(new okhttp3.Callback() {
+        Constants.HTTP_CLIENT.newCall(request).enqueue(new okhttp3.Callback() {
 
             @Override
             public void onResponse(okhttp3.Call call, okhttp3.Response response) {
                 try {
                     String resp = response.body().string();
                     //UserVideoResp userVideoResp = new Gson().fromJson(resp, UserVideoResp.class);
-
                     UserVideoResp userVideoResp = new UserVideoListParser().parse(resp);
 
 
                     if (callback != null) callback.onResult(userVideoResp.getItems(), 0);
                     if (callback2 != null) callback2.onResult(userVideoResp.getItems());
                     //getActivity().runOnUiThread(() -> listPostsAgapter.setData(userVideoResp.getItems()));
+
+                    liveData.postValue(userVideoResp);
 
                     //Log.i(TAG, "onResponse: " + userVideoResp.toString());
                 } catch (Exception e) {

@@ -1,8 +1,10 @@
-package com.demo.tiktok_likes_new;
+package com.demo.tiktok_likes_new.fragment;
 
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,20 +23,38 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.integration.webp.decoder.WebpDrawable;
+import com.bumptech.glide.integration.webp.decoder.WebpDrawableTransformation;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.Transformation;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+import com.demo.tiktok_likes_new.R;
+import com.demo.tiktok_likes_new.activity.OrderActivity;
+import com.demo.tiktok_likes_new.network.AppStartRequest;
+import com.demo.tiktok_likes_new.network.Constants;
 import com.demo.tiktok_likes_new.network.UserVideosRequest;
 import com.demo.tiktok_likes_new.network.data.UserVideoResp;
 
+import java.io.IOException;
 import java.util.concurrent.Executors;
 
+import okhttp3.Callback;
+
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+import static com.demo.tiktok_likes_new.network.Constants.TOK_REQUEST_ENABLED;
+import static com.demo.tiktok_likes_new.util.Common.runOnMainThread;
 
 public class UserPhotosFragment extends Fragment {
 
     private String TAG = UserPhotosFragment.class.getSimpleName();
 
     private RecyclerView mPhotosList;
-    private ListPostsAgapter mListPostsAdapter;
+    private ListPostsAdapter mListPostsAdapter;
     private String cursor = "0";
+    private UserVideoResp userVideoResponse;
     private boolean hashMore;
 
     @Nullable
@@ -64,7 +84,7 @@ public class UserPhotosFragment extends Fragment {
                 .build();
 
 
-        mListPostsAdapter = new ListPostsAgapter(new DiffUtil.ItemCallback<UserVideoResp.Item>() {
+        mListPostsAdapter = new ListPostsAdapter(new DiffUtil.ItemCallback<UserVideoResp.Item>() {
 
 
             @Override
@@ -81,17 +101,17 @@ public class UserPhotosFragment extends Fragment {
         mPhotosList.setAdapter(mListPostsAdapter);
     }
 
-    static UserPhotosFragment newInstance() {
+    public static UserPhotosFragment newInstance() {
         UserPhotosFragment f = new UserPhotosFragment();
         Bundle args = new Bundle();
         f.setArguments(args);
         return f;
     }
 
-    public class ListPostsAgapter extends PagedListAdapter<UserVideoResp.Item, ListPostsAgapter.ViewHolder> {
+    public class ListPostsAdapter extends PagedListAdapter<UserVideoResp.Item, ListPostsAdapter.ViewHolder> {
 
 
-        protected ListPostsAgapter(DiffUtil.ItemCallback<UserVideoResp.Item> diffUtilCallback) {
+        protected ListPostsAdapter(DiffUtil.ItemCallback<UserVideoResp.Item> diffUtilCallback) {
             super(diffUtilCallback);
         }
 
@@ -106,10 +126,13 @@ public class UserPhotosFragment extends Fragment {
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             Context context = holder.cover.getContext();
             UserVideoResp.Item item = getItem(position);
+            Transformation<Bitmap> circleCrop = new CenterCrop();
             if (item != null) {
                 holder.likeSize.setText(String.valueOf(item.getLikesCount()));
                 Glide.with(context)
                         .load(item.getPhoto())
+                        .optionalTransform(circleCrop)
+                        .optionalTransform(WebpDrawable.class, new WebpDrawableTransformation(circleCrop))
                         .transition(withCrossFade())
                         .into(holder.cover);
             }
@@ -124,29 +147,29 @@ public class UserPhotosFragment extends Fragment {
                 super(itemView);
                 cover = itemView.findViewById(R.id.iv_photo);
                 likeSize = itemView.findViewById(R.id.tv_digg_count);
-                itemView.setOnClickListener(v -> startOrderScreen());
+                itemView.setOnClickListener(v -> OrderActivity.start(Constants.CONTEXT));
             }
         }
 
     }
 
-    private void startOrderScreen() {
-        startActivity(new Intent(getActivity(), OrderActivity.class));
-    }
 
     class VideosDataSource extends PositionalDataSource<UserVideoResp.Item> {
 
         @Override
         public void loadInitial(@NonNull LoadInitialParams params, @NonNull LoadInitialCallback<UserVideoResp.Item> callback) {
-            //Log.d(TAG, "loadInitial, requestedStartPosition = " + params.requestedStartPosition + ", requestedLoadSize = " + params.requestedLoadSize);
-            new UserVideosRequest().loadUserVideos(callback, null, cursor);
+            //Log.d(TAG, "loadInitial, requestedStartPosition = " + paramsMap.requestedStartPosition + ", requestedLoadSize = " + paramsMap.requestedLoadSize);
+            if (TOK_REQUEST_ENABLED) {
+                runOnMainThread(() -> new UserVideosRequest().loadUserVideos(callback, null, cursor).observe(getActivity(), userVideoResp -> userVideoResponse = userVideoResp));
+            }
         }
 
         @Override
         public void loadRange(@NonNull LoadRangeParams params, @NonNull LoadRangeCallback<UserVideoResp.Item> callback) {
-            //Log.d(TAG, "loadRange, startPosition = " + params.startPosition + ", loadSize = " + params.loadSize);
-
-            //new UserVideosRequest().loadUserVideos(null, callback, cursor);
+            //Log.d(TAG, "loadRange, startPosition = " + paramsMap.startPosition + ", loadSize = " + paramsMap.loadSize);
+            if (userVideoResponse != null && TOK_REQUEST_ENABLED && userVideoResponse.isMore()) {
+                runOnMainThread(() -> new UserVideosRequest().loadUserVideos(null, callback, userVideoResponse.getMaxCursor()).observe(getActivity(), userVideoResp -> userVideoResponse = userVideoResp));
+            }
         }
     }
 }

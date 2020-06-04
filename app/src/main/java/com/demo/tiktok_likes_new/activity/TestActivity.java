@@ -1,4 +1,4 @@
-package com.demo.tiktok_likes_new;
+package com.demo.tiktok_likes_new.activity;
 
 import android.graphics.Bitmap;
 import android.os.Build;
@@ -16,8 +16,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
+import com.demo.tiktok_likes_new.fragment.LikesEarnFragment;
+import com.demo.tiktok_likes_new.R;
 import com.orhanobut.hawk.Hawk;
 
 import java.io.IOException;
@@ -30,7 +31,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 
-public class TestActivity extends AppCompatActivity {
+import static com.demo.tiktok_likes_new.util.Common.getPartStr;
+
+public class TestActivity extends BaseAbstractActivity {
 
     private ViewGroup contentFrame;
     private WebView webView;
@@ -261,8 +264,8 @@ public class TestActivity extends AppCompatActivity {
                 try {
                     String resp = response.body().string();
                     if (resp.contains("\"$user\":{\"uid\":")) {
-                        String uid = subString(resp, "\"uid\":\"", "\",");
-                        String uniqueId = subString(resp, "\"uniqueId\":\"", "\",");
+                        String uid = getPartStr(resp, "\"uid\":\"", "\",");
+                        String uniqueId = getPartStr(resp, "\"uniqueId\":\"", "\",");
 
                         Hawk.put(uiid, uid);
                         Hawk.put(userId, uniqueId);
@@ -388,13 +391,5 @@ public class TestActivity extends AppCompatActivity {
                 }*/
             }
         });
-    }
-
-    public static String subString(String sourceString, String startPoint, String endPoint) {
-        String result = sourceString;
-        result = result.substring(sourceString.indexOf(startPoint));
-        result = result.replace(startPoint, "");
-        result = result.substring(0, result.indexOf(endPoint)).trim();
-        return result;
     }
 }

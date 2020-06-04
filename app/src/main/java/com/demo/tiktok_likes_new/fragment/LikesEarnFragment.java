@@ -1,4 +1,4 @@
-package com.demo.tiktok_likes_new;
+package com.demo.tiktok_likes_new.fragment;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -24,6 +24,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.demo.tiktok_likes_new.R;
+import com.demo.tiktok_likes_new.activity.TestActivity;
 import com.orhanobut.hawk.Hawk;
 
 import java.util.HashMap;
@@ -31,9 +33,9 @@ import java.util.Map;
 
 import im.delight.android.webview.AdvancedWebView;
 
-import static com.demo.tiktok_likes_new.TestActivity.cookies_tag;
-import static com.demo.tiktok_likes_new.TestActivity.scriptSetLike;
-import static com.demo.tiktok_likes_new.TestActivity.scriptSetListener;
+import static com.demo.tiktok_likes_new.activity.TestActivity.cookies_tag;
+import static com.demo.tiktok_likes_new.activity.TestActivity.scriptSetLike;
+import static com.demo.tiktok_likes_new.activity.TestActivity.scriptSetListener;
 
 public class LikesEarnFragment extends Fragment {
 

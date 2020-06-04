@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.demo.tiktok_likes_new"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -51,8 +51,23 @@ dependencies {
 
     implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
 
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    def GLIDE_VERSION = "4.11.0"
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+    implementation "com.zlc.glide:webpdecoder:1.7.${GLIDE_VERSION}"
+
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.navigation:navigation-fragment:2.2.2'
+    implementation 'androidx.navigation:navigation-ui:2.2.2'
+
+
+    implementation 'com.scottyab:aescrypt:0.0.1'
+    implementation 'androidx.work:work-runtime:2.3.4'
+
+
+    implementation 'commons-codec:commons-codec:1.10'
 
     implementation 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
+    implementation 'org.jetbrains:annotations:15.0'
 }
