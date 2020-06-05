@@ -1,4 +1,4 @@
-package com.demo.tiktok_likes_new.network;
+package com.demo.tiktok_likes_new.network.request;
 
 import com.demo.tiktok_likes_new.BuildConfig;
 import com.demo.tiktok_likes_new.util.AbaBUtilsCrypt;
@@ -7,13 +7,14 @@ import com.google.gson.JsonObject;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
 
-import static com.demo.tiktok_likes_new.network.Constants.API_HEADERS;
 import static com.demo.tiktok_likes_new.network.Constants.API_URL;
+import static com.demo.tiktok_likes_new.network.Constants.getApiHeaders;
 import static com.demo.tiktok_likes_new.util.Common.getAndroidId;
 import static com.demo.tiktok_likes_new.util.Common.getLocale;
 import static com.demo.tiktok_likes_new.util.KeyPass.KEY_CRP;
 import static com.demo.tiktok_likes_new.util.KeyPass.PASS_CRP;
 import static com.demo.tiktok_likes_new.util.KeyPass.tymty1;
+import static com.demo.tiktok_likes_new.util.KeyPass.tymty23;
 import static com.demo.tiktok_likes_new.util.KeyPass.tymty25;
 import static com.demo.tiktok_likes_new.util.KeyPass.tymty26;
 import static com.demo.tiktok_likes_new.util.KeyPass.tymty4;
@@ -47,12 +48,12 @@ public abstract class BaseRequest {
         HttpUrl httpUrl = HttpUrl
                 .parse(API_URL + action)
                 .newBuilder()
-                .addQueryParameter("tymty23", getEncodeParams(coreParams.toString()))
+                .addQueryParameter(tymty23, getEncodeParams(coreParams.toString()))
                 .build();
 
         return new Request.Builder()
                 .url(httpUrl)
-                .headers(API_HEADERS)
+                .headers(getApiHeaders())
                 .build();
     }
 }

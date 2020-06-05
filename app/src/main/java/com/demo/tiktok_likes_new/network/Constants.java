@@ -22,22 +22,36 @@ public final class Constants {
 
     private static volatile Constants instance;
 
-    public static final Context CONTEXT = App.getInstance();
+    public static Context CONTEXT;
 
     private static final int TIMEOUT = 17;
     public static final boolean DEBUG_MODE = true;
     public static final boolean TOK_REQUEST_ENABLED = true;
     public static final boolean ANIMATE_PREVIEW = false;
 
-    public static Headers API_HEADERS = new Headers.Builder()
-            .add("client", "Android")
-            .add("version", BuildConfig.VERSION_NAME)
-            .add("client-version", Build.VERSION.RELEASE)
-            .add("device-id", getAndroidId())
-            .add("package", BuildConfig.APPLICATION_ID)
-            .build();
+    private static Headers API_HEADERS;
+
+    public static Headers getApiHeaders() {
+        if (API_HEADERS == null) initHeaders();
+        return API_HEADERS;
+    }
+
+    private static void initHeaders() {
+        API_HEADERS = new Headers.Builder()
+                .add("client", "Android")
+                .add("version", BuildConfig.VERSION_NAME)
+                .add("client-version", Build.VERSION.RELEASE)
+                .add("device-id", getAndroidId())
+                .add("HTTP_DEVICE_ID", getAndroidId())
+                .add("package", BuildConfig.APPLICATION_ID)
+                .build();
+    }
 
     public static OkHttpClient HTTP_CLIENT;
+
+    public static void setCONTEXT(Context CONTEXT) {
+        Constants.CONTEXT = CONTEXT;
+    }
 
     static {
         final HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(message -> Log.i("NET_LOG", message));

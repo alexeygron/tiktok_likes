@@ -1,4 +1,6 @@
-package com.demo.tiktok_likes_new.network;
+package com.demo.tiktok_likes_new.network.request;
+
+import com.demo.tiktok_likes_new.network.Constants;
 
 import okhttp3.Callback;
 import okhttp3.HttpUrl;

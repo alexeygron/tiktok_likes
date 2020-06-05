@@ -7,8 +7,10 @@ public class KeyPass {
 
 
     public static final String tymty1 = "tymty1"; // device_id
+    public static final String tymty3 = "tymty3"; // android_token
     public static final String tymty4 = "tymty4"; // package
     public static final String tymty5 = "tymty5"; // app_version
+    public static final String tymty23 = "tymty23"; // has_tt_app 0/1
     public static final String tymty25 = "tymty25"; // has_tt_app 0/1
     public static final String tymty26 = "tymty26"; // locale
     public static final String tymty16 = "tymty16"; // user_id

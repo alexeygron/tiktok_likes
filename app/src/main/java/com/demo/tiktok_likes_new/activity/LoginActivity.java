@@ -15,7 +15,7 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
 import com.demo.tiktok_likes_new.R;
-import com.demo.tiktok_likes_new.network.LoadTrendingRequest;
+import com.demo.tiktok_likes_new.network.request.LoadTrendingRequest;
 import com.demo.tiktok_likes_new.util.KeyPass;
 import com.orhanobut.hawk.Hawk;
 

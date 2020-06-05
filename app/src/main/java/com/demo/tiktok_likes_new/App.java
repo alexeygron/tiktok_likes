@@ -5,33 +5,24 @@ import android.app.Application;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 
-import com.demo.tiktok_likes_new.network.AppStartResponse;
-import com.demo.tiktok_likes_new.ui.demo.InitAppWorker;
-import com.demo.tiktok_likes_new.util.Crypto;
+import com.demo.tiktok_likes_new.activity.MainActivity;
+import com.demo.tiktok_likes_new.network.request.ApiOneStepResponse;
+import com.demo.tiktok_likes_new.network.Constants;
+import com.demo.tiktok_likes_new.network.InitAppWorker;
 import com.orhanobut.hawk.Hawk;
-
-import static com.demo.tiktok_likes_new.util.Common.getAndroidId;
 
 public class App extends Application {
 
-    private static App instance;
+    public static InitialDataStorage initDataStorage = new InitialDataStorage();
 
     private static final String LOG_DIR_NAME = "logging";
     private static final String LOG_FILE = "main.log";
 
-    private AppStartResponse appStartResponse;
-
-    public static App getInstance() {
-        return instance;
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();
-        instance = this;
         Hawk.init(this).build();
-
-        Crypto.init(getAndroidId());
+        Constants.setCONTEXT(this);
         initApp();
     }
 
@@ -43,11 +34,28 @@ public class App extends Application {
                 .enqueue();
     }
 
-    public AppStartResponse getAppStartResponse() {
-        return appStartResponse;
-    }
+    public static class InitialDataStorage {
 
-    public void setAppStartResponse(AppStartResponse appStartResponse) {
-        this.appStartResponse = appStartResponse;
+        private ApiOneStepResponse apiOneStepResponse;
+        private MainActivity.AppInitListener appInitListener;
+
+
+        public ApiOneStepResponse getApiOneStepResponse() {
+            return apiOneStepResponse;
+        }
+
+        public void setApiOneStepResponse(ApiOneStepResponse apiOneStepResponse) {
+            this.apiOneStepResponse = apiOneStepResponse;
+
+            if (appInitListener != null) appInitListener.onAppInit();
+        }
+
+        public MainActivity.AppInitListener getAppInitListener() {
+            return appInitListener;
+        }
+
+        public void setAppInitListener(MainActivity.AppInitListener appInitListener) {
+            this.appInitListener = appInitListener;
+        }
     }
 }

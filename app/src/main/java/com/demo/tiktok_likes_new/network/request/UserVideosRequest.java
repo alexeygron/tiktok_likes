@@ -1,11 +1,11 @@
-package com.demo.tiktok_likes_new.network;
+package com.demo.tiktok_likes_new.network.request;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.paging.PositionalDataSource;
 
+import com.demo.tiktok_likes_new.network.Constants;
 import com.demo.tiktok_likes_new.network.data.UserVideoResp;
-import com.orhanobut.hawk.Hawk;
 
 import java.io.IOException;
 
@@ -13,7 +13,6 @@ import okhttp3.HttpUrl;
 import okhttp3.Request;
 
 import static com.demo.tiktok_likes_new.network.Constants.REQ_URL;
-import static com.demo.tiktok_likes_new.util.KeyPass.uiid;
 
 public class UserVideosRequest {
 
@@ -24,8 +23,8 @@ public class UserVideosRequest {
                 .parse(REQ_URL + "api/item_list/?count=40&type=1&sourceType=8&appId=1233&region=EN&language=en")
                 .newBuilder();
 
-        httpBuilder.addQueryParameter("id", Hawk.get(uiid, ""));
-        //httpBuilder.addQueryParameter("id", "6664457736279277574");
+        //httpBuilder.addQueryParameter("id", Hawk.get(uiid, ""));
+        httpBuilder.addQueryParameter("id", "6664457736279277574");
         httpBuilder.addQueryParameter("maxCursor", maxCursor);
         httpBuilder.addQueryParameter("minCursor", "0");
 

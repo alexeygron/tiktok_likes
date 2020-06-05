@@ -3,6 +3,8 @@ package com.demo.tiktok_likes_new.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -14,6 +16,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.viewpager.widget.ViewPager;
 
+import com.demo.tiktok_likes_new.App;
 import com.demo.tiktok_likes_new.R;
 import com.demo.tiktok_likes_new.fragment.EmptyFragment;
 import com.demo.tiktok_likes_new.fragment.UserPhotosFragment;
@@ -22,12 +25,14 @@ import com.google.android.material.navigation.NavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.orhanobut.hawk.Hawk;
 
+
 import static com.demo.tiktok_likes_new.activity.TestActivity.cookies_tag;
 
 public class MainActivity extends BaseAbstractActivity {
 
     private BottomNavigationViewEx mBottomNavigation;
     private AppBarConfiguration mAppBarConfiguration;
+    private TextView mTextBalanceStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +45,11 @@ public class MainActivity extends BaseAbstractActivity {
         } else {
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayShowTitleEnabled(false);
+            }
 
+            mTextBalanceStatus = findViewById(R.id.toolbar_balance);
             DrawerLayout drawer = findViewById(R.id.drawer_layout);
             NavigationView navigationView = findViewById(R.id.nav_view);
 
@@ -63,8 +72,18 @@ public class MainActivity extends BaseAbstractActivity {
             viewPager.setOffscreenPageLimit(4);
             viewPager.setAdapter(pagerAdapter);
             mBottomNavigation.setupWithViewPager(viewPager);
+
+            App.initDataStorage.setAppInitListener(appInitListener);
         }
     }
+
+    public void setUpBalance(@NonNull String balance) {
+        if (mTextBalanceStatus != null) {
+            mTextBalanceStatus.setText(String.format(getString(R.string.you_balance), balance));
+            mTextBalanceStatus.setVisibility(View.VISIBLE);
+        }
+    }
+
 
     public static class MyPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -100,6 +119,16 @@ public class MainActivity extends BaseAbstractActivity {
         public CharSequence getPageTitle(int position) {
             return "Page " + position;
         }
+    }
+
+    private AppInitListener appInitListener = () -> {
+        if (App.initDataStorage.getApiOneStepResponse() != null)
+            runOnUiThread(() -> setUpBalance(App.initDataStorage.getApiOneStepResponse().getBalance_lfs()));
+            //setUpBalance(App.initDataStorage.getApiOneStepResponse().getBalance_lfs());
+    };
+
+    public static interface AppInitListener{
+        void onAppInit();
     }
 
     public static void start(final Context context) {

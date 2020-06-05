@@ -1,4 +1,4 @@
-package com.demo.tiktok_likes_new.network;
+package com.demo.tiktok_likes_new.network.request;
 
 import org.json.JSONException;
 

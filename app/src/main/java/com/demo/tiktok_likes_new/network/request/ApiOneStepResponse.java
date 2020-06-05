@@ -1,6 +1,6 @@
-package com.demo.tiktok_likes_new.network;
+package com.demo.tiktok_likes_new.network.request;
 
-public class AppStartResponse {
+public class ApiOneStepResponse {
 
     private String passw = "";
     private String balance_lfs = "";
@@ -95,7 +95,7 @@ public class AppStartResponse {
 
     @Override
     public String toString() {
-        return "AppStartResponse{" +
+        return "ApiOneStepResponse{" +
                 "passw='" + passw + '\'' +
                 ", balance_lfs='" + balance_lfs + '\'' +
                 ", balance_fsf='" + balance_fsf + '\'' +

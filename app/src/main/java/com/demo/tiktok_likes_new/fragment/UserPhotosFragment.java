@@ -2,9 +2,7 @@ package com.demo.tiktok_likes_new.fragment;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,29 +17,21 @@ import androidx.paging.PagedList;
 import androidx.paging.PagedListAdapter;
 import androidx.paging.PositionalDataSource;
 import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.integration.webp.decoder.WebpDrawable;
 import com.bumptech.glide.integration.webp.decoder.WebpDrawableTransformation;
-import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.Transformation;
-import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.demo.tiktok_likes_new.R;
 import com.demo.tiktok_likes_new.activity.OrderActivity;
-import com.demo.tiktok_likes_new.network.AppStartRequest;
 import com.demo.tiktok_likes_new.network.Constants;
-import com.demo.tiktok_likes_new.network.UserVideosRequest;
+import com.demo.tiktok_likes_new.network.request.UserVideosRequest;
 import com.demo.tiktok_likes_new.network.data.UserVideoResp;
 
-import java.io.IOException;
 import java.util.concurrent.Executors;
-
-import okhttp3.Callback;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 import static com.demo.tiktok_likes_new.network.Constants.TOK_REQUEST_ENABLED;
@@ -68,7 +58,9 @@ public class UserPhotosFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mPhotosList = view.findViewById(R.id.photos_list);
 
-        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3);
+        //GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3);
+        StaggeredGridLayoutManager layoutManager =  new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
+        layoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         mPhotosList.setLayoutManager(layoutManager);
 
         VideosDataSource dataSource = new VideosDataSource();

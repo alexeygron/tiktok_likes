@@ -49,6 +49,7 @@ public class Common {
         try {
             return Settings.Secure.getString(CONTEXT.getContentResolver(), Settings.Secure.ANDROID_ID);
         } catch (Exception e) {
+            e.printStackTrace();
             return "";
         }
     }
