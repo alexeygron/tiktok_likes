@@ -26,6 +26,7 @@ import com.bumptech.glide.integration.webp.decoder.WebpDrawableTransformation;
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.demo.tiktok_likes_new.R;
+import com.demo.tiktok_likes_new.activity.MainActivity;
 import com.demo.tiktok_likes_new.activity.OrderActivity;
 import com.demo.tiktok_likes_new.network.Constants;
 import com.demo.tiktok_likes_new.network.request.UserVideosRequest;
@@ -44,7 +45,7 @@ public class UserPhotosFragment extends Fragment {
     private RecyclerView mPhotosList;
     private ListPostsAdapter mListPostsAdapter;
     private String cursor = "0";
-    private UserVideoResp userVideoResponse;
+    public static UserVideoResp userVideoResponse;
     private boolean hashMore;
 
     @Nullable
@@ -148,11 +149,19 @@ public class UserPhotosFragment extends Fragment {
 
     class VideosDataSource extends PositionalDataSource<UserVideoResp.Item> {
 
+        boolean sd= false;
+
         @Override
         public void loadInitial(@NonNull LoadInitialParams params, @NonNull LoadInitialCallback<UserVideoResp.Item> callback) {
             //Log.d(TAG, "loadInitial, requestedStartPosition = " + paramsMap.requestedStartPosition + ", requestedLoadSize = " + paramsMap.requestedLoadSize);
             if (TOK_REQUEST_ENABLED) {
-                runOnMainThread(() -> new UserVideosRequest().loadUserVideos(callback, null, cursor).observe(getActivity(), userVideoResp -> userVideoResponse = userVideoResp));
+                runOnMainThread(() -> new UserVideosRequest().loadUserVideos(callback, null, cursor).observe(getActivity(), userVideoResp ->{
+                    userVideoResponse = userVideoResp;
+                    if (!sd) {
+                        ((MainActivity) getActivity()).twoTabFragment.setData(userVideoResponse.getItems());
+                        sd = true;
+                    }
+                }));
             }
         }
 

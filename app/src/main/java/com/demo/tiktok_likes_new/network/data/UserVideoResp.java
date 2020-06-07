@@ -45,6 +45,7 @@ public class UserVideoResp {
     public static class Item {
 
         private String id = "";
+        private String uniqueId = "";
         private String likesCount = "";
         private String photo = "";
 
@@ -68,6 +69,14 @@ public class UserVideoResp {
             return photo;
         }
 
+        public String getUniqueId() {
+            return uniqueId;
+        }
+
+        public void setUniqueId(String uniqueId) {
+            this.uniqueId = uniqueId;
+        }
+
         public void setPhoto(String photo) {
             this.photo = photo;
         }
@@ -76,6 +85,7 @@ public class UserVideoResp {
         public String toString() {
             return "Item{" +
                     "id='" + id + '\'' +
+                    ", uniqueId='" + uniqueId + '\'' +
                     ", likesCount='" + likesCount + '\'' +
                     ", photo='" + photo + '\'' +
                     '}';

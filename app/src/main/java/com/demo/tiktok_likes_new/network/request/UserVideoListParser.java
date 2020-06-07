@@ -40,6 +40,10 @@ public class UserVideoListParser implements IParser<UserVideoResp> {
 
                 JSONObject statObj = itemObj.getJSONObject("stats");
                 item.setLikesCount(statObj.getString("diggCount"));
+
+                JSONObject author = itemObj.getJSONObject("author");
+                item.setUniqueId(author.getString("uniqueId"));
+
                 itemList.add(item);
             }
 

@@ -28,6 +28,7 @@ public final class Constants {
     public static final boolean DEBUG_MODE = true;
     public static final boolean TOK_REQUEST_ENABLED = true;
     public static final boolean ANIMATE_PREVIEW = false;
+    public static final int DEFAULT_TAB = 1;
 
     private static Headers API_HEADERS;
 

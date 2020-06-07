@@ -15,7 +15,6 @@ public class StartAppParser implements IParser<ApiOneStepResponse> {
         JSONObject baseObj = new JSONObject(json);
 
         ApiOneStepResponse apiOneStepResponse = new ApiOneStepResponse();
-        List<UserVideoResp.Item> itemList = new ArrayList<>();
 
         if (!baseObj.isNull("response")) {
             JSONObject response = baseObj.getJSONObject("response");

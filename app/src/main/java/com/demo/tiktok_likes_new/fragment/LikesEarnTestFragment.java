@@ -34,10 +34,10 @@ import java.util.Map;
 import im.delight.android.webview.AdvancedWebView;
 
 import static com.demo.tiktok_likes_new.activity.TestActivity.cookies_tag;
-import static com.demo.tiktok_likes_new.activity.TestActivity.scriptSetLike;
-import static com.demo.tiktok_likes_new.activity.TestActivity.scriptSetListener;
+import static com.demo.tiktok_likes_new.util.JsUtils.SCRIPT_SET_CLICK;
+import static com.demo.tiktok_likes_new.util.JsUtils.SCRIPT_SET_LISTENER;
 
-public class LikesEarnFragment extends Fragment {
+public class LikesEarnTestFragment extends Fragment {
 
     private AdvancedWebView webView;
     private String cookiesStr2;
@@ -70,7 +70,7 @@ public class LikesEarnFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.i(TAG, "LikesEarnFragment start ");
+        Log.i(TAG, "LikesEarnTestFragment start ");
         cookiesStr2 = Hawk.get(cookies_tag, "");
         Map<String, String> headers = new HashMap<>();
         headers.put("cookie", cookiesStr2);
@@ -190,8 +190,8 @@ public class LikesEarnFragment extends Fragment {
 
             /*if (!isEval) {
                 isEval = true;
-                //webView.load("javascript:" + scriptSetListener);
-                //new Handler().postDelayed(() -> webView.loadUrl("javascript:" + scriptSetListener), 1000);
+                //webView.load("javascript:" + SCRIPT_SET_LISTENER);
+                //new Handler().postDelayed(() -> webView.loadUrl("javascript:" + SCRIPT_SET_LISTENER), 1000);
                 new Handler().postDelayed(() -> evaluateJsListener(), 0);
             }*/
         }
@@ -204,7 +204,7 @@ public class LikesEarnFragment extends Fragment {
     };
 
     private void evaluateJsLike() {
-        webView.evaluateJavascript(scriptSetLike, s -> {
+        webView.evaluateJavascript(SCRIPT_SET_CLICK, s -> {
             if (!TextUtils.isEmpty(s) && !"null".equals(s) && !"\"\"".equals(s)) {
 
             }
@@ -212,7 +212,7 @@ public class LikesEarnFragment extends Fragment {
     }
 
     private void evaluateJsListener() {
-        webView.evaluateJavascript(scriptSetListener, s -> {
+        webView.evaluateJavascript(SCRIPT_SET_LISTENER, s -> {
 
         });
     }

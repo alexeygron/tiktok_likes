@@ -17,7 +17,7 @@ import android.webkit.WebViewClient;
 
 import androidx.annotation.Nullable;
 
-import com.demo.tiktok_likes_new.fragment.LikesEarnFragment;
+import com.demo.tiktok_likes_new.fragment.LikesEarnTestFragment;
 import com.demo.tiktok_likes_new.R;
 import com.orhanobut.hawk.Hawk;
 
@@ -32,6 +32,8 @@ import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 import static com.demo.tiktok_likes_new.util.Common.getPartStr;
+import static com.demo.tiktok_likes_new.util.JsUtils.SCRIPT_SET_CLICK;
+import static com.demo.tiktok_likes_new.util.JsUtils.SCRIPT_SET_LISTENER;
 
 public class TestActivity extends BaseAbstractActivity {
 
@@ -47,17 +49,6 @@ public class TestActivity extends BaseAbstractActivity {
     public static final String USER_AGENT = "Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Mobile Safari/537.36";
     public static final OkHttpClient client = new OkHttpClient.Builder().addInterceptor(new HttpLoggingInterceptor(message -> Log.d("NETWORK_LOG", message)).setLevel(HttpLoggingInterceptor.Level.BODY)).build();
 
-    public static String scriptSetLike = "(function(){document.getElementsByClassName(\"tiktok-toolbar-like\")[0].click()})();";
-    public static String scriptSetListener = "(function() {\n" +
-            "    var origOpen = XMLHttpRequest.prototype.open;\n" +
-            "    XMLHttpRequest.prototype.open = function() {\n" +
-            "        this.addEventListener('load', function() {\n" +
-            "            console.log(\"api_req\" + this.responseText); //whatever the response was\n" +
-            "        });\n" +
-            "        origOpen.apply(this, arguments);\n" +
-            "    };\n" +
-            "})();";
-
     String uiid = "";
     String userId = "";
 
@@ -67,7 +58,7 @@ public class TestActivity extends BaseAbstractActivity {
         setContentView(R.layout.activity_test);
 
         if (Hawk.contains("cookies")) {
-            LikesEarnFragment fragment = new LikesEarnFragment();
+            LikesEarnTestFragment fragment = new LikesEarnTestFragment();
 
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.contentFrame, fragment, fragment.getClass().getName())
@@ -281,7 +272,7 @@ public class TestActivity extends BaseAbstractActivity {
     }
 
     private void evaluateJsLike() {
-        webView.evaluateJavascript(scriptSetLike, new ValueCallback<String>() {
+        webView.evaluateJavascript(SCRIPT_SET_CLICK, new ValueCallback<String>() {
             @Override
             public void onReceiveValue(String s) {
                 if (!TextUtils.isEmpty(s) && !"null".equals(s) && !"\"\"".equals(s)) {
@@ -292,7 +283,7 @@ public class TestActivity extends BaseAbstractActivity {
     }
 
     private void evaluateJsListener() {
-        webView.evaluateJavascript(scriptSetListener, s -> {
+        webView.evaluateJavascript(SCRIPT_SET_LISTENER, s -> {
 
         });
     }

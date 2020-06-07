@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.demo.tiktok_likes_new.App;
 import com.demo.tiktok_likes_new.R;
 import com.demo.tiktok_likes_new.fragment.EmptyFragment;
+import com.demo.tiktok_likes_new.fragment.TwoTabFragment;
 import com.demo.tiktok_likes_new.fragment.UserPhotosFragment;
 import com.demo.tiktok_likes_new.network.Constants;
 import com.google.android.material.navigation.NavigationView;
@@ -27,6 +29,7 @@ import com.orhanobut.hawk.Hawk;
 
 
 import static com.demo.tiktok_likes_new.activity.TestActivity.cookies_tag;
+import static com.demo.tiktok_likes_new.network.Constants.DEFAULT_TAB;
 
 public class MainActivity extends BaseAbstractActivity {
 
@@ -71,7 +74,11 @@ public class MainActivity extends BaseAbstractActivity {
             ViewPager viewPager = findViewById(R.id.view_pager);
             viewPager.setOffscreenPageLimit(4);
             viewPager.setAdapter(pagerAdapter);
+            viewPager.setCurrentItem(DEFAULT_TAB);
+            mBottomNavigation.setCurrentItem(DEFAULT_TAB);
             mBottomNavigation.setupWithViewPager(viewPager);
+
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED, WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
 
             App.initDataStorage.setAppInitListener(appInitListener);
         }
@@ -84,10 +91,11 @@ public class MainActivity extends BaseAbstractActivity {
         }
     }
 
+    public TwoTabFragment twoTabFragment;
 
-    public static class MyPagerAdapter extends FragmentStatePagerAdapter {
+    public class MyPagerAdapter extends FragmentStatePagerAdapter {
 
-        private static int COUNT_ITEMS = 4;
+        private int COUNT_ITEMS = 4;
 
         MyPagerAdapter(@NonNull FragmentManager fm) {
             super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
@@ -105,7 +113,8 @@ public class MainActivity extends BaseAbstractActivity {
                 case 0:
                     return UserPhotosFragment.newInstance();
                 case 1:
-                    return new EmptyFragment();
+                    twoTabFragment = TwoTabFragment.newInstance();
+                    return twoTabFragment;
                 case 2:
                     return new EmptyFragment();
                 case 3:

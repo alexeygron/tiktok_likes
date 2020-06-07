@@ -11,4 +11,5 @@
 
     <color name="toolbar_bg">@color/white</color>
     <color name="status_bar">#1F1F1F</color>
+    <color name="disable_btn">#BBBBBB</color>
 </resources>

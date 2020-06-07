@@ -11,5 +11,8 @@
     <string name="order_title">Купить лайки</string>
     <string name="you_balance">Ваш баланс: %s</string>
 
+    <string name="set">Лайкнуть</string>
+    <string name="skip">Пропустить</string>
+
 
 </resources>
