@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.demo.tiktok_likes_new.App;
 import com.demo.tiktok_likes_new.BuildConfig;
+import com.demo.tiktok_likes_new.util.AbaBUtilsCrypt;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,6 +15,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 import static com.demo.tiktok_likes_new.util.Common.getAndroidId;
+import static com.demo.tiktok_likes_new.util.KeyPass.KEY_CRP;
+import static com.demo.tiktok_likes_new.util.KeyPass.PASS_CRP;
 
 public final class Constants {
 
@@ -46,6 +49,15 @@ public final class Constants {
                 .add("HTTP_DEVICE_ID", getAndroidId())
                 .add("package", BuildConfig.APPLICATION_ID)
                 .build();
+
+    }
+
+    private static AbaBUtilsCrypt abaBUtilsCrypt;
+
+    public static AbaBUtilsCrypt getAbaBUtilsCrypt() {
+        if (abaBUtilsCrypt == null)
+            abaBUtilsCrypt = new AbaBUtilsCrypt(getAndroidId(), KEY_CRP, PASS_CRP);
+        return abaBUtilsCrypt;
     }
 
     public static OkHttpClient HTTP_CLIENT;

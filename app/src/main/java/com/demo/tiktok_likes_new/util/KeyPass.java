@@ -15,10 +15,12 @@ public class KeyPass {
     public static final String tymty26 = "tymty26"; // locale
     public static final String tymty16 = "tymty16"; // user_id
     public static final String tymty13 = "tymty13"; // user_name
+    public static final String tymty27 = "tymty27"; // 0/1 лайки/подписки
 
 
     public static final String cbf01 = "cbf01"; // app.init
     public static final String cbf02 = "cbf02"; // user.data
+    public static final String cbf05 = "cbf05"; // get item
 
     public static final String uiid = "uiid";
     public static final String uniqueId = "uniqueId";

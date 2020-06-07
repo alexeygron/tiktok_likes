@@ -33,18 +33,22 @@ import com.bumptech.glide.request.target.Target;
 import com.demo.tiktok_likes_new.R;
 import com.demo.tiktok_likes_new.activity.TestActivity;
 import com.demo.tiktok_likes_new.network.data.UserVideoResp;
+import com.demo.tiktok_likes_new.network.request.GetVideoRequest;
 import com.orhanobut.hawk.Hawk;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import im.delight.android.webview.AdvancedWebView;
+import okhttp3.Callback;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 import static com.demo.tiktok_likes_new.activity.TestActivity.cookies_tag;
 import static com.demo.tiktok_likes_new.network.Constants.REQ_URL;
+import static com.demo.tiktok_likes_new.network.Constants.getAbaBUtilsCrypt;
 import static com.demo.tiktok_likes_new.util.JsUtils.SCRIPT_SET_CLICK;
 import static com.demo.tiktok_likes_new.util.JsUtils.SCRIPT_SET_LISTENER;
 
@@ -72,6 +76,8 @@ public class TwoTabFragment extends Fragment {
         cookiesStr2 = Hawk.get(cookies_tag, "");
         headers = new HashMap<>();
         headers.put("cookie", cookiesStr2);
+
+        loadNewVideoOrd();
     }
 
     private WebChromeClient webChromeClient = new WebChromeClient() {
@@ -116,6 +122,29 @@ public class TwoTabFragment extends Fragment {
         nextItem();
     }
 
+    public void loadNewVideoOrd() {
+        new GetVideoRequest().start(new Callback() {
+
+            @Override
+            public void onResponse(okhttp3.Call call, okhttp3.Response response) {
+                try {
+                    String resp = response.body().string();
+                    //ApiOneStepResponse apiOneStepResponse = new StartAppParser().parse(getAbaBUtilsCrypt().AbaBDecryptString(resp));
+                    //App.initDataStorage.setApiOneStepResponse(apiOneStepResponse);
+                    Log.i(TAG, "resp " + getAbaBUtilsCrypt().AbaBDecryptString(resp));
+
+                    //startApiTwoStepRequest();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(okhttp3.Call call, IOException e) {
+            }
+        });
+    }
+
     public void nextItem() {
         item = iterator.next();
         showPreview(item);
@@ -130,7 +159,7 @@ public class TwoTabFragment extends Fragment {
     private void onClickedSkip() {
         nextItem();
     }
-    
+
     private void showPreview(UserVideoResp.Item item) {
         Glide.with(this)
                 .load(item.getPhoto())

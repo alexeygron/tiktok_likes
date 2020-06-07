@@ -70,14 +70,6 @@ public class MainActivity extends BaseAbstractActivity {
             mBottomNavigation = findViewById(R.id.bottom_nav);
             mBottomNavigation.setTextVisibility(false);
 
-            MyPagerAdapter pagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
-            ViewPager viewPager = findViewById(R.id.view_pager);
-            viewPager.setOffscreenPageLimit(4);
-            viewPager.setAdapter(pagerAdapter);
-            viewPager.setCurrentItem(DEFAULT_TAB);
-            mBottomNavigation.setCurrentItem(DEFAULT_TAB);
-            mBottomNavigation.setupWithViewPager(viewPager);
-
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED, WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
 
             App.initDataStorage.setAppInitListener(appInitListener);
@@ -132,7 +124,19 @@ public class MainActivity extends BaseAbstractActivity {
 
     private AppInitListener appInitListener = () -> {
         if (App.initDataStorage.getApiOneStepResponse() != null)
-            runOnUiThread(() -> setUpBalance(App.initDataStorage.getApiOneStepResponse().getBalance_lfs()));
+            runOnUiThread(() -> {
+                setUpBalance(App.initDataStorage.getApiOneStepResponse().getBalance_lfs());
+
+                MyPagerAdapter pagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
+                ViewPager viewPager = findViewById(R.id.view_pager);
+                viewPager.setOffscreenPageLimit(4);
+                viewPager.setAdapter(pagerAdapter);
+                viewPager.setCurrentItem(DEFAULT_TAB);
+                mBottomNavigation.setCurrentItem(DEFAULT_TAB);
+                mBottomNavigation.setupWithViewPager(viewPager);
+            });
+
+
             //setUpBalance(App.initDataStorage.getApiOneStepResponse().getBalance_lfs());
     };
 
