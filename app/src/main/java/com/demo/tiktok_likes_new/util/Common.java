@@ -13,9 +13,9 @@ import static com.demo.tiktok_likes_new.network.Constants.CONTEXT;
 public class Common {
 
     public static final boolean DEBUG_MODE = true;
-    public static final boolean TOK_REQUEST_ENABLED = true;
+    public static final boolean TOK_REQUEST_ENABLED = false;
     public static final boolean ANIMATE_PREVIEW = false;
-    public static final int DEFAULT_TAB = 0;
+    public static final int DEFAULT_TAB = 1;
 
     private static Handler mainThreadHandler;
 
@@ -52,6 +52,7 @@ public class Common {
     @SuppressLint("HardwareIds")
     public static String getAndroidId() {
         try {
+            //return "6587iyuik8o";
             return Settings.Secure.getString(CONTEXT.getContentResolver(), Settings.Secure.ANDROID_ID);
         } catch (Exception e) {
             e.printStackTrace();

@@ -6,6 +6,38 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/video_cover"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginRight="26dp"
+        android:layout_marginBottom="26dp"
+        android:visibility="invisible"
+        android:scaleType="fitStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/unique"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="9dp"
+        android:textColor="@color/white"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1.5"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintStart_toStartOf="@+id/video_cover"
+        app:layout_constraintTop_toTopOf="@+id/video_cover" />
+
     <im.delight.android.webview.AdvancedWebView
         android:id="@+id/webView"
         android:layout_width="0dp"
@@ -14,26 +46,13 @@
         android:layout_marginTop="40dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="40dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
 
-    <ImageView
-        android:id="@+id/video_cover"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginBottom="22dp"
-        android:scaleType="fitCenter"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@+id/guideline_center_horizontal"
-        app:layout_constraintDimensionRatio="2:2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <include
         layout="@layout/progress_bar_main"
@@ -46,25 +65,28 @@
     <ImageButton
         android:id="@+id/accept_btn"
         style="@style/AcceptButton"
-        android:layout_marginEnd="13dp"
-        android:enabled="false"
+        android:layout_marginEnd="10dp"
         android:background="@null"
+        android:enabled="false"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_like_button_active"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintVertical_bias="0.88" />
 
     <ImageButton
         android:id="@+id/skip_btn"
         style="@style/AcceptButton"
-        android:layout_marginTop="16dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="13dp"
         android:background="@null"
+        android:enabled="false"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_next_button"
-        android:enabled="false"
         app:layout_constraintEnd_toEndOf="@+id/accept_btn"
+        app:layout_constraintStart_toStartOf="@+id/accept_btn"
         app:layout_constraintTop_toBottomOf="@+id/accept_btn" />
 
     <androidx.constraintlayout.widget.Guideline

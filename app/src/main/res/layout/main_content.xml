@@ -28,7 +28,7 @@
                 android:textColor="@color/dark"
                 android:textSize="17sp"
                 android:fontFamily="sans-serif"
-                android:gravity="center_vertical|end"
+                android:gravity="center_vertical|start"
                 android:visibility="gone"
                 />
 

@@ -160,7 +160,7 @@ public class OneTabFragment extends Fragment {
                     userVideoResponse = userVideoResp;
                     mProgressBar.setVisibility(View.GONE);
                     if (!sd) {
-                        ((MainActivity) getActivity()).twoTabFragment.setData(userVideoResponse.getItems());
+                        //((MainActivity) getActivity()).twoTabFragment.setData(userVideoResponse.getItems());
                         sd = true;
                     }
                 }));

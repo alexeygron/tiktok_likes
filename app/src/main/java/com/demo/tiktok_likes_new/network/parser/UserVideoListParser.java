@@ -1,4 +1,4 @@
-package com.demo.tiktok_likes_new.network.request;
+package com.demo.tiktok_likes_new.network.parser;
 
 import com.demo.tiktok_likes_new.network.data.UserVideoResp;
 

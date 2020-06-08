@@ -17,10 +17,10 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,15 +32,16 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.demo.tiktok_likes_new.R;
+import com.demo.tiktok_likes_new.activity.MainActivity;
 import com.demo.tiktok_likes_new.activity.TestActivity;
-import com.demo.tiktok_likes_new.network.data.UserVideoResp;
-import com.demo.tiktok_likes_new.network.request.GetVideoRequest;
+import com.demo.tiktok_likes_new.network.parser.ApiGetVideoParser;
+import com.demo.tiktok_likes_new.network.request.ApiAccertRequest;
+import com.demo.tiktok_likes_new.network.request.ApiGetVideoRequest;
+import com.demo.tiktok_likes_new.network.request.ApiGetVideoResponse;
 import com.orhanobut.hawk.Hawk;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import im.delight.android.webview.AdvancedWebView;
@@ -53,7 +54,7 @@ import static com.demo.tiktok_likes_new.network.Constants.getAbaBUtilsCrypt;
 import static com.demo.tiktok_likes_new.util.JsUtils.SCRIPT_SET_CLICK;
 import static com.demo.tiktok_likes_new.util.JsUtils.SCRIPT_SET_LISTENER;
 
-public class TwoTabFragment extends Fragment {
+public class TwoTabFragment extends BaseAbstractFragment {
 
     private String cookiesStr2;
     private String lastItemId = "0";
@@ -61,8 +62,10 @@ public class TwoTabFragment extends Fragment {
     private String TAG = TwoTabFragment.class.getSimpleName();
 
     private Vibrator v;
-    Map<String, String> headers = new HashMap<>();
+    private Map<String, String> headers = new HashMap<>();
     private Views views;
+    private boolean isRealOr = true;
+    private ApiGetVideoResponse videoResponseItem;
 
     @Nullable
     @Override
@@ -78,7 +81,7 @@ public class TwoTabFragment extends Fragment {
         headers = new HashMap<>();
         headers.put("cookie", cookiesStr2);
 
-        loadNewVideoOrd();
+        startNewVideoRequest();
     }
 
     private WebChromeClient webChromeClient = new WebChromeClient() {
@@ -90,51 +93,36 @@ public class TwoTabFragment extends Fragment {
                 vibrate();
                 Log.i(TAG, "Like confirm!");
                 Log.i(TAG, "is_digg " + cmsg.message());
-                lastItemId = item.getId();
-                nextItem();
+                lastItemId = videoResponseItem.getItem_id();
+                startAcceptRequest("0", "ok");
             } else if(cmsg.message() != null && cmsg.message().contains("log_pb")) {
                 Log.i(TAG, "log_pb " + cmsg.message());
             }
             return true;
 
         }
-
-        @Override
-        public void onProgressChanged(WebView view, int newProgress) {
-            super.onProgressChanged(view, newProgress);
-            /*if (newProgress > 90) {
-                if (!lastId.equals(ids[likeCounter])) {
-                    evaluateJsListener();
-                    new Handler().postDelayed(() -> evaluateJsLike(), 900);
-                    lastId = ids[likeCounter];
-                    Log.i(TAG, "onPageFinished " + ids[likeCounter]);
-                }
-            }*/
-        }
     };
 
-    List<UserVideoResp.Item> items;
-    UserVideoResp.Item item;
-    Iterator<UserVideoResp.Item> iterator;
-
-    public void setData(List<UserVideoResp.Item> items) {
-        this.items = items;
-        iterator = items.iterator();
-        nextItem();
+    private void onAcceptClick() {
+        if (isRealOr) {
+            evaluateJsAccept();
+        } else {
+            startAcceptRequest("0", "ok");
+        }
     }
 
-    public void loadNewVideoOrd() {
-        new GetVideoRequest().start(new Callback() {
+    private void startNewVideoRequest() {
+        new ApiGetVideoRequest().start(new Callback() {
 
             @Override
             public void onResponse(okhttp3.Call call, okhttp3.Response response) {
                 try {
                     String resp = response.body().string();
-                    //ApiOneStepResponse apiOneStepResponse = new StartAppParser().parse(getAbaBUtilsCrypt().AbaBDecryptString(resp));
-                    //App.initDataStorage.setApiOneStepResponse(apiOneStepResponse);
-                    Log.i(TAG, "resp " + getAbaBUtilsCrypt().AbaBDecryptString(resp));
+                    ApiGetVideoResponse apiGetVideoResponse = new ApiGetVideoParser().parse(getAbaBUtilsCrypt().AbaBDecryptString(resp));
+                    if (apiGetVideoResponse.isOrderAvailable()) {
+                        getActivity().runOnUiThread(() -> onItemLoaded(apiGetVideoResponse));
+                    }
 
-                    //startApiTwoStepRequest();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -146,24 +134,61 @@ public class TwoTabFragment extends Fragment {
         });
     }
 
-    public void nextItem() {
-        item = iterator.next();
-        showPreview(item);
-        loadItemByUrl(item.getUniqueId(), item.getId());
-        isEval = false;
+    private void startAcceptRequest(String pass, String meta) {
+        new ApiAccertRequest(videoResponseItem, pass, meta).start(new Callback() {
+
+            @Override
+            public void onResponse(okhttp3.Call call, okhttp3.Response response) {
+                try {
+                    String resp = response.body().string();
+                    ApiGetVideoResponse apiGetVideoResponse = new ApiGetVideoParser().parse(getAbaBUtilsCrypt().AbaBDecryptString(resp));
+                    if (apiGetVideoResponse.isOrderAvailable()) {
+                        getActivity().runOnUiThread(() -> onItemLoaded(apiGetVideoResponse));
+                    }
+
+                    setBalance(apiGetVideoResponse.getBalance());
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(okhttp3.Call call, IOException e) {
+            }
+        });
+
+        views.setUpControlsForStatus(false);
+    }
+
+    private void onItemLoaded(ApiGetVideoResponse apiGetVideoResponse) {
+        this.videoResponseItem = apiGetVideoResponse;
+        isRealOr = apiGetVideoResponse.getItem_type() == 1;
+        if (apiGetVideoResponse.getItem_type() == 1) {
+            loadItemByUrl(apiGetVideoResponse.getItem_hash(), apiGetVideoResponse.getItem_id());
+        } else {
+
+        }
+        showPreview();
     }
 
     private void loadItemByUrl(String uniqueId, String itemId) {
         views.webView.loadUrl(REQ_URL + "@" + uniqueId + "/video/" + itemId);
     }
 
-    private void onClickedSkip() {
-        nextItem();
+    private String revertUrlDomain(String url) {
+        String newUrl = url;
+        if (url != null && url.contains("p16-musical-va.ibyteimg.com")) {
+            newUrl = url.replace("p16-musical-va.ibyteimg.com", "p16.muscdn.com");
+        }
+        return newUrl;
     }
 
-    private void showPreview(UserVideoResp.Item item) {
+    private void showPreview() {
+        String url = revertUrlDomain(videoResponseItem.getItem_image());
+        Log.i(TAG, "showPreview: " + url);
         Glide.with(this)
-                .load(item.getPhoto())
+                .load(url)
                 .transition(withCrossFade())
                 .listener(new RequestListener<Drawable>() {
                     @Override
@@ -175,13 +200,15 @@ public class TwoTabFragment extends Fragment {
 
                     @Override
                     public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                        /*showProgress(false);
-                        enableControls(true);
-                        if (autoLike) onLikeClick();*/
+                        if (!isRealOr) {
+                            views.setUpControlsForStatus(true);
+                        }
                         return false;
                     }
                 })
                 .into(views.video_preview);
+
+        views.unique.setText("@" + videoResponseItem.getItem_hash());
 
     }
 
@@ -225,7 +252,7 @@ public class TwoTabFragment extends Fragment {
             if (!oldUrl.equals(url)) {
                 Log.i(TAG, "onPageFinished: " + url);
                 evaluateJsListener();
-                currentItemId = item.getId();
+                currentItemId = videoResponseItem.getItem_id();
                 oldUrl = url;
             }
         }
@@ -236,7 +263,7 @@ public class TwoTabFragment extends Fragment {
         }
     };
 
-    private void evaluateJsPut() {
+    private void evaluateJsAccept() {
         views.webView.evaluateJavascript(SCRIPT_SET_CLICK, s -> {
         });
         views.setUpControlsForStatus(false);
@@ -247,7 +274,6 @@ public class TwoTabFragment extends Fragment {
         views.webView.evaluateJavascript(SCRIPT_SET_LISTENER, s -> {
 
         });
-        views.setUpControlsForStatus(false);
     }
 
     private void vibrate() {
@@ -265,6 +291,7 @@ public class TwoTabFragment extends Fragment {
         ImageButton skip_btn;
         AdvancedWebView webView;
         ProgressBar progressBar2;
+        TextView unique;
 
         Views(View rootView) {
             if (rootView != null) {
@@ -272,6 +299,7 @@ public class TwoTabFragment extends Fragment {
                 progressBar2 = rootView.findViewById(R.id.progressBar2);
                 accept_btn = rootView.findViewById(R.id.accept_btn);
                 skip_btn = rootView.findViewById(R.id.skip_btn);
+                unique = rootView.findViewById(R.id.unique);
 
                 accept_btn.setOnClickListener(this);
                 skip_btn.setOnClickListener(this);
@@ -292,19 +320,19 @@ public class TwoTabFragment extends Fragment {
             accept_btn.setEnabled(isLoadingStatus);
             skip_btn.setEnabled(isLoadingStatus);
             video_preview.setVisibility(isLoadingStatus ? View.VISIBLE : View.GONE);
-            //webView.setVisibility(isLoadingStatus ? View.VISIBLE : View.GONE);
             progressBar2.setVisibility(isLoadingStatus ? View.GONE : View.VISIBLE);
+            unique.setVisibility(isLoadingStatus ? View.VISIBLE : View.GONE);
+            //webView.setVisibility((isLoadingStatus && isRealOr) ? View.VISIBLE : View.GONE);
         }
 
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.accept_btn:
-                    evaluateJsPut();
+                    onAcceptClick();
                     return;
                 case R.id.skip_btn:
-                    onClickedSkip();
-                    return;
+                    startAcceptRequest("1", "ok");
 
             }
         }

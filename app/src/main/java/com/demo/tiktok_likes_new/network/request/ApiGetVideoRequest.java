@@ -15,9 +15,9 @@ import static com.demo.tiktok_likes_new.util.KeyPass.tymty3;
 import static com.demo.tiktok_likes_new.util.KeyPass.uiid;
 import static com.demo.tiktok_likes_new.util.KeyPass.uniqueId;
 
-public class GetVideoRequest extends BaseRequest {
+public class ApiGetVideoRequest extends BaseRequest {
 
-    public GetVideoRequest() {
+    public ApiGetVideoRequest() {
         super(cbf05 + "/");
         coreParams.addProperty("method", cbf05);
         //coreParams.addProperty(tymty13, Hawk.get(uniqueId, ""));

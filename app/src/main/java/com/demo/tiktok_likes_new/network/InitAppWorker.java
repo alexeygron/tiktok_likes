@@ -11,7 +11,7 @@ import com.demo.tiktok_likes_new.App;
 import com.demo.tiktok_likes_new.network.request.ApiOneStepRequest;
 import com.demo.tiktok_likes_new.network.request.ApiOneStepResponse;
 import com.demo.tiktok_likes_new.network.request.ApiTwoStepRequest;
-import com.demo.tiktok_likes_new.network.request.StartAppParser;
+import com.demo.tiktok_likes_new.network.parser.StartAppParser;
 
 import java.io.IOException;
 

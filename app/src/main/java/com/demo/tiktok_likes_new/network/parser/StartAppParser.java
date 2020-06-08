@@ -1,12 +1,9 @@
-package com.demo.tiktok_likes_new.network.request;
+package com.demo.tiktok_likes_new.network.parser;
 
-import com.demo.tiktok_likes_new.network.data.UserVideoResp;
+import com.demo.tiktok_likes_new.network.request.ApiOneStepResponse;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class StartAppParser implements IParser<ApiOneStepResponse> {
 
