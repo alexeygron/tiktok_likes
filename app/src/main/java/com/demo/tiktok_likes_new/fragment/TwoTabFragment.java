@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -208,7 +209,11 @@ public class TwoTabFragment extends BaseAbstractFragment {
                 })
                 .into(views.video_preview);
 
-        views.unique.setText("@" + videoResponseItem.getItem_hash());
+        if (!TextUtils.isEmpty(videoResponseItem.getItem_hash())) {
+            views.unique.setText("@" + videoResponseItem.getItem_hash());
+        } else {
+            views.unique.setVisibility(View.GONE);
+        }
 
     }
 
