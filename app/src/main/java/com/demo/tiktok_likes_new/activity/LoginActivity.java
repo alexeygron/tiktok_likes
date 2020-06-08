@@ -29,27 +29,26 @@ import static com.demo.tiktok_likes_new.util.KeyPass.uiid;
 
 public class LoginActivity extends BaseAbstractActivity {
 
-    WebView webView;
-    ProgressBar progressBar;
+    WebView mWebView;
+    ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        webView = findViewById(R.id.webView);
-        progressBar = findViewById(R.id.progressBar);
-        webView.getSettings().setUserAgentString(USER_AGENT);
-        webView.getSettings().setUserAgentString(USER_AGENT);
-            webView.getSettings().setJavaScriptEnabled(true);
-            webView.getSettings().setDomStorageEnabled(true);
-            webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+        mWebView = findViewById(R.id.webView);
+        mProgressBar = findViewById(R.id.progressBar);
+        mWebView.getSettings().setUserAgentString(USER_AGENT);
+        mWebView.getSettings().setJavaScriptEnabled(true);
+        mWebView.getSettings().setDomStorageEnabled(true);
+        mWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                webView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+                mWebView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
 
-            webView.setWebViewClient(webViewClient);
-            webView.loadUrl(REQ_URL + "login/phone-or-email/");
+        mWebView.setWebViewClient(webViewClient);
+        mWebView.loadUrl(REQ_URL + "login/phone-or-email/");
 
         //loadAndStoreIds(Hawk.get(cookies_tag, ""));
     }
@@ -64,16 +63,16 @@ public class LoginActivity extends BaseAbstractActivity {
                 Hawk.put(cookies_tag, cookie);
                 if (!isStartLoadIds) loadAndStoreIds(cookie);
             } else {
-                webView.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.GONE);
+                mWebView.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(View.GONE);
             }
         }
 
         @Override
         public void onPageStarted(WebView view, String url, Bitmap favicon) {
             super.onPageStarted(view, url, favicon);
-            webView.setVisibility(View.GONE);
-            progressBar.setVisibility(View.VISIBLE);
+            mWebView.setVisibility(View.GONE);
+            mProgressBar.setVisibility(View.VISIBLE);
         }
     };
 
@@ -91,8 +90,8 @@ public class LoginActivity extends BaseAbstractActivity {
                 try {
                     String resp = response.body().string();
                     if (resp.contains("\"$user\":{\"uid\":")) {
-                        String uid = getPartStr(resp, "\"uid\":\"", "\",");
-                        String uniqueId = getPartStr(resp, "\"uniqueId\":\"", "\",");
+                        String uid = getPartStr("\"uid\":\"", "\",", resp);
+                        String uniqueId = getPartStr("\"uniqueId\":\"", "\",", resp);
                         Hawk.put(uiid, uid);
                         Hawk.put(KeyPass.uniqueId, uniqueId);
 

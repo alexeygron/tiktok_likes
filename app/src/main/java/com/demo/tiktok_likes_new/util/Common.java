@@ -59,7 +59,7 @@ public class Common {
         }
     }
 
-    public static String getPartStr(String source, String start, String end) {
+    public static String getPartStr(String start, String end, String source) {
         String returnStr = source;
         returnStr = returnStr.substring(source.indexOf(start));
         returnStr = returnStr.replace(start, "");

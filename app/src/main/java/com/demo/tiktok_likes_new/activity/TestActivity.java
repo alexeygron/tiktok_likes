@@ -71,22 +71,22 @@ public class TestActivity extends BaseAbstractActivity {
             //like();
             //getProfile();
 
-            webView = findViewById(R.id.webView);
-            webView.getSettings().setUserAgentString(USER_AGENT);
+            mWebView = findViewById(R.id.mWebView);
+            mWebView.getSettings().setUserAgentString(USER_AGENT);
 
-            webView.getSettings().setJavaScriptEnabled(true);
+            mWebView.getSettings().setJavaScriptEnabled(true);
 
-            webView.getSettings().setDomStorageEnabled(true);
+            mWebView.getSettings().setDomStorageEnabled(true);
 
 
-            webView.getSettings().setPluginState(WebSettings.PluginState.ON);
+            mWebView.getSettings().setPluginState(WebSettings.PluginState.ON);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                webView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+                mWebView.getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
 
             CookieSyncManager.getInstance().sync();
-            webView.setWebViewClient(webViewClient2);
-            webView.setWebChromeClient(new WebChromeClient() {
+            mWebView.setWebViewClient(webViewClient2);
+            mWebView.setWebChromeClient(new WebChromeClient() {
                 public boolean onConsoleMessage(ConsoleMessage cmsg) {
                     if (cmsg.message().contains("api_req")) {
                         Log.i(TAG, "onConsoleMessage: " + cmsg.message());
@@ -102,12 +102,12 @@ public class TestActivity extends BaseAbstractActivity {
 
             Map<String, String> headers = new HashMap<>();
             headers.put("cookie", cookiesStr);
-            webView.loadUrl("https://www.tiktok.com/@klavacoca/video/6831459866024955141", headers);*/
+            mWebView.loadUrl("https://www.tiktok.com/@klavacoca/video/6831459866024955141", headers);*/
 
             /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 CookieManager cookieManager = CookieManager.getInstance();
                 cookieManager.removeAllCookie();
-                cookieManager.setAcceptThirdPartyCookies(webView, true);
+                cookieManager.setAcceptThirdPartyCookies(mWebView, true);
             } else {
                 CookieManager.getInstance().setAcceptCookie(true);
             }*/
@@ -138,7 +138,7 @@ public class TestActivity extends BaseAbstractActivity {
                 CookieManager.getInstance().setAcceptCookie(true);
             }
             webView.setWebViewClient(webViewClient);
-            //webView.loadUrl("http://www.tiktok.com");
+            //mWebView.loadUrl("http://www.tiktok.com");
             webView.loadUrl("https://www.tiktok.com/login/phone-or-email/");
         }
     }
@@ -255,8 +255,8 @@ public class TestActivity extends BaseAbstractActivity {
                 try {
                     String resp = response.body().string();
                     if (resp.contains("\"$user\":{\"uid\":")) {
-                        String uid = getPartStr(resp, "\"uid\":\"", "\",");
-                        String uniqueId = getPartStr(resp, "\"uniqueId\":\"", "\",");
+                        String uid = getPartStr( "\"uid\":\"", "\",", resp);
+                        String uniqueId = getPartStr( "\"uniqueId\":\"", "\",", resp);
 
                         Hawk.put(uiid, uid);
                         Hawk.put(userId, uniqueId);

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
 
@@ -21,7 +22,7 @@ import com.demo.tiktok_likes_new.App;
 import com.demo.tiktok_likes_new.R;
 import com.demo.tiktok_likes_new.fragment.EmptyFragment;
 import com.demo.tiktok_likes_new.fragment.TwoTabFragment;
-import com.demo.tiktok_likes_new.fragment.UserPhotosFragment;
+import com.demo.tiktok_likes_new.fragment.OneTabFragment;
 import com.demo.tiktok_likes_new.network.Constants;
 import com.google.android.material.navigation.NavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -54,7 +55,7 @@ public class MainActivity extends BaseAbstractActivity {
 
             mTextBalanceStatus = findViewById(R.id.toolbar_balance);
             DrawerLayout drawer = findViewById(R.id.drawer_layout);
-            NavigationView navigationView = findViewById(R.id.nav_view);
+            NavigationView navigationView = findViewById(R.id.NavigationView);
 
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
             drawer.addDrawerListener(toggle);
@@ -85,11 +86,11 @@ public class MainActivity extends BaseAbstractActivity {
 
     public TwoTabFragment twoTabFragment;
 
-    public class MyPagerAdapter extends FragmentStatePagerAdapter {
+    public class CostPagerAdapter extends FragmentStatePagerAdapter {
 
         private int COUNT_ITEMS = 4;
 
-        MyPagerAdapter(@NonNull FragmentManager fm) {
+        CostPagerAdapter(@NonNull FragmentManager fm) {
             super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         }
 
@@ -103,7 +104,7 @@ public class MainActivity extends BaseAbstractActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return UserPhotosFragment.newInstance();
+                    return OneTabFragment.newInstance();
                 case 1:
                     twoTabFragment = TwoTabFragment.newInstance();
                     return twoTabFragment;
@@ -115,11 +116,6 @@ public class MainActivity extends BaseAbstractActivity {
                     return new EmptyFragment();
             }
         }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return "Page " + position;
-        }
     }
 
     private AppInitListener appInitListener = () -> {
@@ -127,15 +123,16 @@ public class MainActivity extends BaseAbstractActivity {
             runOnUiThread(() -> {
                 setUpBalance(App.initDataStorage.getApiOneStepResponse().getBalance_lfs());
 
-                MyPagerAdapter pagerAdapter = new MyPagerAdapter(getSupportFragmentManager());
+                CostPagerAdapter pagerAdapter = new CostPagerAdapter(getSupportFragmentManager());
                 ViewPager viewPager = findViewById(R.id.view_pager);
                 viewPager.setOffscreenPageLimit(4);
                 viewPager.setAdapter(pagerAdapter);
                 viewPager.setCurrentItem(DEFAULT_TAB);
                 mBottomNavigation.setCurrentItem(DEFAULT_TAB);
                 mBottomNavigation.setupWithViewPager(viewPager);
-            });
 
+                findViewById(R.id.loading_screen).setVisibility(View.GONE);
+            });
 
             //setUpBalance(App.initDataStorage.getApiOneStepResponse().getBalance_lfs());
     };

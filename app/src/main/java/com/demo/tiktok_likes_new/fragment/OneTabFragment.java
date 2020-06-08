@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,7 +18,6 @@ import androidx.paging.PagedList;
 import androidx.paging.PagedListAdapter;
 import androidx.paging.PositionalDataSource;
 import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -39,26 +39,27 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
 import static com.demo.tiktok_likes_new.util.Common.TOK_REQUEST_ENABLED;
 import static com.demo.tiktok_likes_new.util.Common.runOnMainThread;
 
-public class UserPhotosFragment extends Fragment {
+public class OneTabFragment extends Fragment {
 
-    private String TAG = UserPhotosFragment.class.getSimpleName();
+    private String TAG = OneTabFragment.class.getSimpleName();
 
     private RecyclerView mPhotosList;
     private ListPostsAdapter mListPostsAdapter;
+    private ProgressBar mProgressBar;
     private String cursor = "0";
     public static UserVideoResp userVideoResponse;
-    private boolean hashMore;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.user_photos_fragment, container, false);
+        return inflater.inflate(R.layout.one_tab_fragment, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mPhotosList = view.findViewById(R.id.photos_list);
+        mProgressBar = view.findViewById(R.id.progressBar2);
+        mPhotosList = view.findViewById(R.id.preview_list);
 
         //GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3);
         StaggeredGridLayoutManager layoutManager =  new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
@@ -95,13 +96,6 @@ public class UserPhotosFragment extends Fragment {
         mPhotosList.setAdapter(mListPostsAdapter);
     }
 
-    public static UserPhotosFragment newInstance() {
-        UserPhotosFragment f = new UserPhotosFragment();
-        Bundle args = new Bundle();
-        f.setArguments(args);
-        return f;
-    }
-
     public class ListPostsAdapter extends PagedListAdapter<UserVideoResp.Item, ListPostsAdapter.ViewHolder> {
 
 
@@ -112,7 +106,7 @@ public class UserPhotosFragment extends Fragment {
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_list_item, parent, false);
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.video_preview_item, parent, false);
             return new ViewHolder(v);
         }
 
@@ -139,14 +133,20 @@ public class UserPhotosFragment extends Fragment {
 
             ViewHolder(View itemView) {
                 super(itemView);
-                cover = itemView.findViewById(R.id.iv_photo);
-                likeSize = itemView.findViewById(R.id.tv_digg_count);
+                cover = itemView.findViewById(R.id.video_preview);
+                likeSize = itemView.findViewById(R.id.status);
                 itemView.setOnClickListener(v -> OrderActivity.start(Constants.CONTEXT));
             }
         }
 
     }
 
+    public static OneTabFragment newInstance() {
+        OneTabFragment f = new OneTabFragment();
+        Bundle args = new Bundle();
+        f.setArguments(args);
+        return f;
+    }
 
     class VideosDataSource extends PositionalDataSource<UserVideoResp.Item> {
 
@@ -158,6 +158,7 @@ public class UserPhotosFragment extends Fragment {
             if (TOK_REQUEST_ENABLED) {
                 runOnMainThread(() -> new UserVideosRequest().loadUserVideos(callback, null, cursor).observe(getActivity(), userVideoResp ->{
                     userVideoResponse = userVideoResp;
+                    mProgressBar.setVisibility(View.GONE);
                     if (!sd) {
                         ((MainActivity) getActivity()).twoTabFragment.setData(userVideoResponse.getItems());
                         sd = true;
