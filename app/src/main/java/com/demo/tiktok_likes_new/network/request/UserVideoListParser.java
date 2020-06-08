@@ -9,7 +9,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.demo.tiktok_likes_new.network.Constants.ANIMATE_PREVIEW;
+import static com.demo.tiktok_likes_new.util.Common.ANIMATE_PREVIEW;
+
 
 public class UserVideoListParser implements IParser<UserVideoResp> {
 

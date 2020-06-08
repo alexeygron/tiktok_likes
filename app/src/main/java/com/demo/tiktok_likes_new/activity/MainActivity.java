@@ -29,7 +29,7 @@ import com.orhanobut.hawk.Hawk;
 
 
 import static com.demo.tiktok_likes_new.activity.TestActivity.cookies_tag;
-import static com.demo.tiktok_likes_new.network.Constants.DEFAULT_TAB;
+import static com.demo.tiktok_likes_new.util.Common.DEFAULT_TAB;
 
 public class MainActivity extends BaseAbstractActivity {
 

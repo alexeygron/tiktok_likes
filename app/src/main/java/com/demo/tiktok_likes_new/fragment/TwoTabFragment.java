@@ -18,6 +18,7 @@ import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -260,8 +261,8 @@ public class TwoTabFragment extends Fragment {
     private class Views implements View.OnClickListener {
 
         ImageView video_preview;
-        Button accept_btn;
-        Button skip_btn;
+        ImageButton accept_btn;
+        ImageButton skip_btn;
         AdvancedWebView webView;
         ProgressBar progressBar2;
 

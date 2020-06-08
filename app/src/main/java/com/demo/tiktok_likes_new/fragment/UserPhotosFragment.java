@@ -17,6 +17,7 @@ import androidx.paging.PagedList;
 import androidx.paging.PagedListAdapter;
 import androidx.paging.PositionalDataSource;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
@@ -35,7 +36,7 @@ import com.demo.tiktok_likes_new.network.data.UserVideoResp;
 import java.util.concurrent.Executors;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
-import static com.demo.tiktok_likes_new.network.Constants.TOK_REQUEST_ENABLED;
+import static com.demo.tiktok_likes_new.util.Common.TOK_REQUEST_ENABLED;
 import static com.demo.tiktok_likes_new.util.Common.runOnMainThread;
 
 public class UserPhotosFragment extends Fragment {
