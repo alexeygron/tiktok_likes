@@ -16,6 +16,9 @@
     <string name="msg2">Вы не выбрали позицию</string>
     <string name="msg3">Заказ успешно создан</string>
     <string name="msg4">Произошла ошибка</string>
+    <string name="msg5">Сколько лайков добавить на фото?</string>
+    <string name="msg6">%d из %d</string>
+    <string name="msg7">Удалить этот заказ?</string>
 
 
 </resources>

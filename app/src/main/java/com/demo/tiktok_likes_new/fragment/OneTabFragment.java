@@ -158,7 +158,7 @@ public class OneTabFragment extends BaseAbstractFragment {
                     userVideoResponse = userVideoResp;
                     mProgressBar.setVisibility(View.GONE);
 
-                    MakeOrdActivity.start(Constants.CONTEXT, userVideoResp.getItems().get(3), getBalance());
+                    //MakeOrdActivity.start(Constants.CONTEXT, userVideoResp.getItems().get(3), getBalance());
 
                     if (!sd) {
                         //((MainActivity) getActivity()).twoTabFragment.setData(userVideoResponse.getItems());

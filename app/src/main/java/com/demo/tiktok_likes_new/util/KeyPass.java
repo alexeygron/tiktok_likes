@@ -32,6 +32,7 @@ public class KeyPass {
     public static final String cbf05 = "cbf05"; // get.item
     public static final String cbf07 = "cbf07"; // set.like
     public static final String cbf09 = "cbf09"; // get orders
+    public static final String cbf11 = "cbf11"; // remove order
 
     public static final String uiid = "uiid";
     public static final String uniqueId = "uniqueId";

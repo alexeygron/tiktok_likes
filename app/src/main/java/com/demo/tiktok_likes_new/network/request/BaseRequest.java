@@ -1,5 +1,7 @@
 package com.demo.tiktok_likes_new.network.request;
 
+import android.util.Log;
+
 import com.demo.tiktok_likes_new.BuildConfig;
 import com.demo.tiktok_likes_new.util.AbaBUtilsCrypt;
 import com.google.gson.JsonObject;
@@ -41,6 +43,7 @@ public abstract class BaseRequest {
 
     protected String getEncodeParams(String params) {
         AbaBUtilsCrypt abaBUtilsCrypt = new AbaBUtilsCrypt(getAndroidId(), KEY_CRP, PASS_CRP);
+        Log.i("getEncodeParams", params.toString());
         return abaBUtilsCrypt.AbaBEncryptString(params);
     }
 
