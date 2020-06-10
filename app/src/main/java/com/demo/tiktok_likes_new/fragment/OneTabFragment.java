@@ -13,7 +13,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 import androidx.paging.PagedList;
 import androidx.paging.PagedListAdapter;
 import androidx.paging.PositionalDataSource;
@@ -27,8 +26,7 @@ import com.bumptech.glide.integration.webp.decoder.WebpDrawableTransformation;
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.demo.tiktok_likes_new.R;
-import com.demo.tiktok_likes_new.activity.MainActivity;
-import com.demo.tiktok_likes_new.activity.OrderActivity;
+import com.demo.tiktok_likes_new.activity.MakeOrdActivity;
 import com.demo.tiktok_likes_new.network.Constants;
 import com.demo.tiktok_likes_new.network.request.UserVideosRequest;
 import com.demo.tiktok_likes_new.network.data.UserVideoResp;
@@ -39,7 +37,7 @@ import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOption
 import static com.demo.tiktok_likes_new.util.Common.TOK_REQUEST_ENABLED;
 import static com.demo.tiktok_likes_new.util.Common.runOnMainThread;
 
-public class OneTabFragment extends Fragment {
+public class OneTabFragment extends BaseAbstractFragment {
 
     private String TAG = OneTabFragment.class.getSimpleName();
 
@@ -59,7 +57,7 @@ public class OneTabFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mProgressBar = view.findViewById(R.id.progressBar2);
-        mPhotosList = view.findViewById(R.id.preview_list);
+        mPhotosList = view.findViewById(R.id.list_data);
 
         //GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 3);
         StaggeredGridLayoutManager layoutManager =  new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL);
@@ -135,7 +133,7 @@ public class OneTabFragment extends Fragment {
                 super(itemView);
                 cover = itemView.findViewById(R.id.video_preview);
                 likeSize = itemView.findViewById(R.id.status);
-                itemView.setOnClickListener(v -> OrderActivity.start(Constants.CONTEXT));
+                itemView.setOnClickListener(v -> MakeOrdActivity.start(Constants.CONTEXT, getItem(getAdapterPosition()), getBalance()));
             }
         }
 
@@ -159,6 +157,9 @@ public class OneTabFragment extends Fragment {
                 runOnMainThread(() -> new UserVideosRequest().loadUserVideos(callback, null, cursor).observe(getActivity(), userVideoResp ->{
                     userVideoResponse = userVideoResp;
                     mProgressBar.setVisibility(View.GONE);
+
+                    MakeOrdActivity.start(Constants.CONTEXT, userVideoResp.getItems().get(3), getBalance());
+
                     if (!sd) {
                         //((MainActivity) getActivity()).twoTabFragment.setData(userVideoResponse.getItems());
                         sd = true;

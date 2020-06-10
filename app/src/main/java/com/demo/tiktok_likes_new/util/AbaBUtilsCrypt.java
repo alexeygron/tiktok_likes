@@ -143,7 +143,7 @@ public class AbaBUtilsCrypt {
     }
 
     @Nullable
-    public String AbaBDecryptString(@Nullable String string) {
+    public String AbaBDecryptString(@Nullable String string) throws Exception {
         if (string == null)
             return null;
         else if (string.startsWith("{")) {

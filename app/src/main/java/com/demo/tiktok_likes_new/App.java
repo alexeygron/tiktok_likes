@@ -37,8 +37,16 @@ public class App extends Application {
     public static class InitialDataStorage {
 
         private ApiOneStepResponse apiOneStepResponse;
+        private float bfgl;
         private MainActivity.AppInitListener appInitListener;
 
+        public float getBfgl() {
+            return bfgl;
+        }
+
+        public void setBfgl(float bfgl) {
+            this.bfgl = bfgl;
+        }
 
         public ApiOneStepResponse getApiOneStepResponse() {
             return apiOneStepResponse;
@@ -46,6 +54,7 @@ public class App extends Application {
 
         public void setApiOneStepResponse(ApiOneStepResponse apiOneStepResponse) {
             this.apiOneStepResponse = apiOneStepResponse;
+            bfgl = Float.parseFloat(apiOneStepResponse.getBalance_lfs());
 
             if (appInitListener != null) appInitListener.onAppInit();
         }

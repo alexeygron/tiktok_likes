@@ -3,6 +3,7 @@ package com.demo.tiktok_likes_new.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -21,6 +22,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.demo.tiktok_likes_new.App;
 import com.demo.tiktok_likes_new.R;
 import com.demo.tiktok_likes_new.fragment.EmptyFragment;
+import com.demo.tiktok_likes_new.fragment.ThreeTabFragment;
 import com.demo.tiktok_likes_new.fragment.TwoTabFragment;
 import com.demo.tiktok_likes_new.fragment.OneTabFragment;
 import com.demo.tiktok_likes_new.network.Constants;
@@ -37,6 +39,7 @@ public class MainActivity extends BaseAbstractActivity {
     private BottomNavigationViewEx mBottomNavigation;
     private AppBarConfiguration mAppBarConfiguration;
     private TextView mTextBalanceStatus;
+    private String blns = "0";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +81,15 @@ public class MainActivity extends BaseAbstractActivity {
     }
 
     public void setUpBalance(@NonNull String balance) {
-        if (mTextBalanceStatus != null) {
+        if (mTextBalanceStatus != null && !balance.isEmpty()) {
+            blns = balance;
             mTextBalanceStatus.setText(String.format(getString(R.string.you_balance), balance));
             mTextBalanceStatus.setVisibility(View.VISIBLE);
         }
+    }
+
+    public String getBlns() {
+        return blns;
     }
 
     public TwoTabFragment twoTabFragment;
@@ -109,7 +117,7 @@ public class MainActivity extends BaseAbstractActivity {
                     twoTabFragment = TwoTabFragment.newInstance();
                     return twoTabFragment;
                 case 2:
-                    return new EmptyFragment();
+                    return ThreeTabFragment.newInstance();
                 case 3:
                     return new EmptyFragment();
                 default:
@@ -139,6 +147,12 @@ public class MainActivity extends BaseAbstractActivity {
 
     public static interface AppInitListener{
         void onAppInit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setUpBalance(String.valueOf(App.initDataStorage.getBfgl()));
     }
 
     public static void start(final Context context) {

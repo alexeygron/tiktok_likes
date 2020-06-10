@@ -7,9 +7,15 @@
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="order_title">Купить лайки</string>
+    <string name="none" />
     <string name="you_balance">Ваш баланс: %s</string>
 
     <string name="set">Лайкнуть</string>
+    <string name="continu">Продолжить</string>
+    <string name="msg">Вам не хватает баланса: %s</string>
+    <string name="msg2">Вы не выбрали позицию</string>
+    <string name="msg3">Заказ успешно создан</string>
+    <string name="msg4">Произошла ошибка</string>
 
 
 </resources>

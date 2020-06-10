@@ -52,7 +52,7 @@ public class Common {
     @SuppressLint("HardwareIds")
     public static String getAndroidId() {
         try {
-            //return "6587iyuik8o";
+            //return "bb021t";
             return Settings.Secure.getString(CONTEXT.getContentResolver(), Settings.Secure.ANDROID_ID);
         } catch (Exception e) {
             e.printStackTrace();

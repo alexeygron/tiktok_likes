@@ -25,7 +25,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.DataSource;
@@ -33,7 +32,6 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.demo.tiktok_likes_new.R;
-import com.demo.tiktok_likes_new.activity.MainActivity;
 import com.demo.tiktok_likes_new.activity.TestActivity;
 import com.demo.tiktok_likes_new.network.parser.ApiGetVideoParser;
 import com.demo.tiktok_likes_new.network.request.ApiAccertRequest;
@@ -302,7 +300,7 @@ public class TwoTabFragment extends BaseAbstractFragment {
             if (rootView != null) {
                 video_preview = rootView.findViewById(R.id.video_cover);
                 progressBar2 = rootView.findViewById(R.id.progressBar2);
-                accept_btn = rootView.findViewById(R.id.accept_btn);
+                accept_btn = rootView.findViewById(R.id.make_btn);
                 skip_btn = rootView.findViewById(R.id.skip_btn);
                 unique = rootView.findViewById(R.id.unique);
 
@@ -333,7 +331,7 @@ public class TwoTabFragment extends BaseAbstractFragment {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.accept_btn:
+                case R.id.make_btn:
                     onAcceptClick();
                     return;
                 case R.id.skip_btn:
