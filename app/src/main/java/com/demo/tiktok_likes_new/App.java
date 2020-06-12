@@ -26,7 +26,7 @@ public class App extends Application {
         initApp();
     }
 
-    private void initApp() {
+    public static void initApp() {
         OneTimeWorkRequest myWorkerReq = new OneTimeWorkRequest.Builder(InitAppWorker.class).build();
         WorkManager mWorkManager = WorkManager.getInstance();
         mWorkManager

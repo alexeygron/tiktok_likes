@@ -15,4 +15,5 @@
     <color name="status_bar">#1F1F1F</color>
     <color name="disable_btn">#BBBBBB</color>
     <color name="pink">#F8234B</color>
+    <color name="yellow">#FFE600</color>
 </resources>

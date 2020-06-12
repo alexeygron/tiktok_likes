@@ -7,8 +7,14 @@
     <string name="nav_header_desc">Navigation header</string>
 
     <string name="order_title">Купить лайки</string>
+    <string name="menu">Меню</string>
+    <string name="srt">Оценить приложение</string>
+    <string name="fgs">Выйти из аккаунта</string>
+    <string name="sdsf">Выйти из этого аккаунта?</string>
     <string name="none" />
     <string name="you_balance">Ваш баланс: %s</string>
+    <string name="later">Оценить позже</string>
+    <string name="thank_you">Спасибо за оценку</string>
 
     <string name="set">Лайкнуть</string>
     <string name="continu">Продолжить</string>
@@ -19,6 +25,7 @@
     <string name="msg5">Сколько лайков добавить на фото?</string>
     <string name="msg6">%d из %d</string>
     <string name="msg7">Удалить этот заказ?</string>
+    <string name="msg8">Пожалуйста, оцените приложение</string>
 
 
 </resources>

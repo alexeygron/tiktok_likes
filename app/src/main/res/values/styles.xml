@@ -76,6 +76,13 @@
         <item name="android:clickable">true</item>
     </style>
 
+    <style name="SctStarDialog" parent="Base.Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:gravity">bottom</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+    </style>
+
     <style name="ColumnMarker">
         <item name="android:layout_width">93dp</item>
         <item name="android:layout_height">47dp</item>

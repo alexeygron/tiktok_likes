@@ -1,7 +1,12 @@
 package com.demo.tiktok_likes_new.util;
 
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
@@ -9,6 +14,7 @@ import android.widget.Toast;
 
 import com.demo.tiktok_likes_new.R;
 import com.demo.tiktok_likes_new.network.Constants;
+import com.orhanobut.hawk.Hawk;
 
 import static android.view.View.TEXT_ALIGNMENT_CENTER;
 
@@ -30,5 +36,31 @@ public class UiUtils {
             e.printStackTrace();
         }
         return toast;
+    }
+
+    public static void checkStarStatus(Activity activity) {
+        Hawk.delete(StarDialog.class.getName());
+        if (!Hawk.contains(StarDialog.class.getName())) {
+            int launch = Hawk.get("launch", 0);
+            if (launch == 0) {
+                Hawk.put("launch", 1);
+            } else {
+                new Handler().postDelayed(() -> StarDialog.show(activity), 7000);
+            }
+        }
+
+    }
+
+    public static void OpenMarket() {
+        Intent intent;
+        try {
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Constants.CONTEXT.getPackageName()));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            Constants.CONTEXT.startActivity(intent);
+        } catch (ActivityNotFoundException ex) {
+            intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + Constants.CONTEXT.getPackageName()));
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            Constants.CONTEXT.startActivity(intent);
+        }
     }
 }

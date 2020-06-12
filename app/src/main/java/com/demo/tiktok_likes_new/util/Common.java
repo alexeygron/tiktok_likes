@@ -15,7 +15,7 @@ public class Common {
     public static final boolean DEBUG_MODE = true;
     public static final boolean TOK_REQUEST_ENABLED = true;
     public static final boolean ANIMATE_PREVIEW = false;
-    public static final int DEFAULT_TAB = 3;
+    public static final int DEFAULT_TAB = 0;
 
     private static Handler mainThreadHandler;
 

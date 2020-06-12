@@ -4,13 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -21,19 +22,19 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.demo.tiktok_likes_new.App;
 import com.demo.tiktok_likes_new.R;
-import com.demo.tiktok_likes_new.fragment.EmptyFragment;
 import com.demo.tiktok_likes_new.fragment.FourTabFragment;
+import com.demo.tiktok_likes_new.fragment.OneTabFragment;
 import com.demo.tiktok_likes_new.fragment.ThreeTabFragment;
 import com.demo.tiktok_likes_new.fragment.TwoTabFragment;
-import com.demo.tiktok_likes_new.fragment.OneTabFragment;
 import com.demo.tiktok_likes_new.network.Constants;
+import com.demo.tiktok_likes_new.util.StarDialog;
 import com.google.android.material.navigation.NavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.orhanobut.hawk.Hawk;
 
-
 import static com.demo.tiktok_likes_new.activity.TestActivity.cookies_tag;
 import static com.demo.tiktok_likes_new.util.Common.DEFAULT_TAB;
+import static com.demo.tiktok_likes_new.util.UiUtils.checkStarStatus;
 
 public class MainActivity extends BaseAbstractActivity {
 
@@ -41,11 +42,13 @@ public class MainActivity extends BaseAbstractActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private TextView mTextBalanceStatus;
     private String blns = "0";
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        App.initApp();
 
         if (!Hawk.contains(cookies_tag)) {
             LoginActivity.start(Constants.CONTEXT);
@@ -58,8 +61,7 @@ public class MainActivity extends BaseAbstractActivity {
             }
 
             mTextBalanceStatus = findViewById(R.id.toolbar_balance);
-            DrawerLayout drawer = findViewById(R.id.drawer_layout);
-            NavigationView navigationView = findViewById(R.id.NavigationView);
+            drawer = findViewById(R.id.drawer_layout);
 
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
             drawer.addDrawerListener(toggle);
@@ -75,6 +77,11 @@ public class MainActivity extends BaseAbstractActivity {
             mBottomNavigation = findViewById(R.id.bottom_nav);
             mBottomNavigation.setTextVisibility(false);
 
+            //drawer.openDrawer(Gravity.LEFT);
+            StarDialog.show(this);
+
+            //checkStarStatus(this);
+
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED, WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
 
             App.initDataStorage.setAppInitListener(appInitListener);
@@ -87,6 +94,19 @@ public class MainActivity extends BaseAbstractActivity {
             mTextBalanceStatus.setText(String.format(getString(R.string.you_balance), balance));
             mTextBalanceStatus.setVisibility(View.VISIBLE);
         }
+    }
+
+    public void onExit(View view) {
+        new AlertDialog.Builder(this).setMessage(R.string.sdsf).setPositiveButton(android.R.string.ok, (dialog, which) -> {
+            Hawk.delete(cookies_tag);
+            LoginActivity.start(Constants.CONTEXT);
+            finish();
+        }).setNegativeButton(android.R.string.cancel, null).show();
+    }
+
+    public void onRats(View view) {
+        StarDialog.show(this);
+        drawer.closeDrawers();
     }
 
     public String getBlns() {
@@ -118,9 +138,9 @@ public class MainActivity extends BaseAbstractActivity {
                     twoTabFragment = TwoTabFragment.newInstance();
                     return twoTabFragment;
                 case 2:
-                    return ThreeTabFragment.newInstance();
-                case 3:
                     return FourTabFragment.newInstance();
+                case 3:
+                    return ThreeTabFragment.newInstance();
                 default:
                     return OneTabFragment.newInstance();
             }

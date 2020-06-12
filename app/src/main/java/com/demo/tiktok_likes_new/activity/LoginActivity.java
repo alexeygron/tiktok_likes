@@ -14,6 +14,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.demo.tiktok_likes_new.App;
 import com.demo.tiktok_likes_new.R;
 import com.demo.tiktok_likes_new.network.request.LoadTrendingRequest;
 import com.demo.tiktok_likes_new.util.KeyPass;
@@ -36,6 +37,7 @@ public class LoginActivity extends BaseAbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        CookieManager.getInstance().removeAllCookie();
 
         mWebView = findViewById(R.id.webView);
         mProgressBar = findViewById(R.id.progressBar);
