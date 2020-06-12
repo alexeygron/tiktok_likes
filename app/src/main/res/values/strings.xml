@@ -1,31 +1,23 @@
 <resources>
-    <string name="app_name">Лайки для Тикток</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
+    <string name="app_name">Likes tiktok</string>
 
-    <string name="order_title">Купить лайки</string>
     <string name="menu">Меню</string>
-    <string name="srt">Оценить приложение</string>
-    <string name="fgs">Выйти из аккаунта</string>
-    <string name="sdsf">Выйти из этого аккаунта?</string>
+    <string name="srt">Rate the application</string>
+    <string name="fgs">Logout</string>
+    <string name="sdsf">Sign out of this account?</string>
     <string name="none" />
-    <string name="you_balance">Ваш баланс: %s</string>
-    <string name="later">Оценить позже</string>
-    <string name="thank_you">Спасибо за оценку</string>
+    <string name="you_balance">Your balance: %s</string>
+    <string name="later">Rate later</string>
+    <string name="thank_you">Thank you for rating</string>
 
-    <string name="set">Лайкнуть</string>
-    <string name="continu">Продолжить</string>
-    <string name="msg">Вам не хватает баланса: %s</string>
-    <string name="msg2">Вы не выбрали позицию</string>
-    <string name="msg3">Заказ успешно создан</string>
-    <string name="msg4">Произошла ошибка</string>
-    <string name="msg5">Сколько лайков добавить на фото?</string>
-    <string name="msg6">%d из %d</string>
-    <string name="msg7">Удалить этот заказ?</string>
-    <string name="msg8">Пожалуйста, оцените приложение</string>
-
+    <string name="continu">Continue</string>
+    <string name="msg">You do not have enough balance: %s</string>
+    <string name="msg2">You have not selected a position</string>
+    <string name="msg3">Order created successfully</string>
+    <string name="msg4">An error has occurred</string>
+    <string name="msg5">How many likes to add to the photo?</string>
+    <string name="msg6">%d of %d</string>
+    <string name="msg7">Delete this order?</string>
+    <string name="msg8">Please rate the application</string>
 
 </resources>

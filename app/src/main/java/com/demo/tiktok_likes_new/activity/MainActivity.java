@@ -3,8 +3,6 @@ package com.demo.tiktok_likes_new.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -17,10 +15,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.viewpager.widget.ViewPager;
 
-import com.demo.tiktok_likes_new.App;
+import com.demo.tiktok_likes_new.ScabApp;
 import com.demo.tiktok_likes_new.R;
 import com.demo.tiktok_likes_new.fragment.FourTabFragment;
 import com.demo.tiktok_likes_new.fragment.OneTabFragment;
@@ -28,18 +25,16 @@ import com.demo.tiktok_likes_new.fragment.ThreeTabFragment;
 import com.demo.tiktok_likes_new.fragment.TwoTabFragment;
 import com.demo.tiktok_likes_new.network.Constants;
 import com.demo.tiktok_likes_new.util.StarDialog;
-import com.google.android.material.navigation.NavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.orhanobut.hawk.Hawk;
 
-import static com.demo.tiktok_likes_new.activity.TestActivity.cookies_tag;
 import static com.demo.tiktok_likes_new.util.Common.DEFAULT_TAB;
+import static com.demo.tiktok_likes_new.util.Common.cookies_tag;
 import static com.demo.tiktok_likes_new.util.UiUtils.checkStarStatus;
 
 public class MainActivity extends BaseAbstractActivity {
 
     private BottomNavigationViewEx mBottomNavigation;
-    private AppBarConfiguration mAppBarConfiguration;
     private TextView mTextBalanceStatus;
     private String blns = "0";
     DrawerLayout drawer;
@@ -48,7 +43,7 @@ public class MainActivity extends BaseAbstractActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        App.initApp();
+        ScabApp.initApp();
 
         if (!Hawk.contains(cookies_tag)) {
             LoginActivity.start(Constants.CONTEXT);
@@ -63,35 +58,24 @@ public class MainActivity extends BaseAbstractActivity {
             mTextBalanceStatus = findViewById(R.id.toolbar_balance);
             drawer = findViewById(R.id.drawer_layout);
 
-            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.none, R.string.none);
             drawer.addDrawerListener(toggle);
             toggle.setDrawerIndicatorEnabled(true);
             toggle.syncState();
 
-            mAppBarConfiguration = new AppBarConfiguration.Builder(
-                    R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                    R.id.nav_tools, R.id.nav_share, R.id.nav_send)
-                    .setDrawerLayout(drawer)
-                    .build();
-
             mBottomNavigation = findViewById(R.id.bottom_nav);
             mBottomNavigation.setTextVisibility(false);
 
-            //drawer.openDrawer(Gravity.LEFT);
-            StarDialog.show(this);
-
-            //checkStarStatus(this);
-
+            checkStarStatus(this);
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED, WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
-
-            App.initDataStorage.setAppInitListener(appInitListener);
+            ScabApp.initDataStorage.setAppInitListener(appInitListener);
         }
     }
 
-    public void setUpBalance(@NonNull String balance) {
-        if (mTextBalanceStatus != null && !balance.isEmpty()) {
-            blns = balance;
-            mTextBalanceStatus.setText(String.format(getString(R.string.you_balance), balance));
+    public void setUpBarState(@NonNull String stat) {
+        if (mTextBalanceStatus != null && !stat.isEmpty()) {
+            blns = stat;
+            mTextBalanceStatus.setText(String.format(getString(R.string.you_balance), stat));
             mTextBalanceStatus.setVisibility(View.VISIBLE);
         }
     }
@@ -113,8 +97,6 @@ public class MainActivity extends BaseAbstractActivity {
         return blns;
     }
 
-    public TwoTabFragment twoTabFragment;
-
     public class CostPagerAdapter extends FragmentStatePagerAdapter {
 
         private int COUNT_ITEMS = 4;
@@ -135,8 +117,7 @@ public class MainActivity extends BaseAbstractActivity {
                 case 0:
                     return OneTabFragment.newInstance();
                 case 1:
-                    twoTabFragment = TwoTabFragment.newInstance();
-                    return twoTabFragment;
+                    return TwoTabFragment.newInstance();
                 case 2:
                     return FourTabFragment.newInstance();
                 case 3:
@@ -148,9 +129,9 @@ public class MainActivity extends BaseAbstractActivity {
     }
 
     private AppInitListener appInitListener = () -> {
-        if (App.initDataStorage.getApiOneStepResponse() != null)
+        if (ScabApp.initDataStorage.getApiOneStepResponse() != null)
             runOnUiThread(() -> {
-                setUpBalance(App.initDataStorage.getApiOneStepResponse().getBalance_lfs());
+                setUpBarState(ScabApp.initDataStorage.getApiOneStepResponse().getBalance_lfs());
 
                 CostPagerAdapter pagerAdapter = new CostPagerAdapter(getSupportFragmentManager());
                 ViewPager viewPager = findViewById(R.id.view_pager);
@@ -162,8 +143,6 @@ public class MainActivity extends BaseAbstractActivity {
 
                 findViewById(R.id.loading_screen).setVisibility(View.GONE);
             });
-
-            //setUpBalance(App.initDataStorage.getApiOneStepResponse().getBalance_lfs());
     };
 
     public static interface AppInitListener{
@@ -173,7 +152,7 @@ public class MainActivity extends BaseAbstractActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setUpBalance(String.valueOf(App.initDataStorage.getBfgl()));
+        setUpBarState(String.valueOf(ScabApp.initDataStorage.getBfgl()));
     }
 
     public static void start(final Context context) {

@@ -51,6 +51,15 @@ public class UserVideoResp {
         private String uniqueId = "";
         private String likesCount = "";
         private String photo = "";
+        private String photoAnim = "";
+
+        public String getPhotoAnim() {
+            return photoAnim;
+        }
+
+        public void setPhotoAnim(String photoAnim) {
+            this.photoAnim = photoAnim;
+        }
 
         public String getId() {
             return id;

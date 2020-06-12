@@ -1,6 +1,6 @@
 package com.demo.tiktok_likes_new.network.request;
 
-import com.demo.tiktok_likes_new.App;
+import com.demo.tiktok_likes_new.ScabApp;
 import com.demo.tiktok_likes_new.network.Constants;
 import com.orhanobut.hawk.Hawk;
 
@@ -20,7 +20,7 @@ public class ApiTwoStepRequest extends BaseRequest {
         coreParams.addProperty("method", cbf02);
         coreParams.addProperty(tymty13, Hawk.get(uniqueId, ""));
         coreParams.addProperty(tymty16, Hawk.get(uiid, ""));
-        coreParams.addProperty(tymty3, App.initDataStorage.getApiOneStepResponse().getPassw());
+        coreParams.addProperty(tymty3, ScabApp.initDataStorage.getApiOneStepResponse().getPassw());
     }
 
     public void start(Callback callback) {

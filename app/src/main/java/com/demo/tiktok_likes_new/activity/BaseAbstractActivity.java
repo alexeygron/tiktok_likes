@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class BaseAbstractActivity extends AppCompatActivity {
 
-    protected final String TAG = this.getClass().getSimpleName();
-
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         switch (item.getItemId()) {

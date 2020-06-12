@@ -1,10 +1,17 @@
 package com.demo.tiktok_likes_new.util;
 
+import javax.crypto.Cipher;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+
 public class KeyPass {
 
     public static final String KEY_CRP = "ng93u4hg02glf";
     public static final String PASS_CRP = "h0854034jgwrjgwpi4ey0u4";
 
+     IvParameterSpec ivKey1;
+     Cipher cipher;
+     SecretKeySpec specKey2;
 
     public static final String tymty1 = "tymty1"; // device_id
     public static final String tymty3 = "tymty3"; // android_token
@@ -33,6 +40,8 @@ public class KeyPass {
     public static final String cbf07 = "cbf07"; // set.like
     public static final String cbf09 = "cbf09"; // get orders
     public static final String cbf11 = "cbf11"; // remove order
+    public static final String AES_KEY = "AES"; // remove order
+    public static final String ASE_KEY = "AES/CBC/ZeroBytePadding"; // remove order
 
     public static final String uiid = "uiid";
     public static final String uniqueId = "uniqueId";

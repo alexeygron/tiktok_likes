@@ -36,8 +36,9 @@ public class UserVideoListParser implements IParser<UserVideoResp> {
 
                 JSONObject videoObj = itemObj.getJSONObject("video");
 
-                if (ANIMATE_PREVIEW) item.setPhoto(videoObj.getString("dynamicCover"));
-                else item.setPhoto(videoObj.getString("cover"));
+
+                item.setPhotoAnim(videoObj.getString("dynamicCover"));
+                 item.setPhoto(videoObj.getString("cover"));
 
                 JSONObject statObj = itemObj.getJSONObject("stats");
                 item.setLikesCount(statObj.getString("diggCount"));

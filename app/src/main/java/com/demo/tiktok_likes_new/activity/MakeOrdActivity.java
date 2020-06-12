@@ -3,35 +3,23 @@ package com.demo.tiktok_likes_new.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
-import com.demo.tiktok_likes_new.App;
+import com.demo.tiktok_likes_new.ScabApp;
 import com.demo.tiktok_likes_new.R;
 import com.demo.tiktok_likes_new.network.data.UserVideoResp;
 import com.demo.tiktok_likes_new.network.parser.ApiMakeOrParser;
-import com.demo.tiktok_likes_new.network.parser.StartAppParser;
 import com.demo.tiktok_likes_new.network.request.ApiMakeOrResponse;
-import com.demo.tiktok_likes_new.network.request.ApiOneStepRequest;
-import com.demo.tiktok_likes_new.network.request.ApiOneStepResponse;
 import com.demo.tiktok_likes_new.network.request.ApiOrderVideoRequest;
 
 import java.io.IOException;
@@ -39,7 +27,7 @@ import java.io.IOException;
 import okhttp3.Callback;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
-import static com.demo.tiktok_likes_new.network.Constants.getAbaBUtilsCrypt;
+import static com.demo.tiktok_likes_new.network.Constants.getShiUtilsSa;
 import static com.demo.tiktok_likes_new.util.UiUtils.showToast;
 
 public class MakeOrdActivity extends BaseAbstractActivity {
@@ -112,7 +100,7 @@ public class MakeOrdActivity extends BaseAbstractActivity {
             public void onResponse(okhttp3.Call call, okhttp3.Response response) {
                 try {
                     String resp = response.body().string();
-                    ApiMakeOrResponse makeOrResponse = new ApiMakeOrParser().parse(getAbaBUtilsCrypt().AbaBDecryptString(resp));
+                    ApiMakeOrResponse makeOrResponse = new ApiMakeOrParser().parse(getShiUtilsSa().ShaiDesc(resp));
                     onRequestComplete(Float.parseFloat(makeOrResponse.getBalance()));
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -133,7 +121,7 @@ public class MakeOrdActivity extends BaseAbstractActivity {
             if (bln != 0) {
                 setUpBalance(bln);
                 msg = showToast(getString(R.string.msg3));
-                App.initDataStorage.setBfgl(bln);
+                ScabApp.initDataStorage.setBfgl(bln);
             } else {
                 msg = showToast(getString(R.string.msg4));
             }
@@ -256,12 +244,12 @@ public class MakeOrdActivity extends BaseAbstractActivity {
             iv5.setImageResource(R.drawable.ic_empty_icon);
             iv6.setImageResource(R.drawable.ic_empty_icon);
 
-            text1.setTextColor(resources.getColor(R.color.whiteGray));
-            text2.setTextColor(resources.getColor(R.color.whiteGray));
-            text3.setTextColor(resources.getColor(R.color.whiteGray));
-            text4.setTextColor(resources.getColor(R.color.whiteGray));
-            text5.setTextColor(resources.getColor(R.color.whiteGray));
-            text6.setTextColor(resources.getColor(R.color.whiteGray));
+            text1.setTextColor(resources.getColor(R.color.liteGray));
+            text2.setTextColor(resources.getColor(R.color.liteGray));
+            text3.setTextColor(resources.getColor(R.color.liteGray));
+            text4.setTextColor(resources.getColor(R.color.liteGray));
+            text5.setTextColor(resources.getColor(R.color.liteGray));
+            text6.setTextColor(resources.getColor(R.color.liteGray));
         }
     }
 }

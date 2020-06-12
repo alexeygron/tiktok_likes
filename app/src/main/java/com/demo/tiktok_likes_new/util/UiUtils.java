@@ -39,7 +39,6 @@ public class UiUtils {
     }
 
     public static void checkStarStatus(Activity activity) {
-        Hawk.delete(StarDialog.class.getName());
         if (!Hawk.contains(StarDialog.class.getName())) {
             int launch = Hawk.get("launch", 0);
             if (launch == 0) {
@@ -51,7 +50,7 @@ public class UiUtils {
 
     }
 
-    public static void OpenMarket() {
+    static void OpenMarket() {
         Intent intent;
         try {
             intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + Constants.CONTEXT.getPackageName()));

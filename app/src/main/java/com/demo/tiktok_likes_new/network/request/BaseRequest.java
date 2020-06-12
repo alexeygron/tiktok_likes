@@ -3,7 +3,7 @@ package com.demo.tiktok_likes_new.network.request;
 import android.util.Log;
 
 import com.demo.tiktok_likes_new.BuildConfig;
-import com.demo.tiktok_likes_new.util.AbaBUtilsCrypt;
+import com.demo.tiktok_likes_new.util.ShiUtilsSa;
 import com.google.gson.JsonObject;
 
 import okhttp3.HttpUrl;
@@ -42,9 +42,9 @@ public abstract class BaseRequest {
     }
 
     protected String getEncodeParams(String params) {
-        AbaBUtilsCrypt abaBUtilsCrypt = new AbaBUtilsCrypt(getAndroidId(), KEY_CRP, PASS_CRP);
+        ShiUtilsSa shiUtilsSa = new ShiUtilsSa(getAndroidId(), KEY_CRP, PASS_CRP);
         Log.i("getEncodeParams", params.toString());
-        return abaBUtilsCrypt.AbaBEncryptString(params);
+        return shiUtilsSa.sdhtEdefvb(params);
     }
 
     protected Request getRequest() {

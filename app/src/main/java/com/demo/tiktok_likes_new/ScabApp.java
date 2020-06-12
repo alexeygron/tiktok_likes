@@ -8,10 +8,10 @@ import androidx.work.WorkManager;
 import com.demo.tiktok_likes_new.activity.MainActivity;
 import com.demo.tiktok_likes_new.network.request.ApiOneStepResponse;
 import com.demo.tiktok_likes_new.network.Constants;
-import com.demo.tiktok_likes_new.network.InitAppWorker;
+import com.demo.tiktok_likes_new.network.InitializeAppWorker;
 import com.orhanobut.hawk.Hawk;
 
-public class App extends Application {
+public class ScabApp extends Application {
 
     public static InitialDataStorage initDataStorage = new InitialDataStorage();
 
@@ -27,7 +27,7 @@ public class App extends Application {
     }
 
     public static void initApp() {
-        OneTimeWorkRequest myWorkerReq = new OneTimeWorkRequest.Builder(InitAppWorker.class).build();
+        OneTimeWorkRequest myWorkerReq = new OneTimeWorkRequest.Builder(InitializeAppWorker.class).build();
         WorkManager mWorkManager = WorkManager.getInstance();
         mWorkManager
                 .beginWith(myWorkerReq)
@@ -57,10 +57,6 @@ public class App extends Application {
             bfgl = Float.parseFloat(apiOneStepResponse.getBalance_lfs());
 
             if (appInitListener != null) appInitListener.onAppInit();
-        }
-
-        public MainActivity.AppInitListener getAppInitListener() {
-            return appInitListener;
         }
 
         public void setAppInitListener(MainActivity.AppInitListener appInitListener) {

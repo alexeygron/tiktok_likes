@@ -14,7 +14,6 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-import com.demo.tiktok_likes_new.App;
 import com.demo.tiktok_likes_new.R;
 import com.demo.tiktok_likes_new.network.request.LoadTrendingRequest;
 import com.demo.tiktok_likes_new.util.KeyPass;
@@ -22,9 +21,9 @@ import com.orhanobut.hawk.Hawk;
 
 import java.io.IOException;
 
-import static com.demo.tiktok_likes_new.activity.TestActivity.USER_AGENT;
-import static com.demo.tiktok_likes_new.activity.TestActivity.cookies_tag;
 import static com.demo.tiktok_likes_new.network.Constants.REQ_URL;
+import static com.demo.tiktok_likes_new.util.Common.USER_AGENT;
+import static com.demo.tiktok_likes_new.util.Common.cookies_tag;
 import static com.demo.tiktok_likes_new.util.Common.getPartStr;
 import static com.demo.tiktok_likes_new.util.KeyPass.uiid;
 
@@ -51,8 +50,6 @@ public class LoginActivity extends BaseAbstractActivity {
 
         mWebView.setWebViewClient(webViewClient);
         mWebView.loadUrl(REQ_URL + "login/phone-or-email/");
-
-        //loadAndStoreIds(Hawk.get(cookies_tag, ""));
     }
 
     private WebViewClient webViewClient = new WebViewClient() {
@@ -96,9 +93,6 @@ public class LoginActivity extends BaseAbstractActivity {
                         String uniqueId = getPartStr("\"uniqueId\":\"", "\",", resp);
                         Hawk.put(uiid, uid);
                         Hawk.put(KeyPass.uniqueId, uniqueId);
-
-                        Log.i("login_web", "data " + uid + " " + uniqueId);
-
                         startMainActivity();
                     }
                 } catch (IOException e) {

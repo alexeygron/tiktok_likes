@@ -11,7 +11,7 @@ public abstract class BaseAbstractFragment extends Fragment {
     void setBalance(String value) {
         try {
             if (getActivity() != null && getActivity() instanceof MainActivity)
-                ((MainActivity) getActivity()).setUpBalance(value);
+                ((MainActivity) getActivity()).setUpBarState(value);
         } catch (Exception ignored) {
 
         }

@@ -1,11 +1,10 @@
 package com.demo.tiktok_likes_new.network.request;
 
-import com.demo.tiktok_likes_new.App;
+import com.demo.tiktok_likes_new.ScabApp;
 import com.demo.tiktok_likes_new.network.Constants;
 
 import okhttp3.Callback;
 
-import static com.demo.tiktok_likes_new.util.KeyPass.cbf05;
 import static com.demo.tiktok_likes_new.util.KeyPass.cbf07;
 import static com.demo.tiktok_likes_new.util.KeyPass.tymty10;
 import static com.demo.tiktok_likes_new.util.KeyPass.tymty18;
@@ -24,7 +23,7 @@ public class ApiAccertRequest extends BaseRequest {
         coreParams.addProperty(tymty10, videoItem.getOrder_id());
         coreParams.addProperty(tymty9, meta);
         coreParams.addProperty(tymty27, "0");
-        coreParams.addProperty(tymty3, App.initDataStorage.getApiOneStepResponse().getPassw());
+        coreParams.addProperty(tymty3, ScabApp.initDataStorage.getApiOneStepResponse().getPassw());
     }
 
     public void start(Callback callback) {

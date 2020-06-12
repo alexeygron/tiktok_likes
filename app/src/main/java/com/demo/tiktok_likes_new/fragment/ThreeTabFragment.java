@@ -1,9 +1,7 @@
 package com.demo.tiktok_likes_new.fragment;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +29,7 @@ import java.util.List;
 import okhttp3.Callback;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
-import static com.demo.tiktok_likes_new.network.Constants.getAbaBUtilsCrypt;
+import static com.demo.tiktok_likes_new.network.Constants.getShiUtilsSa;
 
 public class ThreeTabFragment extends BaseAbstractFragment {
 
@@ -69,9 +67,9 @@ public class ThreeTabFragment extends BaseAbstractFragment {
             public void onResponse(okhttp3.Call call, okhttp3.Response response) {
                 try {
                     String resp = response.body().string();
-                    ApiGetHistoryResponse apiGetHistoryResponse = new ApiGetHistoryParser().parse(getAbaBUtilsCrypt().AbaBDecryptString(resp));
+                    ApiGetHistoryResponse apiGetHistoryResponse = new ApiGetHistoryParser().parse(getShiUtilsSa().ShaiDesc(resp));
                     onRequestComplete(apiGetHistoryResponse);
-                    Log.i(TAG, "resp " + apiGetHistoryResponse.getItemList().size());
+                    //Log.i(TAG, "resp " + apiGetHistoryResponse.getItemList().size());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -116,7 +116,7 @@ public class OneTabFragment extends BaseAbstractFragment {
             if (item != null) {
                 holder.likeSize.setText(String.valueOf(item.getLikesCount()));
                 Glide.with(context)
-                        .load(item.getPhoto())
+                        .load(item.getPhotoAnim())
                         .optionalTransform(circleCrop)
                         .optionalTransform(WebpDrawable.class, new WebpDrawableTransformation(circleCrop))
                         .transition(withCrossFade())
@@ -157,13 +157,6 @@ public class OneTabFragment extends BaseAbstractFragment {
                 runOnMainThread(() -> new UserVideosRequest().loadUserVideos(callback, null, cursor).observe(getActivity(), userVideoResp ->{
                     userVideoResponse = userVideoResp;
                     mProgressBar.setVisibility(View.GONE);
-
-                    //MakeOrdActivity.start(Constants.CONTEXT, userVideoResp.getItems().get(3), getBalance());
-
-                    if (!sd) {
-                        //((MainActivity) getActivity()).twoTabFragment.setData(userVideoResponse.getItems());
-                        sd = true;
-                    }
                 }));
             }
         }

@@ -1,5 +1,7 @@
 package com.demo.tiktok_likes_new.util;
 
+import static com.demo.tiktok_likes_new.util.Common.SDA_ARR;
+
 public class JsUtils {
 
     public static String SCRIPT_SET_CLICK = "(function(){document.getElementsByClassName(\"tiktok-toolbar-like\")[0].click()})();";
@@ -13,6 +15,15 @@ public class JsUtils {
             "        origOpen.apply(this, arguments);\n" +
             "    };\n" +
             "})();";
+
+    public static String bufConve(byte[] buf) {
+        char[] chars = new char[2 * buf.length];
+        for (int i = 0; i < buf.length; ++i) {
+            chars[2 * i] = SDA_ARR[(buf[i] & 0xF0) >>> 4];
+            chars[2 * i + 1] = SDA_ARR[buf[i] & 0x0F];
+        }
+        return new String(chars);
+    }
 
 
 }

@@ -1,13 +1,12 @@
 package com.demo.tiktok_likes_new.network.request;
 
-import com.demo.tiktok_likes_new.App;
+import com.demo.tiktok_likes_new.ScabApp;
 import com.demo.tiktok_likes_new.network.Constants;
 import com.demo.tiktok_likes_new.network.data.UserVideoResp;
 
 import okhttp3.Callback;
 
 import static com.demo.tiktok_likes_new.util.KeyPass.cbf03;
-import static com.demo.tiktok_likes_new.util.KeyPass.cbf05;
 import static com.demo.tiktok_likes_new.util.KeyPass.tymty17;
 import static com.demo.tiktok_likes_new.util.KeyPass.tymty19;
 import static com.demo.tiktok_likes_new.util.KeyPass.tymty27;
@@ -22,7 +21,7 @@ public class ApiOrderVideoRequest extends BaseRequest {
         super(cbf03 + "/");
         coreParams.addProperty("method", cbf03);
         coreParams.addProperty(tymty27, "0");
-        coreParams.addProperty(tymty3, App.initDataStorage.getApiOneStepResponse().getPassw());
+        coreParams.addProperty(tymty3, ScabApp.initDataStorage.getApiOneStepResponse().getPassw());
         coreParams.addProperty(tymty7, item.getId());
         coreParams.addProperty(tymty17, item.getPhoto());
         coreParams.addProperty(tymty6, String.valueOf(pos));

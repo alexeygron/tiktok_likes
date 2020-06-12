@@ -31,8 +31,8 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.demo.tiktok_likes_new.BuildConfig;
 import com.demo.tiktok_likes_new.R;
-import com.demo.tiktok_likes_new.activity.TestActivity;
 import com.demo.tiktok_likes_new.network.parser.ApiGetVideoParser;
 import com.demo.tiktok_likes_new.network.request.ApiAccertRequest;
 import com.demo.tiktok_likes_new.network.request.ApiGetVideoRequest;
@@ -47,9 +47,11 @@ import im.delight.android.webview.AdvancedWebView;
 import okhttp3.Callback;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
-import static com.demo.tiktok_likes_new.activity.TestActivity.cookies_tag;
+
 import static com.demo.tiktok_likes_new.network.Constants.REQ_URL;
-import static com.demo.tiktok_likes_new.network.Constants.getAbaBUtilsCrypt;
+import static com.demo.tiktok_likes_new.network.Constants.getShiUtilsSa;
+import static com.demo.tiktok_likes_new.util.Common.USER_AGENT;
+import static com.demo.tiktok_likes_new.util.Common.cookies_tag;
 import static com.demo.tiktok_likes_new.util.JsUtils.SCRIPT_SET_CLICK;
 import static com.demo.tiktok_likes_new.util.JsUtils.SCRIPT_SET_LISTENER;
 
@@ -86,16 +88,18 @@ public class TwoTabFragment extends BaseAbstractFragment {
     private WebChromeClient webChromeClient = new WebChromeClient() {
 
         public boolean onConsoleMessage(ConsoleMessage cmsg) {
-            Log.i(TAG, "onConsoleMessage: " + cmsg.message());
+            if (BuildConfig.DEBUG) Log.i(TAG, "onConsoleMessage: " + cmsg.message());
 
             if (cmsg.message() != null && cmsg.message().contains("api_req") && cmsg.message().contains("\"is_digg\":") && !lastItemId.equals(currentItemId)) {
-                vibrate();
-                Log.i(TAG, "Like confirm!");
-                Log.i(TAG, "is_digg " + cmsg.message());
+                if (BuildConfig.DEBUG) {
+                    vibrate();
+                    Log.i(TAG, "Like confirm!");
+                    Log.i(TAG, "is_digg " + cmsg.message());
+                }
                 lastItemId = videoResponseItem.getItem_id();
                 startAcceptRequest("0", "ok");
             } else if(cmsg.message() != null && cmsg.message().contains("log_pb")) {
-                Log.i(TAG, "log_pb " + cmsg.message());
+                if (BuildConfig.DEBUG)Log.i(TAG, "log_pb " + cmsg.message());
             }
             return true;
 
@@ -117,7 +121,7 @@ public class TwoTabFragment extends BaseAbstractFragment {
             public void onResponse(okhttp3.Call call, okhttp3.Response response) {
                 try {
                     String resp = response.body().string();
-                    ApiGetVideoResponse apiGetVideoResponse = new ApiGetVideoParser().parse(getAbaBUtilsCrypt().AbaBDecryptString(resp));
+                    ApiGetVideoResponse apiGetVideoResponse = new ApiGetVideoParser().parse(getShiUtilsSa().ShaiDesc(resp));
                     if (apiGetVideoResponse.isOrderAvailable()) {
                         getActivity().runOnUiThread(() -> onItemLoaded(apiGetVideoResponse));
                     }
@@ -140,7 +144,7 @@ public class TwoTabFragment extends BaseAbstractFragment {
             public void onResponse(okhttp3.Call call, okhttp3.Response response) {
                 try {
                     String resp = response.body().string();
-                    ApiGetVideoResponse apiGetVideoResponse = new ApiGetVideoParser().parse(getAbaBUtilsCrypt().AbaBDecryptString(resp));
+                    ApiGetVideoResponse apiGetVideoResponse = new ApiGetVideoParser().parse(getShiUtilsSa().ShaiDesc(resp));
                     if (apiGetVideoResponse.isOrderAvailable()) {
                         getActivity().runOnUiThread(() -> onItemLoaded(apiGetVideoResponse));
                     }
@@ -243,17 +247,8 @@ public class TwoTabFragment extends BaseAbstractFragment {
             //Log.i(TAG, "onPageFinished " );
 
             views.setUpControlsForStatus(true);
-
-            /*if (!lastId.equals(ids[likeCounter])) {
-                evaluateJsListener();
-                new Handler().postDelayed(() -> evaluateJsLike(), 600);
-                lastId = ids[likeCounter];
-                Log.i(TAG, "onPageFinished " + ids[likeCounter]);
-            }*/
-
-
             if (!oldUrl.equals(url)) {
-                Log.i(TAG, "onPageFinished: " + url);
+                //Log.i(TAG, "onPageFinished: " + url);
                 evaluateJsListener();
                 currentItemId = videoResponseItem.getItem_id();
                 oldUrl = url;
@@ -273,7 +268,6 @@ public class TwoTabFragment extends BaseAbstractFragment {
     }
 
     private void evaluateJsListener() {
-        Log.i(TAG, "evaluateJsListener: ");
         views.webView.evaluateJavascript(SCRIPT_SET_LISTENER, s -> {
 
         });
@@ -310,7 +304,7 @@ public class TwoTabFragment extends BaseAbstractFragment {
                 v = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
                 webView = rootView.findViewById(R.id.webView);
-                webView.getSettings().setUserAgentString(TestActivity.USER_AGENT);
+                webView.getSettings().setUserAgentString(USER_AGENT);
                 webView.getSettings().setJavaScriptEnabled(true);
                 webView.getSettings().setDomStorageEnabled(true);
 

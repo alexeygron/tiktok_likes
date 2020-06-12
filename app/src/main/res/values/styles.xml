@@ -32,11 +32,6 @@
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="Main.Theme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
     <style name="PriceBarIcon">
         <item name="android:layout_width">48dp</item>
         <item name="android:layout_height">48dp</item>
@@ -44,19 +39,12 @@
         <item name="android:src">@drawable/ic_empty_icon</item>
     </style>
 
-    <style name="PriceBarMarker">
-        <item name="android:layout_width">4dp</item>
-        <item name="android:layout_height">4dp</item>
-        <item name="android:layout_gravity">center_horizontal|bottom</item>
-        <item name="android:src">@drawable/price_marker_back</item>
-    </style>
-
     <style name="PriceBarText">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">2dp</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:textColor">@color/whiteGray</item>
+        <item name="android:textColor">@color/liteGray</item>
         <item name="android:textSize">15.4sp</item>
     </style>
 

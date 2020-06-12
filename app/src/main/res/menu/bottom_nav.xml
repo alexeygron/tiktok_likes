@@ -5,20 +5,20 @@
         android:id="@+id/tab_one"
         android:checked="true"
         android:icon="@drawable/selector_tab_one"
-        android:title="@string/app_name" />
+        android:title="@string/none" />
 
     <item
         android:id="@+id/tab_two"
         android:icon="@drawable/selector_tab_two"
-        android:title="@string/app_name" />
+        android:title="@string/none" />
 
     <item
         android:id="@+id/tab_three"
         android:icon="@drawable/selector_tab_three"
-        android:title="@string/app_name" />
+        android:title="@string/none" />
 
     <item
         android:id="@+id/tab_four"
         android:icon="@drawable/selector_tab_four"
-        android:title="@string/app_name" />
+        android:title="@string/none" />
 </menu>

@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.work.Worker;
 import androidx.work.WorkerParameters;
 
-import com.demo.tiktok_likes_new.App;
+import com.demo.tiktok_likes_new.ScabApp;
 import com.demo.tiktok_likes_new.network.request.ApiOneStepRequest;
 import com.demo.tiktok_likes_new.network.request.ApiOneStepResponse;
 import com.demo.tiktok_likes_new.network.request.ApiTwoStepRequest;
@@ -17,13 +17,13 @@ import java.io.IOException;
 
 import okhttp3.Callback;
 
-import static com.demo.tiktok_likes_new.network.Constants.getAbaBUtilsCrypt;
+import static com.demo.tiktok_likes_new.network.Constants.getShiUtilsSa;
 
-public class InitAppWorker extends Worker {
+public class InitializeAppWorker extends Worker {
 
     private final String TAG = this.getClass().getSimpleName();
 
-    public InitAppWorker(@NonNull Context appContext, @NonNull WorkerParameters workerParams) {
+    public InitializeAppWorker(@NonNull Context appContext, @NonNull WorkerParameters workerParams) {
         super(appContext, workerParams);
     }
 
@@ -42,10 +42,8 @@ public class InitAppWorker extends Worker {
             public void onResponse(okhttp3.Call call, okhttp3.Response response) {
                 try {
                     String resp = response.body().string();
-                    ApiOneStepResponse apiOneStepResponse = new StartAppParser().parse(getAbaBUtilsCrypt().AbaBDecryptString(resp));
-                    App.initDataStorage.setApiOneStepResponse(apiOneStepResponse);
-                    Log.i(TAG, "resp " + getAbaBUtilsCrypt().AbaBDecryptString(resp));
-
+                    ApiOneStepResponse apiOneStepResponse = new StartAppParser().parse(getShiUtilsSa().ShaiDesc(resp));
+                    ScabApp.initDataStorage.setApiOneStepResponse(apiOneStepResponse);
                     startApiTwoStepRequest();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -63,14 +61,7 @@ public class InitAppWorker extends Worker {
 
             @Override
             public void onResponse(okhttp3.Call call, okhttp3.Response response) {
-                try {
-                    String resp = response.body().string();
-                    /*ApiOneStepResponse appStartResponse =  new StartAppParser().parse(abaBUtilsCrypt.AbaBDecryptString(resp));
-                    App.getInstance().setApiOneStepResponse(appStartResponse);*/
-                    Log.i(TAG, "resp " + getAbaBUtilsCrypt().AbaBDecryptString(resp));
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+
             }
 
             @Override
