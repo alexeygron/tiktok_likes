@@ -22,6 +22,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.demo.tiktok_likes_new.App;
 import com.demo.tiktok_likes_new.R;
 import com.demo.tiktok_likes_new.fragment.EmptyFragment;
+import com.demo.tiktok_likes_new.fragment.FourTabFragment;
 import com.demo.tiktok_likes_new.fragment.ThreeTabFragment;
 import com.demo.tiktok_likes_new.fragment.TwoTabFragment;
 import com.demo.tiktok_likes_new.fragment.OneTabFragment;
@@ -119,9 +120,9 @@ public class MainActivity extends BaseAbstractActivity {
                 case 2:
                     return ThreeTabFragment.newInstance();
                 case 3:
-                    return new EmptyFragment();
+                    return FourTabFragment.newInstance();
                 default:
-                    return new EmptyFragment();
+                    return OneTabFragment.newInstance();
             }
         }
     }
