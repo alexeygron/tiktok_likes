@@ -32,7 +32,7 @@ public class StartAppParser implements IParser<ApiOneStepResponse> {
             if (!config.isNull("update")) {
                 JSONObject update = config.getJSONObject("update");
                 apiOneStepResponse.setUdp_url(update.getString("update_url"));
-                apiOneStepResponse.setUdp_type(update.getString("update_type"));
+                apiOneStepResponse.setUdp_type(update.getInt("update_type"));
                 apiOneStepResponse.setUdp_text(update.getString("update_text"));
             }
         }

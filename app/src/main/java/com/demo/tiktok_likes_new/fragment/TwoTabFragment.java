@@ -121,6 +121,7 @@ public class TwoTabFragment extends BaseAbstractFragment {
             public void onResponse(okhttp3.Call call, okhttp3.Response response) {
                 try {
                     String resp = response.body().string();
+                    Log.i(TAG, "startNewVideoRequest " + getShiUtilsSa().ShaiDesc(resp));
                     ApiGetVideoResponse apiGetVideoResponse = new ApiGetVideoParser().parse(getShiUtilsSa().ShaiDesc(resp));
                     if (apiGetVideoResponse.isOrderAvailable()) {
                         getActivity().runOnUiThread(() -> onItemLoaded(apiGetVideoResponse));

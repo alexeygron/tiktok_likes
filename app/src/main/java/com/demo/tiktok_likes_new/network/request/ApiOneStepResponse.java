@@ -10,7 +10,7 @@ public class ApiOneStepResponse {
     private String user_bonuce = "";
     private String auth_type = "";
     private String udp_url = "";
-    private String udp_type = "";
+    private int udp_type;
     private String udp_text = "";
 
     public String getPassw() {
@@ -77,11 +77,11 @@ public class ApiOneStepResponse {
         this.udp_url = udp_url;
     }
 
-    public String getUdp_type() {
+    public int getUdp_type() {
         return udp_type;
     }
 
-    public void setUdp_type(String udp_type) {
+    public void setUdp_type(int udp_type) {
         this.udp_type = udp_type;
     }
 

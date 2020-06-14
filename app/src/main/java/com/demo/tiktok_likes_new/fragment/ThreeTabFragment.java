@@ -56,8 +56,6 @@ public class ThreeTabFragment extends BaseAbstractFragment {
 
         listDataAdapter = new ListDataAdapter();
         mPhotosList.setAdapter(listDataAdapter);
-
-        startLoadDataRequest();
     }
 
     private void startLoadDataRequest() {
@@ -122,6 +120,12 @@ public class ThreeTabFragment extends BaseAbstractFragment {
         return f;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        startLoadDataRequest();
+    }
+
     class ListDataAdapter extends RecyclerView.Adapter<ListDataAdapter.ViewHolder> {
 
         Handler progressBarHandler = new Handler();
@@ -175,4 +179,5 @@ public class ThreeTabFragment extends BaseAbstractFragment {
             }
         }
     }
+
 }

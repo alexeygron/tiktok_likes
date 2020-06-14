@@ -8,6 +8,8 @@
     <string name="none" />
     <string name="you_balance">Your balance: %s</string>
     <string name="later">Rate later</string>
+    <string name="up">Update</string>
+    <string name="up_msg">New update available</string>
     <string name="thank_you">Thank you for rating</string>
 
     <string name="continu">Continue</string>

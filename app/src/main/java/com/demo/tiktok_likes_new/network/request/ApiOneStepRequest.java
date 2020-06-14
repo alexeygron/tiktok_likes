@@ -17,8 +17,6 @@ public class ApiOneStepRequest extends BaseRequest {
     }
 
     public void start(Callback callback) {
-        Log.i("ApiOneStepRequest", "start:  " + coreParams.toString());
-        Log.i("ApiOneStepRequest", "start:  " + getAndroidId());
         Constants.HTTP_CLIENT.newCall(getRequest()).enqueue(callback);
     }
 }

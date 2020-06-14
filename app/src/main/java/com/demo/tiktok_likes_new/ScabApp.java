@@ -23,7 +23,7 @@ public class ScabApp extends Application {
         super.onCreate();
         Hawk.init(this).build();
         Constants.setCONTEXT(this);
-        initApp();
+        //initApp();
     }
 
     public static void initApp() {

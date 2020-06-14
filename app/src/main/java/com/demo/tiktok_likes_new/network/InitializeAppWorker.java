@@ -42,6 +42,7 @@ public class InitializeAppWorker extends Worker {
             public void onResponse(okhttp3.Call call, okhttp3.Response response) {
                 try {
                     String resp = response.body().string();
+                    Log.i(TAG, "onResponse: " + getShiUtilsSa().ShaiDesc(resp));
                     ApiOneStepResponse apiOneStepResponse = new StartAppParser().parse(getShiUtilsSa().ShaiDesc(resp));
                     ScabApp.initDataStorage.setApiOneStepResponse(apiOneStepResponse);
                     startApiTwoStepRequest();

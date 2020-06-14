@@ -2,6 +2,7 @@ package com.demo.tiktok_likes_new.util;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.net.Uri;
@@ -60,6 +61,15 @@ public class UiUtils {
             intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://play.google.com/store/apps/details?id=" + Constants.CONTEXT.getPackageName()));
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Constants.CONTEXT.startActivity(intent);
+        }
+    }
+
+    static void OpenMarket(Context context, String url) {
+            try {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                context.startActivity(intent);
+            } catch (Exception e) {
+                e.printStackTrace();
         }
     }
 }

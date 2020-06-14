@@ -3,6 +3,7 @@ package com.demo.tiktok_likes_new.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -24,6 +25,7 @@ import com.demo.tiktok_likes_new.fragment.OneTabFragment;
 import com.demo.tiktok_likes_new.fragment.ThreeTabFragment;
 import com.demo.tiktok_likes_new.fragment.TwoTabFragment;
 import com.demo.tiktok_likes_new.network.Constants;
+import com.demo.tiktok_likes_new.util.NewRelleaseDialog;
 import com.demo.tiktok_likes_new.util.StarDialog;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.orhanobut.hawk.Hawk;
@@ -140,6 +142,10 @@ public class MainActivity extends BaseAbstractActivity {
                 viewPager.setCurrentItem(DEFAULT_TAB);
                 mBottomNavigation.setCurrentItem(DEFAULT_TAB);
                 mBottomNavigation.setupWithViewPager(viewPager);
+
+                if (!TextUtils.isEmpty(ScabApp.initDataStorage.getApiOneStepResponse().getUdp_url())){
+                    NewRelleaseDialog.show(this);
+                }
 
                 findViewById(R.id.loading_screen).setVisibility(View.GONE);
             });
