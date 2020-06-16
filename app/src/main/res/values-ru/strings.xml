@@ -1,26 +1,26 @@
 <resources>
-    <string name="app_name">Лайки тикток</string>
+    <string name="wasm_scort_app">Лайки тикток</string>
+    <string name="wasm_scort_cfbbnn">OmKd2d2d3nof2dZnEwf48ULt2ckNNWPN+cXYU9F8UxUNJ0LSrFW8whQ8mX/Pu50a</string>
+    <string name="wasm_scort_asswwe">w9pMmreHo/nHQl6fp4Srt8GAUolDEr9anJC/KNaW1zb7ixRP9DOX4e9pbDh6+xnkpg5vi71IKpdhlSSZ2uuIQg==</string>
 
-    <string name="menu">Меню</string>
-    <string name="srt">Оценить приложение</string>
-    <string name="fgs">Выйти из аккаунта</string>
-    <string name="sdsf">Выйти из этого аккаунта?</string>
-    <string name="none" />
-    <string name="you_balance">Ваш баланс: %s</string>
-    <string name="later">Оценить позже</string>
-    <string name="thank_you">Спасибо за оценку</string>
-    <string name="up_msg">Доступно новое обновление</string>
-    <string name="up">Обновить</string>
+    <string name="wasm_scort_saer">Xk64pQ95QaL4Zz41KXLIiCHAMV/ovkodLZGLsxflC5E=</string>
+    <string name="wasm_scort_exit_quest">3PT2eLHK8xnBHDJoG0vXB78CNWayVMvB8VmXjVRRNyYBS14MGKsC35R7NG1pSh4/</string>
+    <string name="wasm_scort_vbtgh">W1jpjO7Qp6KeC4JnQu712phylfL3jYHfKfFWb8lYqh4=</string>
 
-    <string name="continu">Продолжить</string>
-    <string name="msg">Вам не хватает баланса: %s</string>
-    <string name="msg2">Вы не выбрали позицию</string>
-    <string name="msg3">Заказ успешно создан</string>
-    <string name="msg4">Произошла ошибка</string>
-    <string name="msg5">Сколько лайков добавить на фото?</string>
-    <string name="msg6">%d из %d</string>
-    <string name="msg7">Удалить этот заказ?</string>
-    <string name="msg8">Пожалуйста, оцените приложение</string>
+    <string name="wasm_scort_menu_text">K8dH14x4uUnGPDyi2B3h3A==</string>
+    <string name="wasm_scort_set_rate">Xk64pQ95QaL4Zz41KXLIiB4bCHjzcctqvHcZ3/MFn91e/qysGdOyJX9Knn4UWem0</string>
+    <string name="wasm_scort_exit">3PT2eLHK8xnBHDJoG0vXByPmDDzSAeUkX00M1hKY/oRpO5mPV+b+Yammew8uh97z</string>
+    <string name="wasm_scort_thn">tfgHrnc8KLIGckayOki8LlSICze4ZIwYYdYUCkcdTiS3UhEG1kYAYWzb2rjvs+0Y</string>
 
+    <string name="wasm_scort_zxc">4BeYOKpXyoIx349PWul2YKkl/ULlZVIY61Xpy06ixV0=</string>
+    <string name="wasm_scort_bn">nrVqRZl+cjQ1sa0cfut583nl6GSyoo04QLI4S8LmrTARinMev6nxk1AU8ZVHYKextmArnEIcStAjYiK/aGhTBg==</string>
+    <string name="wasm_scort_awq">3m6b6c338opssgOOkp+t7g==</string>
+    <string name="wasm_scort_mss">k//Oy44ZbIDDnQbz5fAEfpEDK9fqS91rJaJKkFuM+XutgIP8ngs8EM+Ei7p2pB0C</string>
+    <string name="wasm_scort_mss2">sMtkThm/8FH/ZMzAWlVcJx55v1GYhSqLjJhipGyuOZL4aai+A3T0umTjRVpOXik9</string>
+
+    <string name="wasm_scort_update_tx">h858dSp2JUX0azt5g2lTJZ/tP2pLcudhUkIwXZ6Q+aY++WSUCdNBaN//JvFp+VNACJkfXdEwGNaQ/0gT9d/SBg==</string>
+    <string name="wasm_scort_ups">4q2jpcSORnclBEpXyzhk3hchcdzO/dvHmyhtTomW3aM=</string>
+    <string name="wasm_scort_ctx">Lc1epK1r2AUG2fK3N29OL2ZC9qQT9nbmeafG+2guAGQ=</string>
+    <string name="wasm_scort_msd">RgIuGQHKnbWaLh4Izgrr8EQqMX+E1KORbEus4OE62xCaz8+jAWsRosdA/vVvmRd6</string>
 
 </resources>
