@@ -8,6 +8,9 @@
         android:innerRadiusRatio="2.5"
         android:useLevel="true">
 
-        <solid android:color="@color/pink"/>
+        <solid android:color="@color/wasm_scort_pink"/>
+
+
+        <padding android:bottom="0dp" android:left="0dp"/>
     </shape>
 </rotate>

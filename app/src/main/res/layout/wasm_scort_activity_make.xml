@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.demo.tiktok_likes_new.view.custom.WasmScortConstraint xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:theme="@style/Main.Theme.Toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/wasm_scort_toolbar_bg"
+            app:popupTheme="@style/Main.Theme.PopupOverlay"
+        >
+
+            <com.demo.tiktok_likes_new.view.custom.WasmScortText
+                android:id="@+id/toolbar_balance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:textColor="@color/wasm_scort_dark"
+                android:textSize="17sp"
+                android:fontFamily="sans-serif"
+                android:gravity="center_vertical|start"
+                android:visibility="gone"
+                />
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+        android:id="@+id/decor"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/wasm_scort_decor"
+        app:layout_constraintDimensionRatio="1.63:2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar" />
+
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+        android:id="@+id/video_cover"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:layout_marginBottom="26dp"
+        android:scaleType="centerCrop"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1.4:2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar"
+        app:layout_constraintVertical_bias="0.16000003" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+        android:id="@+id/red_big"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="6dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/wasm_scort_ic_red_big"
+        app:layout_constraintEnd_toStartOf="@+id/count"
+        app:layout_constraintTop_toBottomOf="@+id/video_cover" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortText
+        android:id="@+id/count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="318"
+        android:textColor="@color/wasm_scort_dark"
+        android:textSize="17.7sp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/red_big"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/red_big"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortText
+        android:id="@+id/quest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="Montserrat"
+        android:textColor="@color/wasm_scort_pink"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/decor" />
+
+    <Button
+        android:id="@+id/make_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:background="@color/wasm_scort_dark"
+        android:enabled="true"
+        android:paddingLeft="35dp"
+        android:paddingTop="10dp"
+        android:paddingRight="35dp"
+        android:paddingBottom="10dp"
+        android:textAllCaps="false"
+        android:textColor="@drawable/wasm_scort_accept_btn_selector"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/video_cover"
+        app:layout_constraintEnd_toEndOf="@+id/video_cover"
+        app:layout_constraintStart_toStartOf="@+id/video_cover"
+        app:layout_constraintTop_toTopOf="@+id/video_cover" />
+
+
+    <include
+        layout="@layout/wasm_scort_bar_heart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/make_btn"
+        app:layout_constraintTop_toBottomOf="@+id/quest" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_ver_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+</com.demo.tiktok_likes_new.view.custom.WasmScortConstraint>

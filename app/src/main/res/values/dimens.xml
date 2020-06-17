@@ -1,3 +1,3 @@
 <resources>
-    <dimen name="cv_height">52dp</dimen>
+    <dimen name="wasm_scort_fgr_height">52dp</dimen>
 </resources>

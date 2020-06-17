@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.demo.tiktok_likes_new.view.custom.WasmScortConstraint
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/wasm_scort_video_prev_bg"
+    android:orientation="vertical"
+    android:padding="2.5dp">
+
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+        android:id="@+id/video_preview"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+        android:id="@+id/com.demo.tiktok_likes_new.view.WasmScortImage2"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_margin="4dp"
+        android:src="@drawable/wasm_scort_ic_heart_double"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortText
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:shadowColor="@color/wasm_scort_gray"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="1"
+        android:textColor="@color/wasm_scort_colorPrimary"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="13.4sp"
+        app:layout_constraintBottom_toBottomOf="@+id/com.demo.tiktok_likes_new.view.WasmScortImage2"
+        app:layout_constraintStart_toEndOf="@+id/com.demo.tiktok_likes_new.view.WasmScortImage2"
+        app:layout_constraintTop_toTopOf="@+id/com.demo.tiktok_likes_new.view.WasmScortImage2" />
+
+</com.demo.tiktok_likes_new.view.custom.WasmScortConstraint>

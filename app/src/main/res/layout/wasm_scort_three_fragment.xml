@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.demo.tiktok_likes_new.view.custom.WasmScortConstraint
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/wasm_scort_white">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:padding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
+
+    <include
+        layout="@layout/wasm_scort_progressbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</com.demo.tiktok_likes_new.view.custom.WasmScortConstraint>

@@ -2,45 +2,46 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.demo.tiktok_likes_new">
 
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
-        android:name=".ScabApp"
+        android:name=".WaspApp"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_launcher"
+        android:icon="@drawable/wasm_scort_ic_launcher"
+        android:label="@string/wasm_scort_app"
+        android:roundIcon="@drawable/wasm_scort_ic_launcher"
         android:supportsRtl="true"
-        android:networkSecurityConfig="@xml/network_conf"
+        android:networkSecurityConfig="@xml/wasm_conf"
         android:theme="@style/Main.Theme">
 
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".view.activity.AppAuthActivityWasmScort"
             android:screenOrientation="portrait">
-           <!-- <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
         </activity>
         <activity
-            android:name=".activity.MakeOrdActivity"
-            android:label="@string/none"
+            android:name=".view.activity.WasmScortMakeActivityWasmScort"
+            android:label="@string/wasm_scort_emp"
             android:screenOrientation="portrait"
             />
 
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".view.activity.WasmScortNavActivityWasmScort"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".view.activity.WasmScortBaseActivity" />
+        <activity android:name=".view.activity.DemoReplacesActivity" />
+        <activity android:name=".view.activity.CostAppActivityWasmScort" />
+        <activity android:name=".view.activity.ListVorednActivityWasmScort" />
     </application>
 
 </manifest>

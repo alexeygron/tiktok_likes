@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        >
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+                android:id="@+id/iv1"
+                style="@style/WasmPriceBarIcon"
+                />
+
+            <com.demo.tiktok_likes_new.view.custom.WasmScortText
+                android:id="@+id/text1"
+                style="@style/WasmPriceBarText"
+                android:text="10"
+                />
+
+           <!-- <com.demo.tiktok_likes_new.view.custom.WasmScortImage style="@style/PriceBarMarker" />-->
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+                android:id="@+id/iv2"
+                style="@style/WasmPriceBarIcon" />
+
+            <com.demo.tiktok_likes_new.view.custom.WasmScortText
+                android:id="@+id/text2"
+                style="@style/WasmPriceBarText"
+                android:text="25"
+                />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+                android:id="@+id/iv3"
+                style="@style/WasmPriceBarIcon" />
+
+            <com.demo.tiktok_likes_new.view.custom.WasmScortText
+                android:id="@+id/text3"
+                style="@style/WasmPriceBarText"
+                android:text="50"
+                />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+                android:id="@+id/iv4"
+                style="@style/WasmPriceBarIcon" />
+
+            <com.demo.tiktok_likes_new.view.custom.WasmScortText
+                android:id="@+id/text4"
+                style="@style/WasmPriceBarText"
+                android:text="100"
+                />
+
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+                android:id="@+id/iv5"
+                style="@style/WasmPriceBarIcon" />
+
+            <com.demo.tiktok_likes_new.view.custom.WasmScortText
+                android:id="@+id/text5"
+                style="@style/WasmPriceBarText"
+                android:text="200"
+                />
+
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+                android:id="@+id/iv6"
+                style="@style/WasmPriceBarIcon" />
+
+            <com.demo.tiktok_likes_new.view.custom.WasmScortText
+                android:id="@+id/text6"
+                style="@style/WasmPriceBarText"
+                android:text="500"
+                />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:layout_gravity="bottom"
+        android:background="#9B9B9B" />
+</FrameLayout>

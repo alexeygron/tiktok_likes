@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.demo.tiktok_likes_new.view.custom.WasmScortConstraint xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+        android:id="@+id/com.demo.tiktok_likes_new.view.WasmScortImage3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitStart"
+        android:src="@drawable/wasm_scort_decory"
+        tools:layout_editor_absoluteY="20dp" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+        android:id="@+id/red_big1"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="6dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/wasm_scort_ic_red_big"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_hor_1"
+        app:layout_constraintEnd_toStartOf="@+id/count1" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortText
+        android:id="@+id/count1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:paddingLeft="3dp"
+        android:text="25000"
+        android:textColor="@color/wasm_scort_dark"
+        android:textSize="16.5sp"
+        app:layout_constraintBottom_toTopOf="@+id/View1"
+        app:layout_constraintEnd_toEndOf="@+id/View1"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ver_1"
+        app:layout_constraintTop_toTopOf="@+id/red_big1" />
+
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+        android:id="@+id/red_big2"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="6dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/wasm_scort_ic_red_big"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_hor_2"
+        app:layout_constraintEnd_toStartOf="@+id/count2" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortText
+        android:id="@+id/count2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:paddingLeft="3dp"
+        android:text="8000"
+        android:textColor="@color/wasm_scort_dark"
+        android:textSize="16.5sp"
+        app:layout_constraintBottom_toTopOf="@+id/View2"
+        app:layout_constraintEnd_toEndOf="@+id/View2"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ver_2"
+        app:layout_constraintTop_toTopOf="@+id/red_big2" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+        android:id="@+id/red_big3"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="6dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/wasm_scort_ic_red_big"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_hor_3"
+        app:layout_constraintEnd_toStartOf="@+id/count3" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortText
+        android:id="@+id/count3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:paddingLeft="3dp"
+        android:text="3000"
+        android:textColor="@color/wasm_scort_dark"
+        android:textSize="16.5sp"
+        app:layout_constraintBottom_toTopOf="@+id/View3"
+        app:layout_constraintEnd_toEndOf="@+id/View3"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ver_3"
+        app:layout_constraintTop_toTopOf="@+id/red_big3" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+        android:id="@+id/red_big4"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="6dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/wasm_scort_ic_red_big"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_hor_4"
+        app:layout_constraintEnd_toStartOf="@+id/count4" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortText
+        android:id="@+id/count4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:paddingLeft="3dp"
+        android:text="1000"
+        android:textColor="@color/wasm_scort_dark"
+        android:textSize="16.5sp"
+        app:layout_constraintBottom_toTopOf="@+id/View4"
+        app:layout_constraintEnd_toEndOf="@+id/View4"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ver_4"
+        app:layout_constraintTop_toTopOf="@+id/red_big4" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+        android:id="@+id/red_big5"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="6dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/wasm_scort_ic_red_big"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_hor_5"
+        app:layout_constraintEnd_toStartOf="@+id/count5" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortText
+        android:id="@+id/count5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:paddingLeft="3dp"
+        android:text="100"
+        android:textColor="@color/wasm_scort_dark"
+        android:textSize="16.5sp"
+        app:layout_constraintBottom_toTopOf="@+id/View5"
+        app:layout_constraintEnd_toEndOf="@+id/View5"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ver_5"
+        app:layout_constraintTop_toTopOf="@+id/red_big5" />
+
+    <View
+        android:id="@+id/View1"
+        style="@style/WasmTwoColumn"
+        android:layout_width="@dimen/wasm_scort_fgr_height"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_ver_1"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ver_1"
+        app:layout_constraintTop_toTopOf="@+id/guideline_hor_1" />
+
+    <View
+        android:id="@+id/View2"
+        style="@style/WasmTwoColumn"
+        android:layout_width="@dimen/wasm_scort_fgr_height"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_ver_2"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ver_2"
+        app:layout_constraintTop_toTopOf="@+id/guideline_hor_2" />
+
+    <View
+        android:id="@+id/View3"
+        style="@style/WasmTwoColumn"
+        android:layout_width="@dimen/wasm_scort_fgr_height"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_ver_3"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ver_3"
+        app:layout_constraintTop_toTopOf="@+id/guideline_hor_3" />
+
+    <View
+        android:id="@+id/View4"
+        style="@style/WasmTwoColumn"
+        android:layout_width="@dimen/wasm_scort_fgr_height"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_ver_4"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ver_4"
+        app:layout_constraintTop_toTopOf="@+id/guideline_hor_4" />
+
+    <View
+        android:id="@+id/View5"
+        style="@style/WasmTwoColumn"
+        android:layout_width="@dimen/wasm_scort_fgr_height"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="@+id/guideline_ver_5"
+        app:layout_constraintStart_toStartOf="@+id/guideline_ver_5"
+        app:layout_constraintTop_toTopOf="@+id/guideline_hor_5" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortText
+        android:id="@+id/marker1"
+        style="@style/WasmColumnMarker"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/View1"
+        app:layout_constraintTop_toTopOf="@+id/guideline_hor_1" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortText
+        android:id="@+id/marker2"
+        style="@style/WasmColumnMarker"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/View2"
+        app:layout_constraintTop_toTopOf="@+id/guideline_hor_2" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortText
+        android:id="@+id/marker3"
+        style="@style/WasmColumnMarker"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/View3"
+        app:layout_constraintTop_toTopOf="@+id/guideline_hor_3" />
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortText
+        android:id="@+id/marker4"
+        style="@style/WasmColumnMarker"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/View4"
+        app:layout_constraintTop_toTopOf="@+id/guideline_hor_4" />
+
+
+    <com.demo.tiktok_likes_new.view.custom.WasmScortText
+        android:id="@+id/marker5"
+        style="@style/WasmColumnMarker"
+        android:text=""
+        app:layout_constraintStart_toStartOf="@+id/View5"
+        app:layout_constraintTop_toTopOf="@+id/guideline_hor_5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_ver_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.14" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_ver_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.31" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_ver_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.48" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_ver_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_ver_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.82" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.31" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.47" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.63" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_hor_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.79" />
+
+</com.demo.tiktok_likes_new.view.custom.WasmScortConstraint>

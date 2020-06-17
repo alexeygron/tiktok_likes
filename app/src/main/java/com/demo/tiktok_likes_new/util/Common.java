@@ -7,12 +7,9 @@ import android.os.Looper;
 import android.provider.Settings;
 
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
-import static com.demo.tiktok_likes_new.network.Constants.CONTEXT;
+import static com.demo.tiktok_likes_new.net.NetConfigure.CONTEXT;
 
 public class Common {
 
@@ -21,10 +18,7 @@ public class Common {
     public static final String USER_AGENT = "Mozilla/5.0 (Linux; Android 6.0.1; Moto G (4)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.92 Mobile Safari/537.36";
     public static char[] SDA_ARR = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
-
-    public static final boolean DEBUG_MODE = true;
     public static final boolean TOK_REQUEST_ENABLED = true;
-    public static final boolean ANIMATE_PREVIEW = true;
     public static final int DEFAULT_TAB = 0;
 
     private static Handler mainThreadHandler;
