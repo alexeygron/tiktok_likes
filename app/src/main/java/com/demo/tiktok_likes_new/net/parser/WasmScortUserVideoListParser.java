@@ -1,5 +1,7 @@
 package com.demo.tiktok_likes_new.net.parser;
 
+import android.util.Log;
+
 import com.demo.tiktok_likes_new.net.request.WasmScortUserVideoResp;
 
 import org.json.JSONArray;
@@ -15,6 +17,8 @@ public class WasmScortUserVideoListParser implements WasmScortIParser<WasmScortU
     @Override
     public WasmScortUserVideoResp parse(String json) throws JSONException {
         JSONObject baseObj = new JSONObject(json);
+
+        Log.i("WasmScortUserVideo", "parse: " + json);
 
         WasmScortUserVideoResp wasm_wasmScortUserVideoResp = new WasmScortUserVideoResp();
         List<WasmScortUserVideoResp.Item> itemList = new ArrayList<>();

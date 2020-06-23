@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -84,6 +85,8 @@ public class WasmScortMakeActivityWasmScort extends WasmScortBaseActivity {
 
         if (intent != null && intent.hasExtra(res_key))
              blns = Float.parseFloat(intent.getStringExtra(res_key));
+
+        Log.i("WasmScortMakeActivi", "onCreate: " +  item.toString());
 
        /* Log.i(TAG, "onCreate: " +  item.toString());
         Log.i(TAG, "onCreate: " +  blns);*/

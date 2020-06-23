@@ -40,6 +40,8 @@ import com.demo.tiktok_likes_new.view.custom.WasmScortImage;
 import com.orhanobut.hawk.Hawk;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -173,12 +175,20 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
 
     private void loadItemByUrl(String uniqueId, String itemId) {
         wasm_viewsWasm.wasm_webView.loadUrl(REQ_URL + "@" + uniqueId + "/video/" + itemId);
+        Log.i(TAG, "wasm_isRealOr: " + wasm_isRealOr);
+        Log.i(TAG, "loadItemByUrl: " + uniqueId);
     }
 
     private String revertUrlDomain(String url) {
         String newUrl = url;
-        if (url != null && url.contains("p16-musical-va.ibyteimg.com")) {
+        if (url != null && (url.contains("p16-musical-va.ibyteimg.com"))) {
             newUrl = url.replace("p16-musical-va.ibyteimg.com", "p16.muscdn.com");
+            return newUrl;
+        }
+
+        if (url != null && (url.contains("p16-tiktok-va.ibyteimg.com"))) {
+            newUrl = url.replace("p16-tiktok-va.ibyteimg.com", "p16.muscdn.com");
+            return newUrl;
         }
         return newUrl;
     }
