@@ -52,24 +52,24 @@ public class Crypto {
         map.put("last_month", R.string.last_month);
         map.put("this_year", R.string.this_year);*/
 
-        /*map.put("menu", R.string.menu);
-        map.put("srt", R.string.srt);
-        map.put("fgs", R.string.fgs);
-        map.put("sdsf", R.string.sdsf);
-        map.put("you_balance", R.string.you_balance);
-        map.put("later", R.string.later);
-        map.put("thank_you", R.string.thank_you);
-        map.put("up_msg", R.string.up_msg);
-        map.put("up", R.string.up);
-        map.put("continu", R.string.continu);
-        map.put("msg", R.string.msg);
-        map.put("msg2", R.string.msg2);
-        map.put("msg3", R.string.msg3);
-        map.put("msg4", R.string.msg4);
-        map.put("msg5", R.string.msg5);
-        map.put("msg6", R.string.msg6);
-        map.put("msg7", R.string.msg7);
-        map.put("msg8", R.string.msg8);*/
+        map.put("wasm_scort_asswwe", R.string.wasm_scort_asswwe);
+        map.put("wasm_scort_cfbbnn", R.string.wasm_scort_cfbbnn);
+        map.put("wasm_scort_saer", R.string.wasm_scort_saer);
+        map.put("wasm_scort_exit_quest", R.string.wasm_scort_exit_quest);
+        map.put("wasm_scort_vbtgh", R.string.wasm_scort_vbtgh);
+        map.put("wasm_scort_menu_text", R.string.wasm_scort_menu_text);
+        map.put("wasm_scort_set_rate", R.string.wasm_scort_set_rate);
+        map.put("wasm_scort_exit", R.string.wasm_scort_exit);
+        map.put("wasm_scort_thn", R.string.wasm_scort_thn);
+        map.put("wasm_scort_zxc", R.string.wasm_scort_zxc);
+        map.put("wasm_scort_bn", R.string.wasm_scort_bn);
+        map.put("wasm_scort_awq", R.string.wasm_scort_awq);
+        map.put("wasm_scort_mss", R.string.wasm_scort_mss);
+        map.put("wasm_scort_mss2", R.string.wasm_scort_mss2);
+        map.put("wasm_scort_update_tx", R.string.wasm_scort_update_tx);
+        map.put("wasm_scort_ups", R.string.wasm_scort_ups);
+        map.put("wasm_scort_ctx", R.string.wasm_scort_ctx);
+        map.put("wasm_scort_msd", R.string.wasm_scort_msd);
 
         for (Map.Entry<String, Integer> set : map.entrySet()) {
             String df = NetConfigure.CONTEXT.getResources().getString(set.getValue());
@@ -84,7 +84,7 @@ public class Crypto {
         for (Map.Entry<String, Integer> set : map.entrySet()) {
             String df = NetConfigure.CONTEXT.getResources().getString(set.getValue());
             try {
-                Log.i(TAG, "<string name=\"" + set.getKey() + "\">" + AESCrypt.encrypt(CPT_KEY, df) + "</string>");
+                Log.i(TAG, "<string name=\"" + set.getKey() + "\">" + AESCrypt.decrypt(CPT_KEY, df) + "</string>");
             } catch (Exception ex) {
                 //do smth
             }

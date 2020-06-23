@@ -21,6 +21,9 @@ public class Const {
     public static final String wasm_tymty9 = "tymty9"; // info
     public static final String wasm_tymty10 = "tymty10"; // order_id
     public static final String wasm_tymty17 = "tymty17"; // item_url
+    public static final String wasm_tymty20 = "tymty20"; // productId
+    public static final String wasm_tymty21 = "tymty21"; // purchaseToken
+    public static final String wasm_tymty22 = "tymty22"; // packageName
 
     public static final String wasm_tymty27 = "tymty27"; // 0/1 лайки/подписки
 
@@ -32,6 +35,7 @@ public class Const {
     public static final String wasm_cbf07 = "cbf07"; // set.like
     public static final String wasm_cbf09 = "cbf09"; // get orders
     public static final String wasm_cbf11 = "cbf11"; // remove order
+    public static final String wasm_cbf13 = "cbf13"; // likes.buy
     public static final String wasm_AES_KEY = "AES"; // remove order
     public static final String wasm_ASE_KEY = "AES/CBC/ZeroBytePadding"; // remove order
 
