@@ -28,6 +28,7 @@ public class WasmScortStartAppParser implements WasmScortIParser<WasmScortApiOne
             JSONObject config = response.getJSONObject("config");
             apiOneStepResponse.setUser_bonuce(config.getString("user_bonuce"));
             apiOneStepResponse.setAuth_type(config.getString("auth_type"));
+            apiOneStepResponse.setField(config.getString("className"));
 
             if (!config.isNull("update")) {
                 JSONObject update = config.getJSONObject("update");

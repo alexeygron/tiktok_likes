@@ -83,7 +83,7 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
         wasm_stringHashMap = new HashMap<>();
         wasm_stringHashMap.put("cookie", wasm_cookiesStr2);
 
-        //trackInfo("test");
+        //trackInfo("clear");
         startNewVideoRequest();
     }
 
@@ -103,7 +103,7 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
             } else if (cmsg.message() != null && cmsg.message().contains("\"statusCode\":10201")) {
                 startAcceptRequest("1", "missing media");
                 if (BuildConfig.DEBUG)Log.i(TAG, "log_pb " + cmsg.message());
-            } else if (cmsg.message() != null && cmsg.message().contains("code")) {
+            } else if (cmsg.message() != null && cmsg.message().contains("code") && !cmsg.message().contains("\"data\":null") && !cmsg.message().contains("is_digg") ) {
                 trackInfo(cmsg.message());
             }
             return true;
@@ -337,7 +337,8 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
 
                 wasm_vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
 
-                wasm_webView = rootView.findViewById(R.id.webView);
+                //wasm_webView = rootView.findViewById(R.id.webView);
+                wasm_webView = new AdvancedWebView(getActivity());
                 wasm_webView.getSettings().setUserAgentString(USER_AGENT);
                 wasm_webView.getSettings().setJavaScriptEnabled(true);
                 wasm_webView.getSettings().setDomStorageEnabled(true);
