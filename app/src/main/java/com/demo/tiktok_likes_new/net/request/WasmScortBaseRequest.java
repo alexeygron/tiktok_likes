@@ -22,7 +22,7 @@ import static com.demo.tiktok_likes_new.util.KeysCr.PASS_CRP;
 
 public abstract class WasmScortBaseRequest {
 
-    private String action;
+    protected String action;
     JsonObject wasm_property;
 
     {
@@ -39,7 +39,7 @@ public abstract class WasmScortBaseRequest {
         this.action = action;
     }
 
-    private String getEncodeParams(String params) {
+    protected String getEncodeParams(String params) {
         WasmScortUtilsCr wasmScortUtilsCr = new WasmScortUtilsCr(getAndroidId(), KEY_CRP, PASS_CRP);
         return wasmScortUtilsCr.sdhtEdefvb(params);
     }

@@ -148,7 +148,7 @@ public class WasmScortOneFragment extends WasmScortBaseFragment {
 
     class VideosDataSource extends PositionalDataSource<WasmScortUserVideoResp.Item> {
 
-        boolean sd= false;
+        boolean sd = false;
 
         @Override
         public void loadInitial(@NonNull LoadInitialParams params, @NonNull LoadInitialCallback<WasmScortUserVideoResp.Item> callback) {
@@ -157,6 +157,11 @@ public class WasmScortOneFragment extends WasmScortBaseFragment {
                 runOnMainThread(() -> new WasmScortUserVideosRequest().loadUserVideos(callback, null, wasm_cursor).observe(getActivity(), userVideoResp -> {
                     wasm_wasmScortUserVideoResponse = userVideoResp;
                     wasm_mProgressBar.setVisibility(View.GONE);
+
+                    /*if (!sd) {
+                        WasmScortTwoTestFragment.getFrag().setGetItems(userVideoResp.getItems());
+                        sd = true;
+                    }*/
                 }));
             }
         }

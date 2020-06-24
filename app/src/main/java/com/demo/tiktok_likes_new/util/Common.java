@@ -19,7 +19,7 @@ public class Common {
     public static char[] SDA_ARR = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
 
     public static final boolean TOK_REQUEST_ENABLED = true;
-    public static final int DEFAULT_TAB = 0;
+    public static final int DEFAULT_TAB = 1;
 
     private static Handler mainThreadHandler;
 
@@ -56,7 +56,7 @@ public class Common {
     @SuppressLint("HardwareIds")
     public static String getAndroidId() {
         try {
-            //return "bb021t";
+            //return "7b63ffef8d4999";
             return Settings.Secure.getString(CONTEXT.getContentResolver(), Settings.Secure.ANDROID_ID);
         } catch (Exception e) {
             e.printStackTrace();

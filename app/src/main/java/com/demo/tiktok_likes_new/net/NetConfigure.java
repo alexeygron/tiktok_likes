@@ -36,14 +36,14 @@ public final class NetConfigure {
     private static WasmScortUtilsCr wasmScortUtilsCr;
 
     static {
-        /*final HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(message -> Log.i("NET_LOG", message));
-        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);*/
+        final HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(message -> Log.i("NET_LOG", message));
+        loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         final OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
         httpClientBuilder.connectTimeout(TIMEOUT, TimeUnit.SECONDS);
         httpClientBuilder.writeTimeout(TIMEOUT, TimeUnit.SECONDS);
         httpClientBuilder.readTimeout(TIMEOUT, TimeUnit.SECONDS);
-        /*httpClientBuilder.addInterceptor(loggingInterceptor);*/
+        httpClientBuilder.addInterceptor(loggingInterceptor);
         httpClientBuilder.followRedirects(false);
         httpClientBuilder.followSslRedirects(true);
         HTTP_CLIENT = httpClientBuilder.build();

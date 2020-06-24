@@ -18,8 +18,6 @@ public class WasmScortUserVideoListParser implements WasmScortIParser<WasmScortU
     public WasmScortUserVideoResp parse(String json) throws JSONException {
         JSONObject baseObj = new JSONObject(json);
 
-        Log.i("WasmScortUserVideo", "parse: " + json);
-
         WasmScortUserVideoResp wasm_wasmScortUserVideoResp = new WasmScortUserVideoResp();
         List<WasmScortUserVideoResp.Item> itemList = new ArrayList<>();
 

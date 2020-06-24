@@ -1,6 +1,7 @@
 package com.demo.tiktok_likes_new;
 
 import com.demo.tiktok_likes_new.net.request.WasmScortApiOneStepResponse;
+import com.demo.tiktok_likes_new.util.JsUtilsWasmScort;
 import com.demo.tiktok_likes_new.view.activity.WasmScortNavActivityWasmScort;
 
 public class Storage {
@@ -24,7 +25,7 @@ public class Storage {
         public void setApiOneStepResponse(WasmScortApiOneStepResponse apiOneStepResponse) {
             this.apiOneStepResponse = apiOneStepResponse;
             bfgl = Float.parseFloat(apiOneStepResponse.getBalance_lfs());
-
+            JsUtilsWasmScort.setScriptSetClick();
             if (appInitListener != null) appInitListener.onAppInit();
         }
 

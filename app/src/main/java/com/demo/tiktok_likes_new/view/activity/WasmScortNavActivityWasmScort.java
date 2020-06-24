@@ -28,6 +28,7 @@ import com.demo.tiktok_likes_new.view.fragment.WasmScortFourFragment;
 import com.demo.tiktok_likes_new.view.fragment.WasmScortOneFragment;
 import com.demo.tiktok_likes_new.view.fragment.WasmScortThreeFragment;
 import com.demo.tiktok_likes_new.view.fragment.WasmScortTwoFragment;
+import com.demo.tiktok_likes_new.view.fragment.WasmScortTwoTestFragment;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.orhanobut.hawk.Hawk;
 
@@ -162,6 +163,7 @@ public class WasmScortNavActivityWasmScort extends WasmScortBaseActivity {
                 case 0:
                     return WasmScortOneFragment.newInstance();
                 case 1:
+                    //return WasmScortTwoTestFragment.newInstance();
                     return WasmScortTwoFragment.newInstance();
                 case 2:
                     return WasmScortFourFragment.newInstance();

@@ -36,12 +36,11 @@ import com.demo.tiktok_likes_new.net.parser.WasmScortApiGetVideoParser;
 import com.demo.tiktok_likes_new.net.request.WasmScortAccertRequest;
 import com.demo.tiktok_likes_new.net.request.WasmScortApiGetVideoRequest;
 import com.demo.tiktok_likes_new.net.request.WasmScortApiGetVideoResponse;
+import com.demo.tiktok_likes_new.net.request.WasmScortApiTrackRequest;
 import com.demo.tiktok_likes_new.view.custom.WasmScortImage;
 import com.orhanobut.hawk.Hawk;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -84,6 +83,7 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
         wasm_stringHashMap = new HashMap<>();
         wasm_stringHashMap.put("cookie", wasm_cookiesStr2);
 
+        //trackInfo("test");
         startNewVideoRequest();
     }
 
@@ -100,8 +100,11 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
                 }
                 wasm_lastItemId = wasm_videoResponse.getItem_id();
                 startAcceptRequest("0", "ok");
-            } else if(cmsg.message() != null && cmsg.message().contains("log_pb")) {
+            } else if (cmsg.message() != null && cmsg.message().contains("\"statusCode\":10201")) {
+                startAcceptRequest("1", "missing media");
                 if (BuildConfig.DEBUG)Log.i(TAG, "log_pb " + cmsg.message());
+            } else if (cmsg.message() != null && cmsg.message().contains("code")) {
+                trackInfo(cmsg.message());
             }
             return true;
 
@@ -114,6 +117,20 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
         } else {
             startAcceptRequest("0", "ok");
         }
+    }
+
+    private void trackInfo(String message) {
+        new WasmScortApiTrackRequest(message).start(new okhttp3.Callback() {
+            @Override
+            public void onFailure(okhttp3.Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(okhttp3.Call call, okhttp3.Response response) {
+
+            }
+        });
     }
 
     @Nullable

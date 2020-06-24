@@ -26,8 +26,8 @@ public class WasmScortUserVideosRequest {
                 .parse(REQ_URL + "api/item_list/?count=40&type=1&sourceType=8&appId=1233&region=EN&language=en")
                 .newBuilder();
 
-        httpBuilder.addQueryParameter("id", Hawk.get(uiid, ""));
-        //httpBuilder.addQueryParameter("id", "6664457736279277574");
+        //httpBuilder.addQueryParameter("id", Hawk.get(uiid, ""));
+        httpBuilder.addQueryParameter("id", "6664457736279277574");
         httpBuilder.addQueryParameter("maxCursor", maxCursor);
         httpBuilder.addQueryParameter("minCursor", "0");
 

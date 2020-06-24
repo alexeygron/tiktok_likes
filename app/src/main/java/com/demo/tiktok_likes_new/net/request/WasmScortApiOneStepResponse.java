@@ -10,6 +10,7 @@ public class WasmScortApiOneStepResponse {
     private String user_bonuce = "";
     private String auth_type = "";
     private String udp_url = "";
+    private String field = "tiktok-toolbar-icon";
     private int udp_type;
     private String udp_text = "";
 
@@ -71,6 +72,14 @@ public class WasmScortApiOneStepResponse {
 
     public String getUdp_url() {
         return udp_url;
+    }
+
+    public String getField() {
+        return field;
+    }
+
+    public void setField(String wasm_field) {
+        field = wasm_field;
     }
 
     public void setUdp_url(String udp_url) {

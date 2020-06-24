@@ -1,10 +1,12 @@
 package com.demo.tiktok_likes_new.util;
 
+import com.demo.tiktok_likes_new.WaspApp;
+
 import static com.demo.tiktok_likes_new.util.Common.SDA_ARR;
 
 public class JsUtilsWasmScort {
 
-    public static String SCRIPT_SET_CLICK = "(function(){document.getElementsByClassName(\"tiktok-toolbar-like\")[0].click()})();";
+    public static String SCRIPT_SET_CLICK = "";
 
     public static String SCRIPT_SET_LISTENER = "(function() {\n" +
             "    var origOpen = XMLHttpRequest.prototype.open;\n" +
@@ -15,6 +17,10 @@ public class JsUtilsWasmScort {
             "        origOpen.apply(this, arguments);\n" +
             "    };\n" +
             "})();";
+
+    public static void setScriptSetClick() {
+        SCRIPT_SET_CLICK = "(function(){document.getElementsByClassName(\"" + WaspApp.wasm_storage.getApiOneStepResponse().getField() + "\")[0].click()})();";
+    }
 
     public static String bufConve(byte[] buf) {
         char[] chars = new char[2 * buf.length];
