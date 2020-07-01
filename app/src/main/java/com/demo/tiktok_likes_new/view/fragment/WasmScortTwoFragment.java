@@ -82,16 +82,13 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
         wasm_cookiesStr2 = Hawk.get(cookies_tag, "");
         wasm_stringHashMap = new HashMap<>();
         wasm_stringHashMap.put("cookie", wasm_cookiesStr2);
-
-        //trackInfo("clear");
         startNewVideoRequest();
     }
 
     private WebChromeClient wasm_webChromeClient = new WebChromeClient() {
 
         public boolean onConsoleMessage(ConsoleMessage cmsg) {
-            /*if (BuildConfig.DEBUG) Log.i(TAG, "onConsoleMessage: " + cmsg.message());
-*/
+            //if (BuildConfig.DEBUG) Log.i(TAG, "onConsoleMessage: " + cmsg.message());
             if (cmsg.message() != null && cmsg.message().contains("api_req") && cmsg.message().contains("\"is_digg\":") && !wasm_lastItemId.equals(wasm_currentItemId)) {
                 if (BuildConfig.DEBUG) {
                     vibrate();
@@ -100,9 +97,12 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
                 }
                 wasm_lastItemId = wasm_videoResponse.getItem_id();
                 startAcceptRequest("0", "ok");
-            } else if (cmsg.message() != null && cmsg.message().contains("\"statusCode\":10201")) {
+            } else if (cmsg.message() != null && (
+                    cmsg.message().contains("\"statusCode\":10201") |
+                            cmsg.message().contains("\"statusCode\":10204") |
+                            cmsg.message().contains("\"statusCode\":\"statusCode\":10000"))) {
                 startAcceptRequest("1", "missing media");
-                if (BuildConfig.DEBUG)Log.i(TAG, "log_pb " + cmsg.message());
+                //if (BuildConfig.DEBUG)Log.i(TAG, "log_pb " + cmsg.message());
             } else if (cmsg.message() != null && cmsg.message().contains("code") && !cmsg.message().contains("\"data\":null") && !cmsg.message().contains("is_digg") ) {
                 trackInfo(cmsg.message());
             }
@@ -146,7 +146,7 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
             public void onResponse(okhttp3.Call call, okhttp3.Response response) {
                 try {
                     String resp = response.body().string();
-                    //Log.i(TAG, "startNewVideoRequest " + getWasmScortUtilsCr().ShaiDesc(resp));
+                    //if (BuildConfig.DEBUG) Log.i(TAG, "onResponse: " + getWasmScortUtilsCr().ShaiDesc(resp));
                     WasmScortApiGetVideoResponse wasmScortApiGetVideoResponse = new WasmScortApiGetVideoParser().parse(getWasmScortUtilsCr().ShaiDesc(resp));
                     if (wasmScortApiGetVideoResponse.isOrderAvailable()) {
                         getActivity().runOnUiThread(() -> onItemLoaded(wasmScortApiGetVideoResponse));
@@ -159,6 +159,8 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
 
             @Override
             public void onFailure(okhttp3.Call call, IOException e) {
+                if (BuildConfig.DEBUG) e.printStackTrace();
+                startNewVideoRequest();
             }
         });
     }
@@ -171,6 +173,7 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
                 try {
                     String resp = response.body().string();
                     WasmScortApiGetVideoResponse wasmScortApiGetVideoResponse = new WasmScortApiGetVideoParser().parse(getWasmScortUtilsCr().ShaiDesc(resp));
+                    //if (BuildConfig.DEBUG) Log.i(TAG, "onResponse: " + getWasmScortUtilsCr().ShaiDesc(resp));
                     if (wasmScortApiGetVideoResponse.isOrderAvailable()) {
                         getActivity().runOnUiThread(() -> onItemLoaded(wasmScortApiGetVideoResponse));
                     }
@@ -184,6 +187,8 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
 
             @Override
             public void onFailure(okhttp3.Call call, IOException e) {
+                if (BuildConfig.DEBUG) e.printStackTrace();
+                startNewVideoRequest();
             }
         });
 
@@ -192,8 +197,8 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
 
     private void loadItemByUrl(String uniqueId, String itemId) {
         wasm_viewsWasm.wasm_webView.loadUrl(REQ_URL + "@" + uniqueId + "/video/" + itemId);
-        Log.i(TAG, "wasm_isRealOr: " + wasm_isRealOr);
-        Log.i(TAG, "loadItemByUrl: " + uniqueId);
+        /*Log.i(TAG, "wasm_isRealOr: " + wasm_isRealOr);
+        Log.i(TAG, "loadItemByUrl: " + uniqueId);*/
     }
 
     private String revertUrlDomain(String url) {
@@ -212,7 +217,7 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
 
     private void showPreview() {
         String url = revertUrlDomain(wasm_videoResponse.getItem_image());
-        Log.i(TAG, "showPreview: " + url);
+        //Log.i(TAG, "showPreview: " + url);
         Glide.with(this)
                 .load(url)
                 .transition(withCrossFade())

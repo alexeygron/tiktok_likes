@@ -44,9 +44,8 @@ public final class NetConfigure {
         httpClientBuilder.writeTimeout(TIMEOUT, TimeUnit.SECONDS);
         httpClientBuilder.readTimeout(TIMEOUT, TimeUnit.SECONDS);
         httpClientBuilder.addInterceptor(loggingInterceptor);
-        httpClientBuilder.followRedirects(false);
-        httpClientBuilder.followSslRedirects(true);
-        HTTP_CLIENT = httpClientBuilder.build();
+        HTTP_CLIENT = httpClientBuilder
+                .build();
     }
 
     private static void initHeaders() {

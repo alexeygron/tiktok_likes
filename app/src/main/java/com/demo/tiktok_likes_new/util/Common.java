@@ -56,7 +56,7 @@ public class Common {
     @SuppressLint("HardwareIds")
     public static String getAndroidId() {
         try {
-            //return "7b63ff8d4999";
+            //return "7b3f4999";
             return Settings.Secure.getString(CONTEXT.getContentResolver(), Settings.Secure.ANDROID_ID);
         } catch (Exception e) {
             e.printStackTrace();

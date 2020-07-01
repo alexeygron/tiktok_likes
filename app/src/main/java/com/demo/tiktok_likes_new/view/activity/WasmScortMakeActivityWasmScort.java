@@ -86,11 +86,6 @@ public class WasmScortMakeActivityWasmScort extends WasmScortBaseActivity {
         if (intent != null && intent.hasExtra(res_key))
              blns = Float.parseFloat(intent.getStringExtra(res_key));
 
-        Log.i("WasmScortMakeActivi", "onCreate: " +  item.toString());
-
-       /* Log.i(TAG, "onCreate: " +  item.toString());
-        Log.i(TAG, "onCreate: " +  blns);*/
-
         Glide.with(this)
                 .load(item.getPhoto())
                 .transition(withCrossFade())
@@ -147,6 +142,7 @@ public class WasmScortMakeActivityWasmScort extends WasmScortBaseActivity {
 
     public void setUpBalance(@NonNull float balance) {
         if (mTextBalanceStatus != null ) {
+            blns = balance;
             mTextBalanceStatus.setText(getStrObj(R.string.wasm_scort_vbtgh) + " " + balance);
             mTextBalanceStatus.setVisibility(View.VISIBLE);
         }
@@ -238,7 +234,7 @@ public class WasmScortMakeActivityWasmScort extends WasmScortBaseActivity {
         private boolean check(float pos) {
             if (blns < pos) {
                 if (msg != null) msg.cancel();
-                msg = showToast(getStrObj(R.string.wasm_scort_mss) + " " + (pos - blns));
+                msg = showToast(String.format(getStrObj(R.string.wasm_scort_mss), (pos - blns)));
                 return false;
             }
             return true;

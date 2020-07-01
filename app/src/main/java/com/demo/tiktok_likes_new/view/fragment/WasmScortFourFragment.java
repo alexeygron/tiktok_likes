@@ -179,19 +179,34 @@ public class WasmScortFourFragment extends WasmScortBaseFragment  implements Vie
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.marker1 | R.id.View1:
+            case R.id.marker1:
                 launchBillingFlow(getActivity(), wasm_lotList[0].getId());
                 break;
-            case R.id.marker2 | R.id.View2:
+            case R.id.View1:
+                launchBillingFlow(getActivity(), wasm_lotList[0].getId());
+                break;
+            case R.id.marker2:
                 launchBillingFlow(getActivity(), wasm_lotList[1].getId());
                 break;
-            case R.id.marker3 | R.id.View3:
+            case R.id.View2:
+                launchBillingFlow(getActivity(), wasm_lotList[1].getId());
+                break;
+            case R.id.marker3:
                 launchBillingFlow(getActivity(), wasm_lotList[2].getId());
                 break;
-            case R.id.marker4 | R.id.View4:
-               launchBillingFlow(getActivity(), wasm_lotList[3].getId());
+            case R.id.View3:
+                launchBillingFlow(getActivity(), wasm_lotList[2].getId());
                 break;
-            case R.id.marker5 | R.id.View5:
+            case R.id.marker4:
+                launchBillingFlow(getActivity(), wasm_lotList[3].getId());
+                break;
+            case R.id.View4:
+                launchBillingFlow(getActivity(), wasm_lotList[3].getId());
+                break;
+            case R.id.marker5:
+                launchBillingFlow(getActivity(), wasm_lotList[4].getId());
+                break;
+            case R.id.View5:
                 launchBillingFlow(getActivity(), wasm_lotList[4].getId());
                 break;
         }
