@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.demo.tiktok_likes_new">
+    package="com.appls.tokall">
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,28 +10,28 @@
     <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
-        android:name=".WaspApp"
+        android:name="com.appls.tokall.TokkallApp"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/wasm_scort_ic_launcher"
-        android:label="@string/wasm_scort_app"
-        android:roundIcon="@drawable/wasm_scort_ic_launcher"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/dgd_res_app"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:networkSecurityConfig="@xml/wasm_conf"
         android:theme="@style/Main.Theme">
 
         <activity
-            android:name=".view.activity.AppAuthActivityWasmScort"
+            android:name="com.appls.tokall.view.activity.AppAuthActivityWasmScort"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".view.activity.WasmScortMakeActivityWasmScort"
-            android:label="@string/wasm_scort_emp"
+            android:name="com.appls.tokall.view.activity.WasmScortMakeActivityWasmScort"
+            android:label="@string/dgd_res_emp"
             android:screenOrientation="portrait"
             />
 
         <activity
-            android:name=".view.activity.WasmScortNavActivityWasmScort"
+            android:name="com.appls.tokall.view.activity.WasmScortNavActivityWasmScort"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,10 +39,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".view.activity.WasmScortBaseActivity" />
-        <activity android:name=".view.activity.DemoReplacesActivity" />
-        <activity android:name=".view.activity.CostAppActivityWasmScort" />
-        <activity android:name=".view.activity.ListVorednActivityWasmScort" />
+        <activity android:name="com.appls.tokall.view.activity.WasmScortBaseActivity" />
+        <activity android:name="com.appls.tokall.view.activity.DemoReplacesActivity" />
+        <activity android:name="com.appls.tokall.view.activity.CostAppActivityWasmScort" />
+        <activity android:name="com.appls.tokall.view.activity.ListVorednActivityWasmScort" />
     </application>
 
 </manifest>

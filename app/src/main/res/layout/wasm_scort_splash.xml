@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.demo.tiktok_likes_new.view.custom.WasmScortImage xmlns:android="http://schemas.android.com/apk/res/android"
+<com.appls.tokall.view.custom.WasmScortImage xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/loading_screen"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -8,4 +8,4 @@
     android:scaleType="centerCrop"
     >
 
-</com.demo.tiktok_likes_new.view.custom.WasmScortImage>
+</com.appls.tokall.view.custom.WasmScortImage>

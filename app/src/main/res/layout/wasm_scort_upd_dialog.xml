@@ -5,12 +5,12 @@
     android:layout_height="360dp"
     >
 
-    <com.demo.tiktok_likes_new.view.custom.WasmScortConstraint
+    <com.appls.tokall.view.custom.WasmScortConstraint
         android:layout_width="match_parent"
         android:layout_height="360dp"
-        android:background="@color/wasm_scort_white">
+        android:background="@color/dgd_res_white">
 
-        <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+        <com.appls.tokall.view.custom.WasmScortImage
             android:id="@+id/com.demo.tiktok_likes_new.view.WasmScortImage3"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -21,20 +21,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.demo.tiktok_likes_new.view.custom.WasmScortText
+        <com.appls.tokall.view.custom.WasmScortText
             android:id="@+id/subTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="28dp"
             android:gravity="center"
-            android:textColor="@color/wasm_scort_dark"
+            android:textColor="@color/dgd_res_dark"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/upn" />
 
-        <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+        <com.appls.tokall.view.custom.WasmScortImage
             android:id="@+id/upn"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -51,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="37dp"
             android:layout_marginBottom="30dp"
-            android:background="@color/wasm_scort_dark"
+            android:background="@color/dgd_res_dark"
             android:enabled="true"
             android:paddingLeft="35dp"
             android:paddingTop="8dp"
@@ -67,6 +67,6 @@
             app:layout_constraintVertical_bias="0.79" />
 
 
-    </com.demo.tiktok_likes_new.view.custom.WasmScortConstraint>
+    </com.appls.tokall.view.custom.WasmScortConstraint>
 
 </FrameLayout>

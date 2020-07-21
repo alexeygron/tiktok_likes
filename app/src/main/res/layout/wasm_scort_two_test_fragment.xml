@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.demo.tiktok_likes_new.view.custom.WasmScortConstraint
+<com.appls.tokall.view.custom.WasmScortConstraint
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/contentFrame"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.demo.tiktok_likes_new.view.custom.WasmScortImage
+    <com.appls.tokall.view.custom.WasmScortImage
         android:id="@+id/video_cover"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -22,13 +22,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <com.demo.tiktok_likes_new.view.custom.WasmScortText
+    <com.appls.tokall.view.custom.WasmScortText
         android:id="@+id/unique"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
         android:layout_marginTop="9dp"
-        android:textColor="@color/wasm_scort_white"
+        android:textColor="@color/dgd_res_white"
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="1.5"
@@ -94,4 +94,4 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.4" />
 
-</com.demo.tiktok_likes_new.view.custom.WasmScortConstraint>
+</com.appls.tokall.view.custom.WasmScortConstraint>

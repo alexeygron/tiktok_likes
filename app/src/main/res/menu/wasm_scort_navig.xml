@@ -2,23 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/wasm_scort_one"
+        android:id="@+id/dgd_res_one"
         android:checked="true"
         android:icon="@drawable/wasm_scort_selector_tab_one"
-        android:title="@string/wasm_scort_emp" />
+        android:title="@string/dgd_res_emp" />
 
     <item
-        android:id="@+id/wasm_scort_two"
+        android:id="@+id/dgd_res_two"
         android:icon="@drawable/wasm_scort_selector_tab_two"
-        android:title="@string/wasm_scort_emp" />
+        android:title="@string/dgd_res_emp" />
 
     <item
-        android:id="@+id/wasm_scort_three"
+        android:id="@+id/dgd_res_three"
         android:icon="@drawable/wasm_scort_selector_tab_three"
-        android:title="@string/wasm_scort_emp" />
+        android:title="@string/dgd_res_emp" />
 
     <item
-        android:id="@+id/wasm_scort_four"
+        android:id="@+id/dgd_res_four"
         android:icon="@drawable/wasm_scort_selector_tab_four"
-        android:title="@string/wasm_scort_emp" />
+        android:title="@string/dgd_res_emp" />
 </menu>

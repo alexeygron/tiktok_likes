@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="wasm_scort_colorPrimary">#F2FFF9F9</color>
-    <color name="wasm_scort_colorPrimaryDark">@color/wasm_scort_white</color>
-    <color name="wasm_scort_colorAccent">#D51A5E</color>
-    <color name="wasm_scort_white">#FFFFFF</color>
-    <color name="wasm_scort_yellow">#FAE202</color>
-    <color name="wasm_scort_black">#000000</color>
-    <color name="wasm_scort_gray">#464646</color>
-    <color name="wasm_scort_liteGray">#969696</color>
-    <color name="wasm_scort_dark">#111111</color>
-    <color name="wasm_scort_pink">#F8264E</color>
-    <color name="wasm_scort_toolbar_bg">#FBA9BA</color>
-    <color name="wasm_scort_status_bar">#202020</color>
-    <color name="wasm_scort_disable_btn">#B4B4B4</color>
+    <color name="dgd_res_colorPrimary">#F2FFF9F9</color>
+    <color name="dgd_res_colorPrimaryDark">@color/dgd_res_white</color>
+    <color name="dgd_res_colorAccent">#D51A5E</color>
+    <color name="dgd_res_white">#FFFFFF</color>
+    <color name="dgd_res_yellow">#FAE202</color>
+    <color name="dgd_res_black">#000000</color>
+    <color name="dgd_res_gray">#464646</color>
+    <color name="dgd_res_liteGray">#969696</color>
+    <color name="dgd_res_dark">#111111</color>
+    <color name="dgd_res_pink">#F8264E</color>
+    <color name="dgd_res_toolbar_bg">#FBA9BA</color>
+    <color name="dgd_res_status_bar">#202020</color>
+    <color name="dgd_res_disable_btn">#B4B4B4</color>
 </resources>
