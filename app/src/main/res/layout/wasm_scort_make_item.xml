@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.appls.tokall.view.custom.WasmScortConstraint xmlns:android="http://schemas.android.com/apk/res/android"
+<com.demo.tiktok_likes_new.view.custom.WasmScortConstraint xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:card_view="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-    <com.appls.tokall.view.custom.WasmScortImage
+    <com.demo.tiktok_likes_new.view.custom.WasmScortImage
         android:id="@+id/close_icon"
         android:layout_width="42dp"
         android:layout_height="42dp"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toTopOf="parent"
         card_view:cardElevation="0dp">
 
-        <com.appls.tokall.view.custom.WasmScortImage
+        <com.demo.tiktok_likes_new.view.custom.WasmScortImage
             android:id="@+id/photo"
             android:layout_width="111dp"
             android:layout_height="111dp"
@@ -66,14 +66,14 @@
 
     </androidx.cardview.widget.CardView>
 
-    <com.appls.tokall.view.custom.WasmScortText
+    <com.demo.tiktok_likes_new.view.custom.WasmScortText
         android:id="@+id/state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="Montserrat"
-        android:textColor="@color/dgd_res_pink"
+        android:textColor="@color/wasm_scort_pink"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/progressBar4"
@@ -81,4 +81,4 @@
         app:layout_constraintTop_toBottomOf="@+id/progressBar4"
         />
 
-</com.appls.tokall.view.custom.WasmScortConstraint>
+</com.demo.tiktok_likes_new.view.custom.WasmScortConstraint>

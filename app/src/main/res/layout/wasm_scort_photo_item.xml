@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.appls.tokall.view.custom.WasmScortConstraint
+<com.demo.tiktok_likes_new.view.custom.WasmScortConstraint
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -10,7 +10,7 @@
     android:padding="2.5dp">
 
 
-    <com.appls.tokall.view.custom.WasmScortImage
+    <com.demo.tiktok_likes_new.view.custom.WasmScortImage
         android:id="@+id/video_preview"
         android:layout_width="match_parent"
         android:layout_height="210dp"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toBottomOf="parent" />
 
 
-    <com.appls.tokall.view.custom.WasmScortImage
+    <com.demo.tiktok_likes_new.view.custom.WasmScortImage
         android:id="@+id/com.demo.tiktok_likes_new.view.WasmScortImage2"
         android:layout_width="28dp"
         android:layout_height="28dp"
@@ -30,20 +30,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.appls.tokall.view.custom.WasmScortText
+    <com.demo.tiktok_likes_new.view.custom.WasmScortText
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:shadowColor="@color/dgd_res_gray"
+        android:shadowColor="@color/wasm_scort_gray"
         android:shadowDx="1"
         android:shadowDy="1"
         android:shadowRadius="1"
-        android:textColor="@color/dgd_res_colorPrimary"
+        android:textColor="@color/wasm_scort_colorPrimary"
         android:fontFamily="sans-serif-medium"
         android:textSize="13.4sp"
         app:layout_constraintBottom_toBottomOf="@+id/com.demo.tiktok_likes_new.view.WasmScortImage2"
         app:layout_constraintStart_toEndOf="@+id/com.demo.tiktok_likes_new.view.WasmScortImage2"
         app:layout_constraintTop_toTopOf="@+id/com.demo.tiktok_likes_new.view.WasmScortImage2" />
 
-</com.appls.tokall.view.custom.WasmScortConstraint>
+</com.demo.tiktok_likes_new.view.custom.WasmScortConstraint>

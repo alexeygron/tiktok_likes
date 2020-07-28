@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
 
-    <string name="dgd_res_app">Lajki na TikToku</string>
+    <string name="wasm_scort_app">Lajki na TikToku</string>
 
-    <string name="dgd_res_asswwe">FFhYE4Y8WBKmOQWzg4JhTheIM5faGOVucybr3OP9Q+4=</string>
-    <string name="dgd_res_cfbbnn">qFXYg+ZRoMi+mQBb0zijUEYVebCQwyhUV32Y3bO9n8I=</string>
-    <string name="dgd_res_saer">zAw/ufW1J98O1Ahzl9sHlA==</string>
-    <string name="dgd_res_exit_quest">FDS1+Ks0XAkqw9rqwfORQbBNAreyrgXrEYiBgB2zh0Q=</string>
-    <string name="dgd_res_vbtgh">UUkdmHAS5FbMO/YX9WzvPw==</string>
-    <string name="dgd_res_menu_text">xZTnOc+yCiFR72vJMTkIGw==</string>
-    <string name="dgd_res_set_rate">FFhYE4Y8WBKmOQWzg4JhTheIM5faGOVucybr3OP9Q+4=</string>
-    <string name="dgd_res_exit">Ye1NWzrBxNjdUedp6pTQQg==</string>
-    <string name="dgd_res_thn">EpJp7qft9oLupqf/Bbx0vidqBUCt9DGp43N25l2w6Yk=</string>
-    <string name="dgd_res_zxc">AeyJJcRIlBJnzc4viwPaWqoXBrQJYXYFQxR54W8x8Ng=</string>
-    <string name="dgd_res_bn">9U6rYKAyP00LL7pBy1IRkpWwEmqeFIg8Etn0viIZjto=</string>
-    <string name="dgd_res_awq">w9YhdRUahbTxdjhj4Jn+4Q==</string>
-    <string name="dgd_res_mss">svx3TrSJDvG+ADwE0jUqq/24bdt4pIISS6NCpX7a5tfge/XQd1zF4h7AIeWAOmjT</string>
-    <string name="dgd_res_mss2">zsc/MTH7QgsV84JQw7y7zTbkDZYfaA+qV5pIzfmUykU=</string>
-    <string name="dgd_res_update_tx">X00JZrPmruVHuqLIrXBpmOkDNy1wWkX9WaEAq/SquvZAPxBqf3x9CrzzLcJQZtM+</string>
-    <string name="dgd_res_ups">c+oGEScCP3tYyRzAT6ymiA==</string>
-    <string name="dgd_res_ctx">7wxWqZjnXrBcZYd7IRMyhg==</string>
-    <string name="dgd_res_msd">nUJYwLU15ve1+83fYzC9gCtobF2eykXCC63F8vJvtmZtehJ3hNzXhIVG6ZInMe5j</string>
+    <string name="wasm_scort_asswwe">FFhYE4Y8WBKmOQWzg4JhTheIM5faGOVucybr3OP9Q+4=</string>
+    <string name="wasm_scort_cfbbnn">qFXYg+ZRoMi+mQBb0zijUEYVebCQwyhUV32Y3bO9n8I=</string>
+    <string name="wasm_scort_saer">zAw/ufW1J98O1Ahzl9sHlA==</string>
+    <string name="wasm_scort_exit_quest">FDS1+Ks0XAkqw9rqwfORQbBNAreyrgXrEYiBgB2zh0Q=</string>
+    <string name="wasm_scort_vbtgh">UUkdmHAS5FbMO/YX9WzvPw==</string>
+    <string name="wasm_scort_menu_text">xZTnOc+yCiFR72vJMTkIGw==</string>
+    <string name="wasm_scort_set_rate">FFhYE4Y8WBKmOQWzg4JhTheIM5faGOVucybr3OP9Q+4=</string>
+    <string name="wasm_scort_exit">Ye1NWzrBxNjdUedp6pTQQg==</string>
+    <string name="wasm_scort_thn">EpJp7qft9oLupqf/Bbx0vidqBUCt9DGp43N25l2w6Yk=</string>
+    <string name="wasm_scort_zxc">AeyJJcRIlBJnzc4viwPaWqoXBrQJYXYFQxR54W8x8Ng=</string>
+    <string name="wasm_scort_bn">9U6rYKAyP00LL7pBy1IRkpWwEmqeFIg8Etn0viIZjto=</string>
+    <string name="wasm_scort_awq">w9YhdRUahbTxdjhj4Jn+4Q==</string>
+    <string name="wasm_scort_mss">svx3TrSJDvG+ADwE0jUqq/24bdt4pIISS6NCpX7a5tfge/XQd1zF4h7AIeWAOmjT</string>
+    <string name="wasm_scort_mss2">zsc/MTH7QgsV84JQw7y7zTbkDZYfaA+qV5pIzfmUykU=</string>
+    <string name="wasm_scort_update_tx">X00JZrPmruVHuqLIrXBpmOkDNy1wWkX9WaEAq/SquvZAPxBqf3x9CrzzLcJQZtM+</string>
+    <string name="wasm_scort_ups">c+oGEScCP3tYyRzAT6ymiA==</string>
+    <string name="wasm_scort_ctx">7wxWqZjnXrBcZYd7IRMyhg==</string>
+    <string name="wasm_scort_msd">nUJYwLU15ve1+83fYzC9gCtobF2eykXCC63F8vJvtmZtehJ3hNzXhIVG6ZInMe5j</string>
 
 </resources>
