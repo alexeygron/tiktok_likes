@@ -1,3 +1,5 @@
-scortalias2
+com.scort.wasmapp4
 
-scortpass2
+alias - scortalias2
+
+pass - scortpass2
