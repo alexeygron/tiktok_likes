@@ -100,6 +100,7 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
             } else if (cmsg.message() != null && (
                     cmsg.message().contains("\"statusCode\":10201") |
                             cmsg.message().contains("\"statusCode\":10204") |
+                            cmsg.message().contains("\"statusCode\":10215") |
                             cmsg.message().contains("\"statusCode\":\"statusCode\":10000"))) {
                 startAcceptRequest("1", "missing media");
                 //if (BuildConfig.DEBUG)Log.i(TAG, "log_pb " + cmsg.message());
@@ -146,7 +147,7 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
             public void onResponse(okhttp3.Call call, okhttp3.Response response) {
                 try {
                     String resp = response.body().string();
-                    //if (BuildConfig.DEBUG) Log.i(TAG, "onResponse: " + getWasmScortUtilsCr().ShaiDesc(resp));
+                    if (BuildConfig.DEBUG) Log.i(TAG, "onResponse: " + getWasmScortUtilsCr().ShaiDesc(resp));
                     WasmScortApiGetVideoResponse wasmScortApiGetVideoResponse = new WasmScortApiGetVideoParser().parse(getWasmScortUtilsCr().ShaiDesc(resp));
                     if (wasmScortApiGetVideoResponse.isOrderAvailable()) {
                         getActivity().runOnUiThread(() -> onItemLoaded(wasmScortApiGetVideoResponse));
