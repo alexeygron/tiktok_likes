@@ -1,5 +1,11 @@
 com.scort.wasmapp4
 
 alias - scortalias2
-
 pass - scortpass2
+
+
+перевалив:
+my.kiguri.sloth2
+
+kigurisloth2pass
+kigurisloth2alias
