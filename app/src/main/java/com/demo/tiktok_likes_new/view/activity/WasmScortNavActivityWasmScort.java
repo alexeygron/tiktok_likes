@@ -140,7 +140,7 @@ public class WasmScortNavActivityWasmScort extends WasmScortBaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        setUpBarState(String.valueOf(WaspApp.wasm_storage.getBfgl()));
+        setUpBarState(String.valueOf(blns));
     }
 
     public class CostPagerAdapter extends FragmentStatePagerAdapter {

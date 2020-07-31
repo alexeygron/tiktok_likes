@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +33,7 @@ public class AppAuthActivityWasmScort extends WasmScortBaseActivity {
 
     private WebView mWebView;
     private ProgressBar mProgressBar;
+    private String login = REQ_URL + "login/phone-or-email/";
 
     public static void start(final Context context) {
         final Intent intent = new Intent(context, AppAuthActivityWasmScort.class);
@@ -49,8 +51,12 @@ public class AppAuthActivityWasmScort extends WasmScortBaseActivity {
                 Hawk.put(cookies_tag, cookie);
                 if (!isStartLoadIds()) loadAndStoreIds(cookie);
             } else {
-                getmWebView().setVisibility(View.VISIBLE);
-                getmProgressBar().setVisibility(View.GONE);
+                new Handler().postDelayed(() -> {
+                    if (url.equals(login)) {
+                        getmWebView().setVisibility(View.VISIBLE);
+                        getmProgressBar().setVisibility(View.GONE);
+                    }
+                }, 1000);
             }
         }
 
@@ -59,6 +65,13 @@ public class AppAuthActivityWasmScort extends WasmScortBaseActivity {
             super.onPageStarted(view, url, favicon);
             getmWebView().setVisibility(View.GONE);
             getmProgressBar().setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            super.onReceivedError(view, errorCode, description, failingUrl);
+            getmWebView().setVisibility(View.GONE);
+            view.loadUrl(login);
         }
     };
 
@@ -79,7 +92,7 @@ public class AppAuthActivityWasmScort extends WasmScortBaseActivity {
             getmWebView().getSettings().setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
 
         getmWebView().setWebViewClient(getWebViewClient());
-        getmWebView().loadUrl(REQ_URL + "login/phone-or-email/");
+        getmWebView().loadUrl(login);
     }
 
     private boolean isStartLoadIds = false;
@@ -87,7 +100,6 @@ public class AppAuthActivityWasmScort extends WasmScortBaseActivity {
     private void loadAndStoreIds(String cookies) {
         setStartLoadIds(true);
 
-        Log.i("loadAndStor", "cookies: " + cookies);
         new WasmScortLoadTrendingRequest().start(cookies, new okhttp3.Callback() {
             @Override
             public void onFailure(okhttp3.Call call, IOException e) {

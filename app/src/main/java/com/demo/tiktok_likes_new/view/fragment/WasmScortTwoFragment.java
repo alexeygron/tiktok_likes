@@ -174,7 +174,7 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
                 try {
                     String resp = response.body().string();
                     WasmScortApiGetVideoResponse wasmScortApiGetVideoResponse = new WasmScortApiGetVideoParser().parse(getWasmScortUtilsCr().ShaiDesc(resp));
-                    //if (BuildConfig.DEBUG) Log.i(TAG, "onResponse: " + getWasmScortUtilsCr().ShaiDesc(resp));
+                    if (BuildConfig.DEBUG) Log.i(TAG, "onResponse: " + getWasmScortUtilsCr().ShaiDesc(resp));
                     if (wasmScortApiGetVideoResponse.isOrderAvailable()) {
                         getActivity().runOnUiThread(() -> onItemLoaded(wasmScortApiGetVideoResponse));
                     }
@@ -211,6 +211,11 @@ public class WasmScortTwoFragment extends WasmScortBaseFragment {
 
         if (url != null && (url.contains("p16-tiktok-va.ibyteimg.com"))) {
             newUrl = url.replace("p16-tiktok-va.ibyteimg.com", "p16.muscdn.com");
+            return newUrl;
+        }
+
+        if (url != null && (url.contains("mpak-odec1.akamaized.net"))) {
+            newUrl = url.replace("mpak-odec1.akamaized.net", "p16.muscdn.com");
             return newUrl;
         }
         return newUrl;

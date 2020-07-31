@@ -19,8 +19,9 @@ public abstract class WasmScortBaseFragment extends Fragment {
 
     void setBalance(String value) {
         try {
-            if (getActivity() != null && getActivity() instanceof WasmScortNavActivityWasmScort)
+            if (getActivity() != null && getActivity() instanceof WasmScortNavActivityWasmScort) {
                 ((WasmScortNavActivityWasmScort) getActivity()).setUpBarState(value);
+            }
         } catch (Exception ignored) {
 
         }
